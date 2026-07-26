@@ -24,7 +24,7 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/reacher-z/ClawBench?style=flat-square&logo=github&logoColor=white)](https://github.com/reacher-z/ClawBench/graphs/commit-activity)
 [![License](https://img.shields.io/github/license/reacher-z/ClawBench?style=flat-square&color=A42E2B)](https://github.com/reacher-z/ClawBench/blob/main/LICENSE)
 
-<p align="center"><sub><i>Featured in 21 curated lists</i></sub></p>
+<p align="center"><sub><i>Featured in 22 curated lists</i></sub></p>
 <p align="center">
   <a href="https://github.com/walkinglabs/awesome-harness-engineering"><img alt="awesome-harness-engineering" src="https://img.shields.io/badge/Featured-awesome--harness--engineering-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/Picrew/awesome-agent-harness"><img alt="awesome-agent-harness" src="https://img.shields.io/badge/Featured-awesome--agent--harness-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
@@ -35,6 +35,7 @@
   <a href="https://github.com/OSU-NLP-Group/GUI-Agents-Paper-List"><img alt="GUI-Agents-Paper-List" src="https://img.shields.io/badge/Featured-GUI--Agents--Paper--List-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/zhangxjohn/LLM-Agent-Benchmark-List"><img alt="LLM-Agent-Benchmark-List" src="https://img.shields.io/badge/Featured-LLM--Agent--Benchmark--List-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/HHHHHejia/Awesome-AgenticLLM-RL-Papers"><img alt="Awesome-AgenticLLM-RL-Papers" src="https://img.shields.io/badge/Featured-AgenticLLM--RL--Papers-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/RUC-NLPIR/Awesome-Long-Horizon-Agents"><img alt="Awesome-Long-Horizon-Agents" src="https://img.shields.io/badge/Featured-long--horizon--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/Lhy723/awesome-ai-agent-evaluation"><img alt="awesome-ai-agent-evaluation" src="https://img.shields.io/badge/Featured-agent--evaluation-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/MLGroupJLU/LLM-eval-survey"><img alt="LLM-eval-survey" src="https://img.shields.io/badge/Featured-LLM--eval--survey-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/SAILResearch/awesome-ai-leaderboard"><img alt="awesome-ai-leaderboard" src="https://img.shields.io/badge/Featured-AI--leaderboard-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
