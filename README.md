@@ -24,13 +24,28 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/reacher-z/ClawBench?style=flat-square&logo=github&logoColor=white)](https://github.com/reacher-z/ClawBench/graphs/commit-activity)
 [![License](https://img.shields.io/github/license/reacher-z/ClawBench?style=flat-square&color=A42E2B)](https://github.com/reacher-z/ClawBench/blob/main/LICENSE)
 
-<p align="center"><sub><i>Featured in</i></sub></p>
+<p align="center"><sub><i>Featured in 20 curated lists</i></sub></p>
 <p align="center">
   <a href="https://github.com/walkinglabs/awesome-harness-engineering"><img alt="awesome-harness-engineering" src="https://img.shields.io/badge/Featured-awesome--harness--engineering-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/Picrew/awesome-agent-harness"><img alt="awesome-agent-harness" src="https://img.shields.io/badge/Featured-awesome--agent--harness-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/Jenqyang/Awesome-AI-Agents"><img alt="Awesome-AI-Agents" src="https://img.shields.io/badge/Featured-Awesome--AI--Agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/ranpox/awesome-computer-use"><img alt="awesome-computer-use" src="https://img.shields.io/badge/Featured-awesome--computer--use-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/ZJU-REAL/Awesome-GUI-Agents"><img alt="Awesome-GUI-Agents" src="https://img.shields.io/badge/Featured-Awesome--GUI--Agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/OSU-NLP-Group/GUI-Agents-Paper-List"><img alt="GUI-Agents-Paper-List" src="https://img.shields.io/badge/Featured-GUI--Agents--Paper--List-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/zhangxjohn/LLM-Agent-Benchmark-List"><img alt="LLM-Agent-Benchmark-List" src="https://img.shields.io/badge/Featured-LLM--Agent--Benchmark--List-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/HHHHHejia/Awesome-AgenticLLM-RL-Papers"><img alt="Awesome-AgenticLLM-RL-Papers" src="https://img.shields.io/badge/Featured-AgenticLLM--RL--Papers-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/Lhy723/awesome-ai-agent-evaluation"><img alt="awesome-ai-agent-evaluation" src="https://img.shields.io/badge/Featured-agent--evaluation-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/MLGroupJLU/LLM-eval-survey"><img alt="LLM-eval-survey" src="https://img.shields.io/badge/Featured-LLM--eval--survey-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/SAILResearch/awesome-ai-leaderboard"><img alt="awesome-ai-leaderboard" src="https://img.shields.io/badge/Featured-AI--leaderboard-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/SafeRL-Lab/agentic-web"><img alt="agentic-web" src="https://img.shields.io/badge/Featured-agentic--web-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/VoltAgent/awesome-ai-agent-papers"><img alt="awesome-ai-agent-papers" src="https://img.shields.io/badge/Featured-agent--papers-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/js-lee-AI/awesome-llm-agent-papers"><img alt="awesome-llm-agent-papers" src="https://img.shields.io/badge/Featured-LLM--agent--papers-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/Yangyi-Chen/Multimodal-AND-Large-Language-Models"><img alt="Multimodal-AND-Large-Language-Models" src="https://img.shields.io/badge/Featured-multimodal--LLMs-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/cdxeve/awesome-computer-use-agents"><img alt="awesome-computer-use-agents" src="https://img.shields.io/badge/Featured-computer--use--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/ishandutta2007/Awesome-AI-Benchmarking"><img alt="Awesome-AI-Benchmarking" src="https://img.shields.io/badge/Featured-AI--Benchmarking-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/pauldebdeep9/awesome-agentic-evaluation"><img alt="awesome-agentic-evaluation" src="https://img.shields.io/badge/Featured-agentic--evaluation-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/skyming/awesome-ai-agent"><img alt="awesome-ai-agent" src="https://img.shields.io/badge/Featured-awesome--AI--agent-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
+  <a href="https://github.com/steel-dev/awesome-web-agents"><img alt="awesome-web-agents" src="https://img.shields.io/badge/Featured-web--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
 </p>
 
 <p align="center">
