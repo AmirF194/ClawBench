@@ -14,9 +14,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 257 |
+| New PRs submitted in this campaign | 258 |
 | Current campaign: merged | 17 |
-| Current campaign: open | 234 |
+| Current campaign: open | 235 |
 | Current campaign: closed without merge | 6 |
 
 ## New Campaign Submissions
@@ -280,6 +280,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 255 | `js-lee-AI/awesome-agent-loop-papers` | [#2 — Add ClawBench to agent evaluation papers](https://github.com/js-lee-AI/awesome-agent-loop-papers/pull/2) | 492-paper agent-loop reading list; contribution guide requires a relevant, verifiable arXiv/DOI paper and has an explicit Evaluation section; adds ClawBench in the native one-line format | Open |
 | 256 | `metame-ai/awesome-agent-plaza` | [#1 — Add ClawBench to GUI agent evaluation papers](https://github.com/metame-ai/awesome-agent-plaza/pull/1) | Daily-updated agent paper/resource index with a dedicated GUI Agent Evaluation section; adds the verified arXiv paper, code, project page, and authors in the native paper format | Open |
 | 257 | `uiuc-kang-lab/agentic-benchmarks` | [#8 — Add ClawBench benchmark assessment](https://github.com/uiuc-kang-lab/agentic-benchmarks/pull/8) | Agentic Benchmark Checklist repository with explicit PRs welcome for new assessment results; adds a 45-field, evidence-backed YAML assessment covering outcome validity, challenge validity, and reporting | Open |
+| 258 | `cloudmercato/awesome-benchmark` | [#3 — Add ClawBench to AI benchmarks](https://github.com/cloudmercato/awesome-benchmark/pull/3) | 84-star system benchmark catalog with an AI section; adds ClawBench in the repository’s native reStructuredText format with paper, code, and project links | Open |
 
 ## Verified Merged Features
 
