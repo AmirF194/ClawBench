@@ -14,9 +14,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 255 |
+| New PRs submitted in this campaign | 256 |
 | Current campaign: merged | 17 |
-| Current campaign: open | 232 |
+| Current campaign: open | 233 |
 | Current campaign: closed without merge | 6 |
 
 ## New Campaign Submissions
@@ -278,6 +278,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 253 | `rolandfarkasCOM/awesome-agentic-web` | [#1 — Add ClawBench browser-agent benchmark](https://github.com/rolandfarkasCOM/awesome-agentic-web/pull/1) | Agentic-web list explicitly welcomes open-source projects directly relevant to agentic web; adds ClawBench under Web & browser agents using the repository's required one-line format | Open |
 | 254 | `luo-junyu/Awesome-Agent-Papers` | [#53 — Add ClawBench to Datasets & Benchmarks](https://github.com/luo-junyu/Awesome-Agent-Papers/pull/53) | Active 2.8k-star LLM-agent paper taxonomy with a Datasets & Benchmarks section and explicit PR/issue/form submission guidance; adds the arXiv paper in the native title, year, venue, and one-line description format | Open |
 | 255 | `js-lee-AI/awesome-agent-loop-papers` | [#2 — Add ClawBench to agent evaluation papers](https://github.com/js-lee-AI/awesome-agent-loop-papers/pull/2) | 492-paper agent-loop reading list; contribution guide requires a relevant, verifiable arXiv/DOI paper and has an explicit Evaluation section; adds ClawBench in the native one-line format | Open |
+| 256 | `metame-ai/awesome-agent-plaza` | [#1 — Add ClawBench to GUI agent evaluation papers](https://github.com/metame-ai/awesome-agent-plaza/pull/1) | Daily-updated agent paper/resource index with a dedicated GUI Agent Evaluation section; adds the verified arXiv paper, code, project page, and authors in the native paper format | Open |
 
 ## Verified Merged Features
 
