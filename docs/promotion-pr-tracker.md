@@ -16,8 +16,8 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Closed without merge | 4 |
 | New PRs submitted in this campaign | 255 |
 | Current campaign: merged | 17 |
-| Current campaign: open | 233 |
-| Current campaign: closed without merge | 5 |
+| Current campaign: open | 232 |
+| Current campaign: closed without merge | 6 |
 
 ## New Campaign Submissions
 
@@ -226,7 +226,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 201 | `DeLunnLi/Awesome-Multimodal-GUI-Agents` | [#2 — Add ClawBench to GUI benchmark list](https://github.com/DeLunnLi/Awesome-Multimodal-GUI-Agents/pull/2) | 1.1k-star multimodal GUI-agent list with a dedicated Recommended Datasets / Benchmarks table and explicit PR contributions; adds ClawBench with paper, code, and live project links | Open |
 | 202 | `vnageshwaran-de/Awesome-LLM-Agent-Evaluation` | [#4 — Add ClawBench to benchmark catalogue](https://github.com/vnageshwaran-de/Awesome-LLM-Agent-Evaluation/pull/4) | Living systematic benchmark catalogue with an issue-first workflow and taxonomy schema; adds one preprint-labeled ClawBench row to the canonical CSV after opening issue #3 | Open |
 | 203 | `benchflow-ai/awesome-evals` | [#56 — Add ClawBench to agent evaluation benchmarks](https://github.com/benchflow-ai/awesome-evals/pull/56) | Duplicate of the earlier canonical ClawBench submission to this repository (#54); closed to leave one proposal for maintainer review | Closed without merge |
-| 204 | `danielrosehill/Awesome-AI-Evaluations-Tools` | [#18 — Add ClawBench to browser and web-agent evals](https://github.com/danielrosehill/Awesome-AI-Evaluations-Tools/pull/18) | Curated AI evaluation tools list with dedicated Browser & Web Agent Evals section and PRs welcome; adds ClawBench with paper, code, and live project links | Open |
+| 204 | `danielrosehill/Awesome-AI-Evaluations-Tools` | [#18 — Add ClawBench to browser and web-agent evals](https://github.com/danielrosehill/Awesome-AI-Evaluations-Tools/pull/18) | Curated AI evaluation tools list with dedicated Browser & Web Agent Evals section; duplicate of #17 and closed in favor of the earlier complete submission | Closed without merge |
 | 205 | `ChenVoid/Awesome-GUI-Agent` | [#2 — Add ClawBench to browser-use benchmarks](https://github.com/ChenVoid/Awesome-GUI-Agent/pull/2) | Curated GUI-agent list with a dedicated Browser Use Benchmarks table and explicit PR workflow; adds ClawBench in the native benchmark/paper/code format with project link | Open |
 | 206 | `agential-ai/awesome-language-agent-benchmarks` | [#13 — Add ClawBench web benchmark](https://github.com/agential-ai/awesome-language-agent-benchmarks/pull/13) | Dedicated language-agent benchmark index with explicit PRs/issues welcome and a Web subsection; adds ClawBench using its native author, paper, project, and code-link format | Open |
 | 207 | `yichao-liang/awesome-agent-benchmarks` | [#3 — Add ClawBench to computer-use benchmarks](https://github.com/yichao-liang/awesome-agent-benchmarks/pull/3) | Dedicated games, robotics, and computer-use benchmark list with explicit PR rules and reverse chronological tables; adds ClawBench with paper, project, and code links | Open |
