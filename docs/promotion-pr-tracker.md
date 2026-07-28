@@ -7,8 +7,8 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 459 public PRs: 332 open, 87 merged,
-and 40 closed. This is an all-time index, not the campaign counter below; it
+`ClawBench` in indexed content returned 459 public PRs: 331 open, 87 merged,
+and 41 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
 the campaign count rather than being used to inflate it.
