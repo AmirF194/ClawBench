@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 303 |
+| New PRs submitted in this campaign | 305 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 265 |
+| Current campaign: open | 267 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -335,6 +335,8 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 301 | `agential-ai/awesome-language-agent-benchmarks` | [#15 — Add ClawBench web benchmark](https://github.com/agential-ai/awesome-language-agent-benchmarks/pull/15) | Language-agent benchmark survey with an explicit Web subsection and PR/issue welcome policy; adds a native paper, project, and code entry for ClawBench | Open |
 | 302 | `tjunlp-lab/Awesome-LLMs-Evaluation-Papers` | [#47 — Add ClawBench to agent evaluation papers](https://github.com/tjunlp-lab/Awesome-LLMs-Evaluation-Papers/pull/47) | 804-star LLM-evaluation paper list with explicit issue/PR/email contributions and an agent-evaluation section; adds a native paper, code, and project entry for ClawBench | Open |
 | 303 | `nibzard/awesome-agentic-patterns` | [#123 — Add evidence-layered agent evaluation pattern](https://github.com/nibzard/awesome-agentic-patterns/pull/123) | 4.8k-star pattern catalog whose contribution schema requires a reusable, non-promotional pattern; adds a disclosed evidence-layered interactive-agent evaluation pattern grounded in the ClawBench implementation and related benchmarks | Open |
+| 304 | `onejune2018/Awesome-LLM-Eval` | [#79 — Add ClawBench web-agent benchmark](https://github.com/onejune2018/Awesome-LLM-Eval/pull/79) | 654-star LLM-evaluation catalog with explicit PR/issue contributions and a Datasets or Benchmarks table; adds a native benchmark row linking official code, paper, and project page | Open |
+| 305 | `ContextJet-ai/awesome-llm-observability` | [#5 — Add ClawBench to evaluation frameworks](https://github.com/ContextJet-ai/awesome-llm-observability/pull/5) | 531-star observability catalog with CONTRIBUTING.md and an Evaluation Frameworks section; adds a neutral row with current scope, interception, traces, and judge-assisted evaluation | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
