@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 327 |
+| New PRs submitted in this campaign | 329 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 289 |
+| Current campaign: open | 291 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -359,6 +359,8 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 325 | `ndimas/top-web-agent-projects` | [#1 — Add ClawBench benchmark](https://github.com/ndimas/top-web-agent-projects/pull/1) | Curated Web Agent benchmark repository with explicit contribution guidelines and a Benchmarks & Evaluation section; adds ClawBench in the native project-plus-sub-bullets format with canonical links and factual scope | Open |
 | 326 | `alternbits/awesome-ai-agents` | [#66 — Add ClawBench benchmark](https://github.com/alternbits/awesome-ai-agents/pull/66) | Data-driven AI-agent list with a contribution workflow requiring structured `data/*.yml` entries; adds a factual ClawBench benchmark record with canonical links, current scope, interception, and evidence layers | Open |
 | 327 | `systempromptio/awesome-ai-agent-governance` | [#26 — Add ClawBench governance benchmark](https://github.com/systempromptio/awesome-ai-agent-governance/pull/26) | Governance resource with an Audit, Observability, and Cost Control section and PRs-welcome policy; adds ClawBench as an auditable benchmark using request interception and execution evidence | Open |
+| 328 | `qy0720/awesome-yearly-gui-agents` | [#2 — Add ClawBench browser-agent benchmark](https://github.com/qy0720/awesome-yearly-gui-agents/pull/2) | Yearly GUI-agent research list with a Benchmarks & Datasets section; adds canonical ClawBench paper, code, and project links under the 2025 benchmark entries | Open |
+| 329 | `CopilotKiwi/awesome-browser-agent-tasks` | [#2 — Add ClawBench task suite reference](https://github.com/CopilotKiwi/awesome-browser-agent-tasks/pull/2) | Browser-agent task collection with an informational Benchmark and Task Suites section; references ClawBench without claiming integration | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
