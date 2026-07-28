@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 417 public PRs: 293 open, 86 merged,
+`ClawBench` in indexed content returned 418 public PRs: 294 open, 86 merged,
 and 38 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 295 |
+| New PRs submitted in this campaign | 296 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 257 |
+| Current campaign: open | 258 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -327,6 +327,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 293 | `yenanjing/awesome-harness-engineering` | [#4 — Add ClawBench evaluation harness](https://github.com/yenanjing/awesome-harness-engineering/pull/4) | 4-star harness list with explicit LLM Evaluation Harnesses category and contribution guide requiring ≥100 stars or high relevance; ClawBench has 530 stars and active maintenance | Open |
 | 294 | `East196/awesome-harness-engineering` | [#3 — Add ClawBench harness evaluation reference](https://github.com/East196/awesome-harness-engineering/pull/3) | Harness list with explicit contribution guidelines and scope covering evaluation, benchmarking, and observability; adds a Chinese reference entry with canonical ClawBench links | Open |
 | 295 | `whobot-ai/awesome-harness-engineering-zh` | [#5 — Add ClawBench harness evaluation reference](https://github.com/whobot-ai/awesome-harness-engineering-zh/pull/5) | Chinese harness list with PRs-welcome guidance and a dedicated 论文与学术研究 section; adds a concise browser/computer-use harness evaluation row with current scope and canonical link | Open |
+| 296 | `SaltAdamW/Awesome-Harness-Engineering` | [#3 — Add ClawBench browser-agent benchmark](https://github.com/SaltAdamW/Awesome-Harness-Engineering/pull/3) | Harness list with a Research section and contribution path; adds a browser-agent benchmark entry linking repository and project page with current live-web scope | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
