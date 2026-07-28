@@ -14,9 +14,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 269 |
+| New PRs submitted in this campaign | 270 |
 | Current campaign: merged | 21 |
-| Current campaign: open | 240 |
+| Current campaign: open | 241 |
 | Current campaign: closed without merge | 8 |
 
 ## New Campaign Submissions
@@ -292,6 +292,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 267 | `samkhur006/awesome-llm-planning-reasoning` | [#7 — Add ClawBench to agent planning benchmarks](https://github.com/samkhur006/awesome-llm-planning-reasoning/pull/7) | 321-star planning/reasoning resource with a dedicated Benchmarks table and explicit contribution section; adds a native paper, code, date, and project-link row | Open |
 | 268 | `ARUNAGIRINATHAN-K/awesome-ai-agents-2026` | [#186 — Update ClawBench benchmark coverage](https://github.com/ARUNAGIRINATHAN-K/awesome-ai-agents-2026/pull/186) | 273-star AI-agent list with explicit update-existing-entry rules and a dedicated Agent Evaluation and Benchmarks section; updates the existing entry to current V1+V2 coverage and trace-based scoring | Open |
 | 269 | `huggingface/screensuite` | [#63 — Add ClawBench to online GUI agent benchmarks](https://github.com/huggingface/screensuite/pull/63) | Hugging Face GUI benchmark suite with a native Multi-step - Online Agent Benchmarks table; adds ClawBench with current V1+V2 scope, interception-plus-judge evaluation, and canonical repository/project links | Open |
+| 270 | `Halluminate/WebBench` | [#4 — Document ClawBench as a related browser-agent benchmark](https://github.com/Halluminate/WebBench/pull/4) | Browser-agent benchmark with explicit contribution welcome; adds a concise Related browser-agent benchmarks section linking ClawBench’s current V1+V2 scope and evidence collection without changing WebBench evaluation code | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
