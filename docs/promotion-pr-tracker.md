@@ -14,9 +14,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 265 |
+| New PRs submitted in this campaign | 266 |
 | Current campaign: merged | 21 |
-| Current campaign: open | 236 |
+| Current campaign: open | 237 |
 | Current campaign: closed without merge | 8 |
 
 ## New Campaign Submissions
@@ -288,6 +288,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 263 | `OSU-NLP-Group/GUI-Agents-Paper-List` | [#125 — Update ClawBench entry for V2 corpus](https://github.com/OSU-NLP-Group/GUI-Agents-Paper-List/pull/125) | 865-star OSU-NLP Group GUI-agent paper list; substantive metadata update through its canonical `papers.yaml` and generator script, correcting the existing entry from V1-only to V1+V2 and documenting the interception/judge protocol | Open |
 | 264 | `kyegomez/awesome-multi-agent-papers` | [#58 — Add ClawBench to multi-agent benchmarks](https://github.com/kyegomez/awesome-multi-agent-papers/pull/58) | 1.6k-star multi-agent paper compilation with an explicit contribution invitation and a native Multi-Agent Frameworks & Benchmarks section; adds a concise arXiv-linked entry with factual task scope | Open |
 | 265 | `Quester-one/Awesome-LLM-Planning` | [#2 — Add ClawBench to web navigation benchmarks](https://github.com/Quester-one/Awesome-LLM-Planning/pull/2) | LLM-agent planning survey with a dedicated Web Navigation dataset section; adds ClawBench in the repository's native paper, arXiv, code, and project-link format | Open |
+| 266 | `Shiyao-Huang/awesome-agent-evolution` | [#20 — Update ClawBench report with current protocol and metadata](https://github.com/Shiyao-Huang/awesome-agent-evolution/pull/20) | Self-evolving-agent evidence map with explicit benchmark contribution rules; substantively corrects the existing ClawBench model card, documenting current corpus scope, harness-agnostic protocol, evidence layers, and primary sources | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
