@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 325 |
+| New PRs submitted in this campaign | 327 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 287 |
+| Current campaign: open | 289 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -357,6 +357,8 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 323 | `hyp1231/awesome-llm-powered-agent` | [#150 — Add ClawBench benchmark paper](https://github.com/hyp1231/awesome-llm-powered-agent/pull/150) | 2.2k-star LLM-powered-agent paper collection with an explicit PR invitation and Benchmark section; adds a native ClawBench paper/code/project entry | Open |
 | 324 | `vnageshwaran-de/Awesome-LLM-Agent-Evaluation` | [#6 — Add ClawBench to the agent-evaluation catalogue](https://github.com/vnageshwaran-de/Awesome-LLM-Agent-Evaluation/pull/6) | Living systematic agent-evaluation survey with a PR workflow and structured CSV catalogue; adds one validated ClawBench row with taxonomy, arXiv link, and explicit preprint status | Open |
 | 325 | `ndimas/top-web-agent-projects` | [#1 — Add ClawBench benchmark](https://github.com/ndimas/top-web-agent-projects/pull/1) | Curated Web Agent benchmark repository with explicit contribution guidelines and a Benchmarks & Evaluation section; adds ClawBench in the native project-plus-sub-bullets format with canonical links and factual scope | Open |
+| 326 | `alternbits/awesome-ai-agents` | [#66 — Add ClawBench benchmark](https://github.com/alternbits/awesome-ai-agents/pull/66) | Data-driven AI-agent list with a contribution workflow requiring structured `data/*.yml` entries; adds a factual ClawBench benchmark record with canonical links, current scope, interception, and evidence layers | Open |
+| 327 | `systempromptio/awesome-ai-agent-governance` | [#26 — Add ClawBench governance benchmark](https://github.com/systempromptio/awesome-ai-agent-governance/pull/26) | Governance resource with an Audit, Observability, and Cost Control section and PRs-welcome policy; adds ClawBench as an auditable benchmark using request interception and execution evidence | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
