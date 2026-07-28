@@ -14,9 +14,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 272 |
+| New PRs submitted in this campaign | 273 |
 | Current campaign: merged | 21 |
-| Current campaign: open | 239 |
+| Current campaign: open | 240 |
 | Current campaign: closed without merge | 12 |
 
 ## New Campaign Submissions
@@ -295,6 +295,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 270 | `Halluminate/WebBench` | [#4 — Document ClawBench as a related browser-agent benchmark](https://github.com/Halluminate/WebBench/pull/4) | Browser-agent benchmark with explicit contribution welcome; adds a concise Related browser-agent benchmarks section linking ClawBench’s current V1+V2 scope and evidence collection without changing WebBench evaluation code | Open |
 | 271 | `jim-schwoebel/awesome_ai_agents` | [#414 — Add ClawBench to Benchmarks](https://github.com/jim-schwoebel/awesome_ai_agents/pull/414) | 1.9k-star AI-agent resource with a native Benchmarks section and explicit contribution route; adds a format-matched alphabetical entry with current V1+V2 scope and canonical project and paper links | Open |
 | 272 | `VILA-Lab/Dive-into-Claude-Code` | [#9 — Add ClawBench to Evaluation & Benchmarks](https://github.com/VILA-Lab/Dive-into-Claude-Code/pull/9) | 2k-star Claude Code architecture guide with a native Evaluation & Benchmarks table; adds one factual, non-Claude-specific benchmark row with current V1+V2 scope, live sites, interception, judge, and canonical links | Open |
+| 273 | `tmgthb/Autonomous-Agents` | [#10 — Add ClawBench to 2026 autonomous-agent papers](https://github.com/tmgthb/Autonomous-Agents/pull/10) | 1.3k-star daily autonomous-agent research index; adds a dated paper entry in the repository's native 2026 list with arXiv, project, and canonical code links, with maintainer disclosure | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
