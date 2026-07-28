@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 453 public PRs: 327 open, 86 merged,
+`ClawBench` in indexed content returned 456 public PRs: 330 open, 86 merged,
 and 40 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 329 |
+| New PRs submitted in this campaign | 330 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 291 |
+| Current campaign: open | 292 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -361,6 +361,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 327 | `systempromptio/awesome-ai-agent-governance` | [#26 — Add ClawBench governance benchmark](https://github.com/systempromptio/awesome-ai-agent-governance/pull/26) | Governance resource with an Audit, Observability, and Cost Control section and PRs-welcome policy; adds ClawBench as an auditable benchmark using request interception and execution evidence | Open |
 | 328 | `qy0720/awesome-yearly-gui-agents` | [#2 — Add ClawBench browser-agent benchmark](https://github.com/qy0720/awesome-yearly-gui-agents/pull/2) | Yearly GUI-agent research list with a Benchmarks & Datasets section; adds canonical ClawBench paper, code, and project links under the 2025 benchmark entries | Open |
 | 329 | `CopilotKiwi/awesome-browser-agent-tasks` | [#2 — Add ClawBench task suite reference](https://github.com/CopilotKiwi/awesome-browser-agent-tasks/pull/2) | Browser-agent task collection with an informational Benchmark and Task Suites section; references ClawBench without claiming integration | Open |
+| 330 | `RDI-Foundation/awesome-agent-benchmarks` | [#4 — Add ClawBench web benchmark](https://github.com/RDI-Foundation/awesome-agent-benchmarks/pull/4) | Berkeley RDI benchmark catalogue with an explicit contribution workflow and structured YAML entries; adds a factual ClawBench record with canonical paper, code, and project links | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
