@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 411 public PRs: 287 open, 86 merged,
+`ClawBench` in indexed content returned 413 public PRs: 289 open, 86 merged,
 and 38 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 288 |
+| New PRs submitted in this campaign | 289 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 250 |
+| Current campaign: open | 251 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -320,6 +320,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 286 | `jakemeany523/awesome-llm-evaluation` | [#5 — Add ClawBench agent benchmark](https://github.com/jakemeany523/awesome-llm-evaluation/pull/5) | Explicit Agent Benchmarks section and contribution rules requiring a PR; adds a native one-line entry with canonical code, paper, project links, and current scope | Open |
 | 287 | `mfornos/awesome-agentic-ai` | [#10 — Add ClawBench to evaluation resources](https://github.com/mfornos/awesome-agentic-ai/pull/10) | Agentic-AI list with an Evaluation & Observability section and contribution guidelines; adds a factual benchmark entry with canonical paper, code, project links, current scope, interception, and five evidence layers | Open |
 | 288 | `laura-plopez/awesome-ai-agent-resources` | [#2 — Add ClawBench to evaluation resources](https://github.com/laura-plopez/awesome-ai-agent-resources/pull/2) | Explicit CONTRIBUTING scope accepts actively maintained evaluation tools; adds ClawBench under Evaluation and Testing with canonical links, current 283-task/163-site scope, and submission interception | Open |
+| 289 | `AstreoX/awesome-agent-tools` | [#4 — Add ClawBench to agent evaluation tools](https://github.com/AstreoX/awesome-agent-tools/pull/4) | Explicit CONTRIBUTING requires one relevant PR, direct agent relevance, active maintenance, and documentation; adds ClawBench under Agent Evaluation and Testing with canonical links and current scope | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
