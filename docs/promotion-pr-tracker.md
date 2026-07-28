@@ -14,9 +14,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 261 |
+| New PRs submitted in this campaign | 262 |
 | Current campaign: merged | 21 |
-| Current campaign: open | 234 |
+| Current campaign: open | 235 |
 | Current campaign: closed without merge | 6 |
 
 ## New Campaign Submissions
@@ -284,6 +284,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 259 | `WenyuChiou/awesome-agentic-ai-zh` | [#73 — Add ClawBench to agent benchmark landscape](https://github.com/WenyuChiou/awesome-agentic-ai-zh/pull/73) | 4.8k-star bilingual agentic-AI learning roadmap with a dedicated Stage 7 benchmark landscape; adds matching Traditional and Simplified Chinese rows with paper, code, and project links | Open |
 | 260 | `DavidZWZ/Awesome-Deep-Research` | [#23 — Add ClawBench to benchmarks and applications](https://github.com/DavidZWZ/Awesome-Deep-Research/pull/23) | 818-star deep-research resource list with a dedicated Benchmarks and Applications section; adds a native one-line entry with the arXiv paper, source repository, and project page | Open |
 | 261 | `bilalonur/awesome-llm-os` | [#5 — Add ClawBench benchmark](https://github.com/bilalonur/awesome-llm-os/pull/5) | 163-star LLM-OS resource list with explicit contribution guidelines and a Research Papers section; adds a concise, non-promotional ClawBench paper entry linking the canonical arXiv source | Open |
+| 262 | `scienceaix/agentskills` | [#20 — Add ClawBench web benchmark](https://github.com/scienceaix/agentskills/pull/20) | Active Agent Skills catalog with dedicated Benchmarks & Evaluation and Web Browsing Benchmarks sections; adds a concise entry with verified code, paper, and project links | Open |
 
 ## Verified Merged Features
 
