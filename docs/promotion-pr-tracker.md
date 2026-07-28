@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 423 public PRs: 299 open, 86 merged,
+`ClawBench` in indexed content returned 427 public PRs: 303 open, 86 merged,
 and 38 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 301 |
+| New PRs submitted in this campaign | 302 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 263 |
+| Current campaign: open | 264 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -333,6 +333,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 299 | `RDI-Foundation/awesome-agent-benchmarks` | [#3 — Add ClawBench benchmark](https://github.com/RDI-Foundation/awesome-agent-benchmarks/pull/3) | Auto-generated benchmark catalog with CONTRIBUTING.md requiring only a benchmarks.yaml change, an arXiv paper, official code, project website, category, and factual description; adds ClawBench under web benchmarks | Open |
 | 300 | `rAIn0x7/awesome-llm-evals` | [#4 — Add ClawBench web-agent benchmark](https://github.com/rAIn0x7/awesome-llm-evals/pull/4) | OSS-first evals catalog with a Benchmarks & leaderboards section and link-verification contribution standard; adds ClawBench with canonical code, paper, project link, current scope, and five evidence layers | Open |
 | 301 | `agential-ai/awesome-language-agent-benchmarks` | [#15 — Add ClawBench web benchmark](https://github.com/agential-ai/awesome-language-agent-benchmarks/pull/15) | Language-agent benchmark survey with an explicit Web subsection and PR/issue welcome policy; adds a native paper, project, and code entry for ClawBench | Open |
+| 302 | `tjunlp-lab/Awesome-LLMs-Evaluation-Papers` | [#47 — Add ClawBench to agent evaluation papers](https://github.com/tjunlp-lab/Awesome-LLMs-Evaluation-Papers/pull/47) | 804-star LLM-evaluation paper list with explicit issue/PR/email contributions and an agent-evaluation section; adds a native paper, code, and project entry for ClawBench | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
