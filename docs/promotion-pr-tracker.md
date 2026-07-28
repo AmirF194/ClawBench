@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 402 public PRs: 280 open, 85 merged,
+`ClawBench` in indexed content returned 405 public PRs: 283 open, 85 merged,
 and 37 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -24,9 +24,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Open | 36 |
 | Closed without merge | 4 |
 | New PRs submitted in this campaign | 284 |
-| Current campaign: merged | 26 |
-| Current campaign: open | 246 |
-| Current campaign: closed without merge | 12 |
+| Current campaign: merged | 27 |
+| Current campaign: open | 247 |
+| Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
 
@@ -303,7 +303,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 269 | `huggingface/screensuite` | [#63 — Add ClawBench to online GUI agent benchmarks](https://github.com/huggingface/screensuite/pull/63) | Hugging Face GUI benchmark suite with a native Multi-step - Online Agent Benchmarks table; adds ClawBench with current V1+V2 scope, interception-plus-judge evaluation, and canonical repository/project links | Open |
 | 270 | `Halluminate/WebBench` | [#4 — Document ClawBench as a related browser-agent benchmark](https://github.com/Halluminate/WebBench/pull/4) | Browser-agent benchmark with explicit contribution welcome; adds a concise Related browser-agent benchmarks section linking ClawBench’s current V1+V2 scope and evidence collection without changing WebBench evaluation code | Open |
 | 271 | `jim-schwoebel/awesome_ai_agents` | [#414 — Add ClawBench to Benchmarks](https://github.com/jim-schwoebel/awesome_ai_agents/pull/414) | 1.9k-star AI-agent resource with a native Benchmarks section and explicit contribution route; adds a format-matched alphabetical entry with current V1+V2 scope and canonical project and paper links | Open |
-| 272 | `VILA-Lab/Dive-into-Claude-Code` | [#9 — Add ClawBench to Evaluation & Benchmarks](https://github.com/VILA-Lab/Dive-into-Claude-Code/pull/9) | 2k-star Claude Code architecture guide with a native Evaluation & Benchmarks table; adds one factual, non-Claude-specific benchmark row with current V1+V2 scope, live sites, interception, judge, and canonical links | Open |
+| 272 | `VILA-Lab/Dive-into-Claude-Code` | [#9 — Add ClawBench to Evaluation & Benchmarks](https://github.com/VILA-Lab/Dive-into-Claude-Code/pull/9) | 2k-star Claude Code architecture guide with a native Evaluation & Benchmarks table; adds one factual, non-Claude-specific benchmark row with current V1+V2 scope, live sites, interception, judge, and canonical links | Merged |
 | 273 | `tmgthb/Autonomous-Agents` | [#10 — Add ClawBench to 2026 autonomous-agent papers](https://github.com/tmgthb/Autonomous-Agents/pull/10) | 1.3k-star daily autonomous-agent research index; adds a dated paper entry in the repository's native 2026 list with arXiv, project, and canonical code links, with maintainer disclosure | Open |
 | 274 | `llm-as-a-judge/Awesome-LLM-as-a-judge` | [#16 — Add ClawBench to Evaluation applications](https://github.com/llm-as-a-judge/Awesome-LLM-as-a-judge/pull/16) | 568-star PRs-welcome LLM-as-a-judge catalog with a native Applications → Evaluation section; adds ClawBench explicitly as a judge-assisted browser-agent evaluation framework without presenting it as a judge-method paper | Open |
 | 275 | `panilya/awesome-ai-benchmarks` | [#11 — Add ClawBench to Web Agents benchmarks](https://github.com/panilya/awesome-ai-benchmarks/pull/11) | Benchmark index with a native Web Agents subsection; merged entry records 283 tasks across 163 live platforms, submission interception, LLM judge, and canonical paper/code/leaderboard links | Merged |
