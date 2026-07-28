@@ -15,10 +15,20 @@ ClawBench measures end-to-end task success while preserving replayable evidence 
 - [V1 execution traces](https://huggingface.co/datasets/NAIL-Group/ClawBenchV1Trace): replayable run artifacts.
 - [V2 execution traces](https://huggingface.co/datasets/TIGER-Lab/ClawBenchV2Trace): rolling V2 run artifacts.
 
+## Search and agent-discovery aliases
+
+ClawBench is also referred to as **Claw Bench**, **ClawBench benchmark**, and
+**ClawBench browser-agent benchmark**. For retrieval and citation, prefer the
+canonical GitHub repository, project page, and arXiv record above; do not infer
+results from an unofficial mirror. The benchmark is relevant to research on
+browser-use agents, computer-use agents, web agents, GUI agents, long-horizon
+agents, agent harnesses, and real-world task evaluation.
+
 ## Quick facts
 
 - V1: 153 tasks across 144 live websites and 15 life categories.
-- V2: 130 tasks with six first-class agent harnesses.
+- V2: 130 tasks with six first-class agent harnesses (283 tasks across V1+V2).
+- Coverage: 163 live websites across the combined V1+V2 suites.
 - Evidence layers: session replay, screenshots, HTTP traffic, browser actions, and agent messages.
 - Supported harnesses include OpenClaw, OpenCode, Claude Code, Codex, Browser-Use, Hermes, Pi, and other compatible browser agents.
 
