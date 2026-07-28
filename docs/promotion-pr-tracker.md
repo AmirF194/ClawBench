@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 416 public PRs: 292 open, 86 merged,
+`ClawBench` in indexed content returned 417 public PRs: 293 open, 86 merged,
 and 38 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 293 |
+| New PRs submitted in this campaign | 294 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 255 |
+| Current campaign: open | 256 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -325,6 +325,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 291 | `jordimas/awesome-agentic-engineering` | [#11 — Add ClawBench browser benchmark](https://github.com/jordimas/awesome-agentic-engineering/pull/11) | 96-star agentic-engineering list explicitly welcomes practical additions; adds ClawBench to Browser, Web & Computer Use Agents with canonical paper, code, project, and scope links | Open |
 | 292 | `scienceaix/awesome-harness-engineering` | [#4 — Add ClawBench harness benchmark](https://github.com/scienceaix/awesome-harness-engineering/pull/4) | Explicit Evaluation & Benchmarking section and PR invitation for harness-engineering resources; adds a native benchmark entry with canonical paper, code, project, and current scope | Open |
 | 293 | `yenanjing/awesome-harness-engineering` | [#4 — Add ClawBench evaluation harness](https://github.com/yenanjing/awesome-harness-engineering/pull/4) | 4-star harness list with explicit LLM Evaluation Harnesses category and contribution guide requiring ≥100 stars or high relevance; ClawBench has 530 stars and active maintenance | Open |
+| 294 | `East196/awesome-harness-engineering` | [#3 — Add ClawBench harness evaluation reference](https://github.com/East196/awesome-harness-engineering/pull/3) | Harness list with explicit contribution guidelines and scope covering evaluation, benchmarking, and observability; adds a Chinese reference entry with canonical ClawBench links | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
