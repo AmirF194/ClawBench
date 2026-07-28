@@ -14,9 +14,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 262 |
+| New PRs submitted in this campaign | 263 |
 | Current campaign: merged | 21 |
-| Current campaign: open | 233 |
+| Current campaign: open | 234 |
 | Current campaign: closed without merge | 8 |
 
 ## New Campaign Submissions
@@ -285,6 +285,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 260 | `DavidZWZ/Awesome-Deep-Research` | [#23 — Add ClawBench to benchmarks and applications](https://github.com/DavidZWZ/Awesome-Deep-Research/pull/23) | 818-star deep-research resource list with a dedicated Benchmarks and Applications section; adds a native one-line entry with the arXiv paper, source repository, and project page | Open |
 | 261 | `bilalonur/awesome-llm-os` | [#5 — Add ClawBench benchmark](https://github.com/bilalonur/awesome-llm-os/pull/5) | 163-star LLM-OS resource list with explicit contribution guidelines and a Research Papers section; adds a concise, non-promotional ClawBench paper entry linking the canonical arXiv source | Open |
 | 262 | `scienceaix/agentskills` | [#20 — Add ClawBench web benchmark](https://github.com/scienceaix/agentskills/pull/20) | Active Agent Skills catalog with dedicated Benchmarks & Evaluation and Web Browsing Benchmarks sections; adds a concise entry with verified code, paper, and project links | Open |
+| 263 | `OSU-NLP-Group/GUI-Agents-Paper-List` | [#125 — Update ClawBench entry for V2 corpus](https://github.com/OSU-NLP-Group/GUI-Agents-Paper-List/pull/125) | 865-star OSU-NLP Group GUI-agent paper list; substantive metadata update through its canonical `papers.yaml` and generator script, correcting the existing entry from V1-only to V1+V2 and documenting the interception/judge protocol | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
