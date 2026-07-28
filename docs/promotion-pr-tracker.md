@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 419 public PRs: 295 open, 86 merged,
+`ClawBench` in indexed content returned 421 public PRs: 297 open, 86 merged,
 and 38 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 296 |
+| New PRs submitted in this campaign | 298 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 258 |
+| Current campaign: open | 260 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -328,6 +328,8 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 294 | `East196/awesome-harness-engineering` | [#3 — Add ClawBench harness evaluation reference](https://github.com/East196/awesome-harness-engineering/pull/3) | Harness list with explicit contribution guidelines and scope covering evaluation, benchmarking, and observability; adds a Chinese reference entry with canonical ClawBench links | Open |
 | 295 | `whobot-ai/awesome-harness-engineering-zh` | [#5 — Add ClawBench harness evaluation reference](https://github.com/whobot-ai/awesome-harness-engineering-zh/pull/5) | Chinese harness list with PRs-welcome guidance and a dedicated 论文与学术研究 section; adds a concise browser/computer-use harness evaluation row with current scope and canonical link | Open |
 | 296 | `SaltAdamW/Awesome-Harness-Engineering` | [#3 — Add ClawBench browser-agent benchmark](https://github.com/SaltAdamW/Awesome-Harness-Engineering/pull/3) | Harness list with a Research section and contribution path; adds a browser-agent benchmark entry linking repository and project page with current live-web scope | Open |
+| 297 | `anhermon/awesome-agent-observability` | [#4 — Add ClawBench evaluation benchmark](https://github.com/anhermon/awesome-agent-observability/pull/4) | Explicit Evaluation and testing category with CONTRIBUTING.md requiring relevant, active, one-line entries; adds a factual live-web benchmark entry with current scope, interception, and five evidence layers | Open |
+| 298 | `rizzdev/awesome-llm-observability` | [#1 — Add ClawBench to Evaluation & Testing](https://github.com/rizzdev/awesome-llm-observability/pull/1) | Explicit Evaluation & Testing section and contribution guide requiring current, useful, relevant entries; adds ClawBench with action, request, message, recording, and screenshot trace coverage | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
