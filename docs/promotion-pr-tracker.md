@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 280 |
+| New PRs submitted in this campaign | 281 |
 | Current campaign: merged | 26 |
-| Current campaign: open | 242 |
+| Current campaign: open | 243 |
 | Current campaign: closed without merge | 12 |
 
 ## New Campaign Submissions
@@ -312,6 +312,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 278 | `natnew/Awesome-Agentic-AI-Security` | [#22 — Add ClawBench as a complementary security-evaluation benchmark](https://github.com/natnew/Awesome-Agentic-AI-Security/pull/22) | Security-evaluation catalog with explicit benchmark contribution schema and scope/limitations requirements; adds ClawBench as complementary control-path evidence while clearly stating it is not a security benchmark and does not cover adversarial behaviors | Open |
 | 279 | `kagnlp/Awesome-Agentic-Security` | [#6 — Add ClawBench to benchmarking platforms](https://github.com/kagnlp/Awesome-Agentic-Security/pull/6) | 50-star PRs-welcome agentic-security survey with an Evaluation → Benchmarking Platforms section; adds a clearly bounded non-adversarial browser-agent evaluation reference and explicit limitations | Open |
 | 280 | `corca-ai/awesome-llm-security` | [#144 — Update ClawBench benchmark metadata](https://github.com/corca-ai/awesome-llm-security/pull/144) | 1.6k-star LLM-security resource list; corrected the repository URL and refreshed the benchmark entry to 283 V1+V2 tasks across 163 live websites with project link | Open |
+| 281 | `IcyFeather233/Awesome-LLM-Agent-Trajectory-Analysis` | [#6 — Add ClawBench production web-agent trajectories](https://github.com/IcyFeather233/Awesome-LLM-Agent-Trajectory-Analysis/pull/6) | PRs explicitly welcome; trajectory-analysis list accepts benchmark metadata; entry documents five-layer execution evidence and links paper, code, and project | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
