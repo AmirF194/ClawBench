@@ -4,6 +4,15 @@ Last audited: 2026-07-28
 
 This tracker records repository-specific outreach for ClawBench. Candidate discovery does not count as a submission. A pull request is submitted only when the target repository is relevant, its contribution rules permit the entry, and no duplicate ClawBench submission exists.
 
+## Current indexed audit
+
+On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
+`ClawBench` in indexed content returned 402 public PRs: 280 open, 85 merged,
+and 37 closed. This is an all-time index, not the campaign counter below; it
+can include baseline outreach, repository-internal PRs, and cross-project
+references (including StructEval work). Those categories remain separate from
+the campaign count rather than being used to inflate it.
+
 ## Baseline
 
 GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the indexed PR content found:
