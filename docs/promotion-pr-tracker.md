@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 447 public PRs: 321 open, 86 merged,
+`ClawBench` in indexed content returned 449 public PRs: 323 open, 86 merged,
 and 40 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 321 |
+| New PRs submitted in this campaign | 322 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 283 |
+| Current campaign: open | 284 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -353,6 +353,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 319 | `gpengzhi/Awesome-GUI-World-Model` | [#2 — Add ClawBench to GUI environments and benchmarks](https://github.com/gpengzhi/Awesome-GUI-World-Model/pull/2) | GUI/world-model resource with an Environments & Benchmarks table and PR rules; adds ClawBench with canonical links, current live-web scope, interception, and execution-evidence layers | Open |
 | 320 | `HuggingAGI/AwesomeAgentPapers` | [#1 — Add ClawBench benchmark](https://github.com/HuggingAGI/AwesomeAgentPapers/pull/1) | Active agent-paper/resource list with no existing ClawBench entry; adds a new Agent Evaluation Benchmarks & Datasets section with canonical project, code, paper, scope, and evidence links | Open |
 | 321 | `reworkd/bananalyzer` | [#153 — Mention ClawBench among web-agent evaluations](https://github.com/reworkd/bananalyzer/pull/153) | 327-star open-source web-task evaluation framework with contribution activity and README coverage of Mind2Web/WebArena; adds a neutral canonical ClawBench reference without claiming integration | Open |
+| 322 | `lexmount/browseruse-agent-bench` | [#115 — Document ClawBench as a related external benchmark](https://github.com/lexmount/browseruse-agent-bench/pull/115) | Browser-agent benchmark with a Supported Datasets section and contribution guide; adds an informational related-benchmark entry explicitly separated from built-in datasets, with canonical ClawBench links | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
