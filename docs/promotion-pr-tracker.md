@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 409 public PRs: 285 open, 86 merged,
+`ClawBench` in indexed content returned 410 public PRs: 286 open, 86 merged,
 and 38 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 286 |
+| New PRs submitted in this campaign | 287 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 248 |
+| Current campaign: open | 249 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -318,6 +318,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 284 | `danielt69/awesome-agent-observability` | [#8 — Add ClawBench to agent benchmarks](https://github.com/danielt69/awesome-agent-observability/pull/8) | Explicit Benchmarks category and CONTRIBUTING.md PR workflow; adds a factual one-line benchmark entry covering current 283-task/163-site scope, interception, and multi-layer traces | Open |
 | 285 | `ZJU-REAL/Awesome-GUI-Agents` | [#12 — Add ClawBench to GUI navigation benchmarks](https://github.com/ZJU-REAL/Awesome-GUI-Agents/pull/12) | 446-star GUI-agent list explicitly invites pull requests and has a dedicated GUI navigation benchmark section; adds a neutral paper/code/project entry with current ClawBench scope | Merged |
 | 286 | `jakemeany523/awesome-llm-evaluation` | [#5 — Add ClawBench agent benchmark](https://github.com/jakemeany523/awesome-llm-evaluation/pull/5) | Explicit Agent Benchmarks section and contribution rules requiring a PR; adds a native one-line entry with canonical code, paper, project links, and current scope | Open |
+| 287 | `mfornos/awesome-agentic-ai` | [#10 — Add ClawBench to evaluation resources](https://github.com/mfornos/awesome-agentic-ai/pull/10) | Agentic-AI list with an Evaluation & Observability section and contribution guidelines; adds a factual benchmark entry with canonical paper, code, project links, current scope, interception, and five evidence layers | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
