@@ -7,7 +7,7 @@ This tracker records repository-specific outreach for ClawBench. Candidate disco
 ## Current indexed audit
 
 On 2026-07-28, GitHub search for pull requests authored by `reacher-z` with
-`ClawBench` in indexed content returned 458 public PRs: 331 open, 87 merged,
+`ClawBench` in indexed content returned 459 public PRs: 332 open, 87 merged,
 and 40 closed. This is an all-time index, not the campaign counter below; it
 can include baseline outreach, repository-internal PRs, and cross-project
 references (including StructEval work). Those categories remain separate from
@@ -366,6 +366,8 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 332 | `ai-agents-2030/awesome-deep-research-agent` | [#20 — Add ClawBench to related web-agent benchmarks](https://github.com/ai-agents-2030/awesome-deep-research-agent/pull/20) | Maintained 630-star deep-research paper list with a Benchmarks for DR Agents section and PR welcome; adds a neutral related live-web benchmark entry with canonical paper, code, and project links | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
+
+The duplicate `opendilab/awesome-ui-agents#29` was closed on 2026-07-28 in favor of the existing canonical PR [#28](https://github.com/opendilab/awesome-ui-agents/pull/28); it is not counted as a campaign submission.
 
 ## Verified Merged Features
 
