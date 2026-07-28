@@ -14,9 +14,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 279 |
+| New PRs submitted in this campaign | 280 |
 | Current campaign: merged | 26 |
-| Current campaign: open | 241 |
+| Current campaign: open | 242 |
 | Current campaign: closed without merge | 12 |
 
 ## New Campaign Submissions
@@ -38,7 +38,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 13 | `Sun-Haoyuan23/Awesome-RL-based-Reasoning-MLLMs` | [#45 — Add ClawBench to Benchmarks and Datasets](https://github.com/Sun-Haoyuan23/Awesome-RL-based-Reasoning-MLLMs/pull/45) | Tsinghua-affiliated active MLLM/RL list; contributions welcome; explicit Benchmarks and Datasets section; matched date/project/code paper format | Open |
 | 14 | `Meirtz/Awesome-Context-Engineering` | [#97 — Add ClawBench to agent observability references](https://github.com/Meirtz/Awesome-Context-Engineering/pull/97) | Active context/agent-engineering survey; explicit Agent Observability and Telemetry section; five-layer traces directly support its trace-first evaluation scope | Open |
 | 15 | `PhiloLabs/awesome-multimodal-agent-benchmarks` | [#2 — Add ClawBench to Web Agents](https://github.com/PhiloLabs/awesome-multimodal-agent-benchmarks/pull/2) | Multimodal-agent benchmark list; public paper and code satisfy its inclusion rules; matched the concise Web Agents entry format | Open |
-| 16 | `genai-io/awesome-agent-evals` | [#2 — Add ClawBench to web and browser agent evaluations](https://github.com/genai-io/awesome-agent-evals/pull/2) | Reproducible agent-evaluation catalog; explicit Web / Browser Agents section; matched its link-first, factual entry style | Open |
+| 16 | `genai-io/awesome-agent-evals` | [#2 — Add ClawBench to web and browser agent evaluations](https://github.com/genai-io/awesome-agent-evals/pull/2) | Reproducible agent-evaluation catalog; refreshed its explicit Web / Browser Agents entry to the canonical repository and current 283-task/163-site scope | Open |
 | 17 | `RDI-Foundation/awesome-agent-benchmarks` | [#1 — Add ClawBench web benchmark](https://github.com/RDI-Foundation/awesome-agent-benchmarks/pull/1) | Berkeley RDI benchmark catalog with explicit `benchmarks.yaml` schema; refreshed the validated web entry to current V1+V2 scope of 283 tasks across 163 sites and canonical organization link | Open |
 | 18 | `pantheon-auto/awesome-web-agents` | [#2 — Add ClawBench benchmark](https://github.com/pantheon-auto/awesome-web-agents/pull/2) | Active 500+ star web-agent list; explicit Benchmarks section; matched alphabetical ordering and completed its PR template | Open |
 | 19 | `TianyuanYang/awesome-computer-use` | [#1 — Add ClawBench to Benchmarks and Evaluation](https://github.com/TianyuanYang/awesome-computer-use/pull/1) | Computer-use resource list with an explicit evaluation table; supplied paper, code, date, and factual benchmark description | Open |
@@ -302,6 +302,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 277 | `WangRongsheng/awesome-LLM-resources` | [#86 — Update ClawBench benchmark metadata](https://github.com/WangRongsheng/awesome-LLM-resources/pull/86) | 8.7k-star LLM resource directory; corrected the canonical repository URL and refreshed the entry to 283 V1+V2 tasks, 163 live websites, 15 categories, interception, judge, and project links | Open |
 | 278 | `natnew/Awesome-Agentic-AI-Security` | [#22 — Add ClawBench as a complementary security-evaluation benchmark](https://github.com/natnew/Awesome-Agentic-AI-Security/pull/22) | Security-evaluation catalog with explicit benchmark contribution schema and scope/limitations requirements; adds ClawBench as complementary control-path evidence while clearly stating it is not a security benchmark and does not cover adversarial behaviors | Open |
 | 279 | `kagnlp/Awesome-Agentic-Security` | [#6 — Add ClawBench to benchmarking platforms](https://github.com/kagnlp/Awesome-Agentic-Security/pull/6) | 50-star PRs-welcome agentic-security survey with an Evaluation → Benchmarking Platforms section; adds a clearly bounded non-adversarial browser-agent evaluation reference and explicit limitations | Open |
+| 280 | `corca-ai/awesome-llm-security` | [#144 — Update ClawBench benchmark metadata](https://github.com/corca-ai/awesome-llm-security/pull/144) | 1.6k-star LLM-security resource list; corrected the repository URL and refreshed the benchmark entry to 283 V1+V2 tasks across 163 live websites with project link | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
