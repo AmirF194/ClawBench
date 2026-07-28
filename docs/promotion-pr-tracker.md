@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 292 |
+| New PRs submitted in this campaign | 293 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 254 |
+| Current campaign: open | 255 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -324,6 +324,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 290 | `Casslin/awesome-browser-agent-evals` | [#1 — Add ClawBench evaluation prompts](https://github.com/Casslin/awesome-browser-agent-evals/pull/1) | README explicitly invites browser-agent evaluation prompts; adds ClawBench as a source of real-world task prompts with paper/code links and current 283-task/163-site scope | Open |
 | 291 | `jordimas/awesome-agentic-engineering` | [#11 — Add ClawBench browser benchmark](https://github.com/jordimas/awesome-agentic-engineering/pull/11) | 96-star agentic-engineering list explicitly welcomes practical additions; adds ClawBench to Browser, Web & Computer Use Agents with canonical paper, code, project, and scope links | Open |
 | 292 | `scienceaix/awesome-harness-engineering` | [#4 — Add ClawBench harness benchmark](https://github.com/scienceaix/awesome-harness-engineering/pull/4) | Explicit Evaluation & Benchmarking section and PR invitation for harness-engineering resources; adds a native benchmark entry with canonical paper, code, project, and current scope | Open |
+| 293 | `yenanjing/awesome-harness-engineering` | [#4 — Add ClawBench evaluation harness](https://github.com/yenanjing/awesome-harness-engineering/pull/4) | 4-star harness list with explicit LLM Evaluation Harnesses category and contribution guide requiring ≥100 stars or high relevance; ClawBench has 530 stars and active maintenance | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
