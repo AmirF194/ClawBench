@@ -23,9 +23,9 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | Merged | 19 PRs across 17 repositories |
 | Open | 36 |
 | Closed without merge | 4 |
-| New PRs submitted in this campaign | 314 |
+| New PRs submitted in this campaign | 315 |
 | Current campaign: merged | 28 |
-| Current campaign: open | 276 |
+| Current campaign: open | 277 |
 | Current campaign: closed without merge | 10 |
 
 ## New Campaign Submissions
@@ -346,6 +346,7 @@ GitHub search for pull requests authored by `reacher-z` with `ClawBench` in the 
 | 312 | `vectara/awesome-agent-failures` | [#47 — Add ClawBench browser-agent benchmark](https://github.com/vectara/awesome-agent-failures/pull/47) | Failure-analysis catalog whose contribution guide accepts research, tools, and evaluation benchmarks; adds ClawBench under Research → Browser-Agent Evaluation with official paper/code links and factual scope | Open |
 | 313 | `XueyangFeng/LLM-Agent-Paper-Digest` | [#4 — Add ClawBench agent evaluation paper](https://github.com/XueyangFeng/LLM-Agent-Paper-Digest/pull/4) | Agent-paper digest with an Agent Evaluation section and contribution welcome language; adds a native paper/code/TLDR entry linking ClawBench's official arXiv, repository, and project page | Open |
 | 314 | `Eileen19200930/Awesome-Agent-Papers` | [#1 — Add ClawBench web-agent benchmark](https://github.com/Eileen19200930/Awesome-Agent-Papers/pull/1) | Agent-paper list explicitly welcomes papers, projects, and evaluation resources; adds ClawBench under evaluation metrics with official paper, code, project page, current scope, and evidence protocol | Open |
+| 315 | `priyathamkat/Awesome-LLM-Evaluation` | [#6 — Add ClawBench web-agent benchmark](https://github.com/priyathamkat/Awesome-LLM-Evaluation/pull/6) | LLM-evaluation list with a Benchmarks section and contribution path; adds ClawBench with official code/paper links, current live-web scope, interception, and replayable evidence details | Open |
 
 The two earlier duplicate submissions to `showlab/Awesome-GUI-Agent` (#57 and #60) were closed on 2026-07-28 in favor of the newer canonical PR [#64](https://github.com/showlab/Awesome-GUI-Agent/pull/64). They remain counted as closed without merge above; no additional submission is counted.
 
