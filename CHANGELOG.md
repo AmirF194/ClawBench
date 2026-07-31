@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Added a preflight API call to check if the LLM API is valid before starting actual tasks.
 - Added support for using Gemini API as a judge.
 - Added a random-click baseline harness to provide a baseline for comparison with LLM agents.
+- Added the adaptor to make ClawBench V2 compatible with the EdgeBench/SForge benchmark.
 
 ## [0.7.0] - 2026-06-22
 ### Added
