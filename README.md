@@ -24,7 +24,16 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/reacher-z/ClawBench?style=flat-square&logo=github&logoColor=white)](https://github.com/reacher-z/ClawBench/graphs/commit-activity)
 [![License](https://img.shields.io/github/license/reacher-z/ClawBench?style=flat-square&color=A42E2B)](https://github.com/reacher-z/ClawBench/blob/main/LICENSE)
 
-<p align="center"><sub><i>Featured in 37 curated lists</i></sub></p>
+
+<p align="center">
+  <a href="https://huggingface.co/papers/2604.08523"><img src="https://img.shields.io/badge/%233_Paper_of_the_Day-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000" alt="#3 Paper of the Day"></a>
+</p>
+
+<p align="center">
+  <a href="https://deepwiki.com/reacher-z/ClawBench"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg" /></a>
+</p>
+<details>
+<summary><sub><i>Featured in 37 curated lists</i></sub></summary>
 <p align="center">
   <a href="https://github.com/walkinglabs/awesome-harness-engineering"><img alt="awesome-harness-engineering" src="https://img.shields.io/badge/Featured-awesome--harness--engineering-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/Picrew/awesome-agent-harness"><img alt="awesome-agent-harness" src="https://img.shields.io/badge/Featured-awesome--agent--harness-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
@@ -63,35 +72,11 @@
   <a href="https://github.com/IcyFeather233/Awesome-LLM-Agent-Trajectory-Analysis"><img alt="Awesome-LLM-Agent-Trajectory-Analysis" src="https://img.shields.io/badge/Featured-agent--trajectory--analysis-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/h9-tec/llm-systems-engineering-roadmap"><img alt="llm-systems-engineering-roadmap" src="https://img.shields.io/badge/Featured-LLM--systems--roadmap-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/Necolizer/awesome-rl-for-agents"><img alt="awesome-rl-for-agents" src="https://img.shields.io/badge/Featured-RL--for--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/brandonhimpfen/awesome-ai-benchmarks-evaluation"><img alt="awesome-ai-benchmarks-evaluation" src="https://img.shields.io/badge/Featured-AI--benchmarks--evaluation-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/EthicalML/awesome-agentic-engineering-resources"><img alt="awesome-agentic-engineering-resources" src="https://img.shields.io/badge/Featured-agentic--engineering-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/Xnhyacinth/Awesome-LLM-Long-Context-Modeling"><img alt="Awesome-LLM-Long-Context-Modeling" src="https://img.shields.io/badge/Featured-long--context--modeling-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/YintongHuo/awesome-agent-trajectory"><img alt="awesome-agent-trajectory" src="https://img.shields.io/badge/Featured-agent--trajectory-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/ARUNAGIRINATHAN-K/awesome-ai-agents-2026"><img alt="awesome-ai-agents-2026" src="https://img.shields.io/badge/Featured-AI--agents--2026-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/Steve2457/Awesome-RL-GUI-Agents"><img alt="Awesome-RL-GUI-Agents" src="https://img.shields.io/badge/Featured-RL--GUI--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/aloth/awesome-ai-agents"><img alt="awesome-ai-agents" src="https://img.shields.io/badge/Featured-awesome--AI--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/FrontisAI/Awesome-Self-Improving-Agents"><img alt="Awesome-Self-Improving-Agents" src="https://img.shields.io/badge/Featured-self--improving--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/zjunlp/LLMAgentPapers"><img alt="LLMAgentPapers" src="https://img.shields.io/badge/Featured-LLM--agent--papers-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/M1n9X/llm_agents_devtools"><img alt="llm_agents_devtools" src="https://img.shields.io/badge/Featured-agent--devtools-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/IcyFeather233/Awesome-LLM-Agent-Trajectory-Analysis"><img alt="Awesome-LLM-Agent-Trajectory-Analysis" src="https://img.shields.io/badge/Featured-trajectory--analysis-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/h9-tec/llm-systems-engineering-roadmap"><img alt="llm-systems-engineering-roadmap" src="https://img.shields.io/badge/Featured-LLM--systems--roadmap-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/Necolizer/awesome-rl-for-agents"><img alt="awesome-rl-for-agents" src="https://img.shields.io/badge/Featured-RL--for--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/Picrew/awesome-agent-harness"><img alt="awesome-agent-harness" src="https://img.shields.io/badge/Featured-awesome--agent--harness-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/OpenHands/open-operator"><img alt="OpenHands open-operator" src="https://img.shields.io/badge/Featured-OpenHands--open--operator-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/philfung/awesome-computer-use"><img alt="awesome-computer-use (philfung)" src="https://img.shields.io/badge/Featured-computer--use--papers-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/cdxeve/awesome-computer-use-agents"><img alt="awesome-computer-use-agents" src="https://img.shields.io/badge/Featured-computer--use--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
-  <a href="https://github.com/SafeRL-Lab/agentic-web"><img alt="agentic-web" src="https://img.shields.io/badge/Featured-agentic--web-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
 </p>
-
-<p align="center">
-  <a href="https://huggingface.co/papers/2604.08523"><img src="https://img.shields.io/badge/%233_Paper_of_the_Day-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000" alt="#3 Paper of the Day"></a>
-</p>
-
-<p align="center">
-  <a href="https://deepwiki.com/reacher-z/ClawBench"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg" /></a>
-</p>
+</details>
 
 </div>
+
 
 <div align="center">
 
@@ -228,7 +213,7 @@ ClawBench ships **three** Hugging Face datasets — task definitions plus full e
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
 | **[NAIL-Group/ClawBench](https://huggingface.co/datasets/NAIL-Group/ClawBench)** _(also mirrored at [TIGER-Lab/ClawBench](https://huggingface.co/datasets/TIGER-Lab/ClawBench))_ | Task definitions, rubrics, and metadata for V1 (153 tasks) and V2 (130 tasks) — what to attempt and how it's judged.                                                                                  | `hf download --repo-type dataset NAIL-Group/ClawBench`        |
 | **[NAIL-Group/ClawBenchV1Trace](https://huggingface.co/datasets/NAIL-Group/ClawBenchV1Trace)**                                                                                   | One directory per V1 model run, each with `recording.mp4`, `requests.jsonl`, `actions.jsonl`, `agent-messages.jsonl`, `interception.json`, and `run-meta.json` — everything we used to score the run. | `hf download --repo-type dataset NAIL-Group/ClawBenchV1Trace` |
-| **[TIGER-Lab/ClawBenchV2Trace](https://huggingface.co/datasets/TIGER-Lab/ClawBenchV2Trace)**                                                                                   | Same 5-layer bundle for **V2** model runs. Rolling — new models added as they're evaluated.                                                                                                           | `hf download --repo-type dataset TIGER-Lab/ClawBenchV2Trace` |
+| **[TIGER-Lab/ClawBenchV2Trace](https://huggingface.co/datasets/TIGER-Lab/ClawBenchV2Trace)**                                                                                     | Same 5-layer bundle for **V2** model runs. Rolling — new models added as they're evaluated.                                                                                                           | `hf download --repo-type dataset TIGER-Lab/ClawBenchV2Trace`  |
 
 > The trace datasets are large; use `hf download --include "<pattern>"` to pull a single model or a single task.
 
