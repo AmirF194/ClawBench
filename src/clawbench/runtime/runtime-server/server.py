@@ -1,3 +1,4 @@
+import asyncio
 import base64
 import json
 import os
@@ -12,8 +13,8 @@ from urllib.parse import parse_qs, urlparse
 import urllib.request
 
 import websocket
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi.responses import HTMLResponse, JSONResponse
 
 DATA_DIR = Path(os.environ.get("CLAWBENCH_DATA_DIR", "/data"))
 ACTIONS_FILE = DATA_DIR / "actions.jsonl"
@@ -23,7 +24,18 @@ EVAL_SCHEMA_PATH = Path("/eval-schema.json")
 REQUESTS_FILE = DATA_DIR / "requests.jsonl"
 INTERCEPTION_FILE = DATA_DIR / "interception.json"
 
-CDP_URL = os.environ.get("CLAWBENCH_BROWSER_CDP_URL", "http://127.0.0.1:9222")
+
+def _load_remote_cdp_url():
+    secret_path = os.environ.get("CLAWBENCH_BROWSER_CDP_URL_FILE")
+    if secret_path:
+        return Path(secret_path).read_text(encoding="utf-8").strip()
+    return os.environ.get("CLAWBENCH_REMOTE_BROWSER_CDP_URL")
+
+
+REMOTE_CDP_URL = _load_remote_cdp_url()
+CDP_URL = REMOTE_CDP_URL or os.environ.get(
+    "CLAWBENCH_BROWSER_CDP_URL", "http://127.0.0.1:9222"
+)
 RECORDING_MODE = os.environ.get("CLAWBENCH_RECORDING_MODE", "x11")
 ACTION_BINDING = "__clawbenchAction"
 SCREENSHOT_THROTTLE_MS = 500
@@ -35,8 +47,8 @@ eval_interceptor_ready = False
 
 def stop_ffmpeg_recording(timeout: int = 10) -> str:
     global ffmpeg_proc
-    if RECORDING_MODE == "disabled":
-        return "disabled"
+    if RECORDING_MODE != "x11":
+        return RECORDING_MODE
     if not ffmpeg_proc or ffmpeg_proc.poll() is not None:
         return "already_stopped"
 
@@ -519,8 +531,8 @@ async def lifespan(app: FastAPI):
         match_body = eval_schema.get("body")
         match_params = eval_schema.get("params")
 
-    if RECORDING_MODE == "disabled":
-        print("[recording] disabled", flush=True)
+    if RECORDING_MODE != "x11":
+        print(f"[recording] {RECORDING_MODE}", flush=True)
         ffmpeg_proc = None
     else:
         # Start screen recording of the Xvfb display
@@ -566,6 +578,156 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+
+
+def _remote_cdp_command(method, params=None):
+    """Run one short browser-level CDP command against the remote provider."""
+    if not REMOTE_CDP_URL:
+        raise RuntimeError("remote CDP bridge is not configured")
+    upstream = websocket.create_connection(REMOTE_CDP_URL, timeout=15)
+    try:
+        upstream.send(
+            json.dumps(
+                {
+                    "id": 1,
+                    "method": method,
+                    "params": params or {},
+                }
+            )
+        )
+        while True:
+            message = json.loads(upstream.recv())
+            if message.get("id") != 1:
+                continue
+            if "error" in message:
+                raise RuntimeError("remote CDP command failed")
+            return message.get("result", {})
+    finally:
+        upstream.close()
+
+
+@app.get("/json/version")
+async def cdp_version():
+    """Expose HTTP CDP discovery for harnesses backed by a remote WebSocket."""
+    if not REMOTE_CDP_URL:
+        return JSONResponse(
+            {"error": "remote CDP bridge is not configured"},
+            status_code=404,
+        )
+    return {
+        "Browser": "ClawBench remote browser",
+        "Protocol-Version": "1.3",
+        "webSocketDebuggerUrl": (
+            "ws://127.0.0.1:7878/devtools/browser/clawbench-remote"
+        ),
+    }
+
+
+@app.get("/json")
+@app.get("/json/list")
+async def cdp_targets():
+    """Expose Chrome-style target discovery for HTTP-only harness clients."""
+    if not REMOTE_CDP_URL:
+        return JSONResponse(
+            {"error": "remote CDP bridge is not configured"},
+            status_code=404,
+        )
+    try:
+        result = await asyncio.to_thread(_remote_cdp_command, "Target.getTargets")
+    except Exception:
+        return JSONResponse(
+            {"error": "remote CDP target discovery failed"},
+            status_code=502,
+        )
+    ws_url = "ws://127.0.0.1:7878/devtools/browser/clawbench-remote"
+    return [
+        {
+            "id": target.get("targetId", ""),
+            "type": target.get("type", "page"),
+            "title": target.get("title", ""),
+            "description": target.get("title", ""),
+            "url": target.get("url", ""),
+            "webSocketDebuggerUrl": ws_url,
+            "devtoolsFrontendUrl": (
+                "/devtools/inspector.html?ws="
+                "127.0.0.1:7878/devtools/browser/clawbench-remote"
+            ),
+        }
+        for target in result.get("targetInfos", [])
+        if target.get("targetId")
+    ]
+
+
+@app.websocket("/devtools/browser/{browser_id}")
+async def cdp_websocket_bridge(client: WebSocket, browser_id: str):
+    """Proxy one harness CDP connection without exposing provider credentials."""
+    del browser_id
+    await client.accept()
+    if not REMOTE_CDP_URL:
+        await client.close(code=1011, reason="remote CDP bridge is not configured")
+        return
+
+    upstream = None
+    tasks = set()
+    try:
+        upstream = await asyncio.to_thread(
+            websocket.create_connection,
+            REMOTE_CDP_URL,
+            timeout=15,
+        )
+        upstream.settimeout(None)
+
+        async def client_to_upstream():
+            while True:
+                message = await client.receive()
+                if message["type"] == "websocket.disconnect":
+                    return
+                if message.get("text") is not None:
+                    await asyncio.to_thread(upstream.send, message["text"])
+                elif message.get("bytes") is not None:
+                    await asyncio.to_thread(
+                        upstream.send,
+                        message["bytes"],
+                        websocket.ABNF.OPCODE_BINARY,
+                    )
+
+        async def upstream_to_client():
+            while True:
+                message = await asyncio.to_thread(upstream.recv)
+                if message == "":
+                    return
+                if isinstance(message, bytes):
+                    await client.send_bytes(message)
+                else:
+                    await client.send_text(message)
+
+        tasks = {
+            asyncio.create_task(client_to_upstream()),
+            asyncio.create_task(upstream_to_client()),
+        }
+        _done, pending = await asyncio.wait(
+            tasks,
+            return_when=asyncio.FIRST_COMPLETED,
+        )
+        for task in pending:
+            task.cancel()
+    except WebSocketDisconnect:
+        pass
+    except Exception:
+        # Provider URLs can contain credentials. Never log the exception or
+        # include it in the client-facing close reason.
+        try:
+            await client.close(code=1011, reason="remote CDP connection failed")
+        except Exception:
+            pass
+    finally:
+        if upstream is not None:
+            await asyncio.to_thread(upstream.close)
+        for task in tasks:
+            if not task.done():
+                task.cancel()
+        if tasks:
+            await asyncio.gather(*tasks, return_exceptions=True)
 
 
 @app.get("/api/status")

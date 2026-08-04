@@ -371,6 +371,7 @@ def docker_run(
     host_port: int | None = None,
     harness: str = DEFAULT_HARNESS,
     browser_cdp_url: str = DEFAULT_BROWSER_CDP_URL,
+    browser_cdp_url_file: Path | None = None,
     browser_mode: str = "local",
     recording_mode: str = "x11",
 ) -> None:
@@ -397,8 +398,6 @@ def docker_run(
         "-e",
         f"TIME_LIMIT_S={time_limit_s}",
         "-e",
-        f"CLAWBENCH_BROWSER_CDP_URL={browser_cdp_url}",
-        "-e",
         f"CLAWBENCH_BROWSER_MODE={browser_mode}",
         "-e",
         f"CLAWBENCH_RECORDING_MODE={recording_mode}",
@@ -407,6 +406,18 @@ def docker_run(
         "-v",
         f"{personal_info_dir.resolve()}:/my-info:ro",
     ]
+    if browser_cdp_url_file is not None:
+        env_flags += [
+            "-e",
+            "CLAWBENCH_BROWSER_CDP_URL_FILE=/run/secrets/clawbench-browser-cdp-url",
+            "-v",
+            (
+                f"{browser_cdp_url_file.resolve()}:"
+                "/run/secrets/clawbench-browser-cdp-url:ro"
+            ),
+        ]
+    else:
+        env_flags += ["-e", f"CLAWBENCH_BROWSER_CDP_URL={browser_cdp_url}"]
     if host_port is not None:
         env_flags += ["-p", f"{host_port}:6080"]
     if "host.docker.internal" in model_cfg["base_url"]:

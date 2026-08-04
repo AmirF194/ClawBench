@@ -82,6 +82,10 @@ cat > ~/.openclaw/openclaw.json << JSONEOF
     "enabled": true,
     "defaultProfile": "container",
     "profiles": {
+      "openclaw": {
+        "cdpUrl": "$CLAWBENCH_BROWSER_CDP_URL",
+        "color": "#FB542B"
+      },
       "container": {
         "cdpUrl": "$CLAWBENCH_BROWSER_CDP_URL",
         "color": "#FB542B"

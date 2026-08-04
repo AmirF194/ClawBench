@@ -1,4 +1,6 @@
 models/models.yaml
+.env.local
+.clawbench-secrets/
 test-output-*/
 test-output/
 **/__pycache__/

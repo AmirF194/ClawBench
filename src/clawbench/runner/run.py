@@ -3,12 +3,12 @@
 import argparse
 import hashlib
 import json
-import os
 import re
 import shutil
 import signal
 import subprocess
 import sys
+import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -161,14 +161,13 @@ def main():
     if not args.human and args.model is None:
         parser.error("model is required for agent mode (or use --human)")
 
-    # Load infrastructure config from .env (PurelyMail only)
+    # Load infrastructure config. Process environment has final precedence.
     env = load_runtime_env()
-    runtime_env = {**env, **os.environ}
     infra_required = ["PURELY_MAIL_API_KEY", "PURELY_MAIL_DOMAIN"]
     missing = [k for k in infra_required if not env.get(k)]
     if missing:
         for k in missing:
-            print(f"ERROR: {k} not set in .env")
+            print(f"ERROR: {k} not set in .env, .env.local, or the process environment")
         sys.exit(1)
     pm_key: str = env["PURELY_MAIL_API_KEY"]
     pm_domain: str = env["PURELY_MAIL_DOMAIN"]
@@ -177,13 +176,21 @@ def main():
         browser_runtime_provider: BrowserRuntimeProvider = (
             make_browser_runtime_provider(
                 args,
-                runtime_env,
+                env,
             )
         )
     except BrowserRuntimeError as e:
         parser.error(str(e))
     if args.human and browser_runtime_provider.name != "local":
         parser.error("human mode currently supports only --browser-runtime local")
+    if (
+        browser_runtime_provider.name == "browserbase"
+        and args.harness == "claude-code-chrome-extension"
+    ):
+        parser.error(
+            "browserbase runtime does not support the "
+            "claude-code-chrome-extension harness"
+        )
 
     # HuggingFace upload (optional)
     hf_env = {
@@ -224,11 +231,19 @@ def main():
     personal_info_metadata: dict[str, Any] | None = None
     browser_session: BrowserSession | None = None
     browser_runtime_cleaned = False
+    browser_cdp_secret_dir: Path | None = None
 
     def _browser_runtime_meta() -> dict[str, Any]:
         if browser_session is not None:
             return browser_session.to_metadata()
         mode = "local" if browser_runtime_provider.name == "local" else "remote"
+        recording_mode = (
+            "x11"
+            if mode == "local"
+            else "provider"
+            if browser_runtime_provider.name == "browserbase"
+            else "disabled"
+        )
         return {
             "provider": browser_runtime_provider.name,
             "mode": mode,
@@ -236,7 +251,8 @@ def main():
             "cdp_url": None,
             "viewer_url": None,
             "debug_url": None,
-            "recording_mode": "x11" if mode == "local" else "disabled",
+            "recording_url": None,
+            "recording_mode": recording_mode,
             "local_viewer_port": None,
             "cleanup_status": None,
             "cleanup_error": None,
@@ -244,7 +260,38 @@ def main():
         }
 
     def _recording_required() -> bool:
-        return browser_session is None or browser_session.recording_mode != "disabled"
+        return browser_session is None or browser_session.recording_mode == "x11"
+
+    def _write_browser_cdp_secret(session: BrowserSession) -> Path | None:
+        nonlocal browser_cdp_secret_dir
+        if session.mode != "remote":
+            return None
+        secret_root = WORKSPACE_ROOT / ".clawbench-secrets"
+        secret_root.mkdir(mode=0o700, exist_ok=True)
+        secret_root.chmod(0o700)
+        browser_cdp_secret_dir = Path(
+            tempfile.mkdtemp(
+                prefix=".clawbench-browser-cdp-",
+                dir=secret_root,
+            )
+        )
+        browser_cdp_secret_dir.chmod(0o700)
+        secret_file = browser_cdp_secret_dir / "cdp-url"
+        secret_file.write_text(session.cdp_url)
+        secret_file.chmod(0o600)
+        return secret_file
+
+    def _cleanup_browser_cdp_secret() -> None:
+        nonlocal browser_cdp_secret_dir
+        if browser_cdp_secret_dir is None:
+            return
+        secret_root = browser_cdp_secret_dir.parent
+        shutil.rmtree(browser_cdp_secret_dir, ignore_errors=True)
+        browser_cdp_secret_dir = None
+        try:
+            secret_root.rmdir()
+        except OSError:
+            pass
 
     def _cleanup_browser_runtime() -> None:
         nonlocal browser_runtime_cleaned
@@ -371,6 +418,13 @@ def main():
     email = None
     personal_info_tmp: Path | None = None
     phase = "startup"
+    previous_sigterm_handler = signal.getsignal(signal.SIGTERM)
+
+    def handle_sigterm(sig, frame):
+        print("\nTermination requested; cleaning up the active run...")
+        raise KeyboardInterrupt
+
+    signal.signal(signal.SIGTERM, handle_sigterm)
     try:
         assert task is not None
 
@@ -445,6 +499,7 @@ def main():
             phase = "starting_browser_runtime"
             browser_session = browser_runtime_provider.start(task, time_limit_s)
             host_port = browser_session.local_viewer_port
+            browser_cdp_secret_file = _write_browser_cdp_secret(browser_session)
 
             phase = "starting_container"
             step("Starting container")
@@ -458,6 +513,7 @@ def main():
                 host_port=host_port,
                 harness=args.harness,
                 browser_cdp_url=browser_session.cdp_url,
+                browser_cdp_url_file=browser_cdp_secret_file,
                 browser_mode=browser_session.mode,
                 recording_mode=browser_session.recording_mode,
             )
@@ -471,7 +527,7 @@ def main():
                     )
                 console.print("  Open the URL above to watch the agent in real-time.\n")
             elif browser_session.viewer_url:
-                viewer_url = browser_session.viewer_url
+                viewer_url = browser_session.to_metadata()["viewer_url"]
                 console.print(
                     f"\n  Browser viewer: [link={viewer_url}]{viewer_url}[/link]\n"
                 )
@@ -562,6 +618,7 @@ def main():
 
         phase = "cleaning_browser_runtime"
         _cleanup_browser_runtime()
+        _cleanup_browser_cdp_secret()
 
         # Write run metadata
         phase = "writing_run_meta"
@@ -630,6 +687,7 @@ def main():
         except Exception:
             pass
         _cleanup_browser_runtime()
+        _cleanup_browser_cdp_secret()
         duration = time.time() - start_time
         classification = classify_run(
             output_dir,
@@ -673,7 +731,9 @@ def main():
             delete_email(pm_key, email)
         if personal_info_tmp and personal_info_tmp.exists():
             shutil.rmtree(personal_info_tmp, ignore_errors=True)
+        _cleanup_browser_cdp_secret()
         (output_dir / "eval-schema.json").unlink(missing_ok=True)
+        signal.signal(signal.SIGTERM, previous_sigterm_handler)
 
     # Final pass status: stage 1 (intercepted) AND stage 2 (judge match), unless --no-judge.
     final_pass = bool(meta.get("pass"))
@@ -693,7 +753,8 @@ def main():
         )
         sys.exit(1)
     if final_pass:
-        print(f"\nINTERCEPTED + JUDGE MATCH — results in {output_dir}")
+        status = "INTERCEPTED" if args.no_judge else "INTERCEPTED + JUDGE MATCH"
+        print(f"\n{status} — results in {output_dir}")
     else:
         print(f"\nINTERCEPTED — results in {output_dir}")
 
