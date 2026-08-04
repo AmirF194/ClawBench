@@ -4,7 +4,17 @@ set -e
 # Ensure /data exists for recording output and diagnostic logs
 mkdir -p /data
 
-export CLAWBENCH_BROWSER_CDP_URL="${CLAWBENCH_BROWSER_CDP_URL:-http://127.0.0.1:9222}"
+if [ -n "${CLAWBENCH_BROWSER_CDP_URL_FILE:-}" ]; then
+  if [ ! -r "$CLAWBENCH_BROWSER_CDP_URL_FILE" ]; then
+    echo "ERROR: remote browser CDP secret file is not readable"
+    exit 1
+  fi
+  # The runtime server reads the credential-bearing provider URL from the
+  # mounted secret. Harnesses use its local CDP discovery/WebSocket bridge.
+  export CLAWBENCH_BROWSER_CDP_URL="http://127.0.0.1:7878"
+else
+  export CLAWBENCH_BROWSER_CDP_URL="${CLAWBENCH_BROWSER_CDP_URL:-http://127.0.0.1:9222}"
+fi
 export CLAWBENCH_BROWSER_MODE="${CLAWBENCH_BROWSER_MODE:-local}"
 if [ -z "${CLAWBENCH_RECORDING_MODE:-}" ]; then
   if [ "$CLAWBENCH_BROWSER_MODE" = "remote" ]; then

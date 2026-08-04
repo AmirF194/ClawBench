@@ -159,8 +159,12 @@ def test_docker_run_remote_browser_sidecar_command_with_mock_runtime(
     commands: list[list[str]] = []
     schema_path = tmp_path / "eval-schema.json"
     personal_info_dir = tmp_path / "my-info"
+    cdp_secret_file = tmp_path / "cdp-url"
     schema_path.write_text("{}")
     personal_info_dir.mkdir()
+    cdp_secret_file.write_text(
+        "wss://remote.example.test/session/devtools?apiKey=secret"
+    )
     monkeypatch.setattr(docker, "run", lambda cmd: commands.append(cmd))
 
     docker.docker_run(
@@ -177,18 +181,24 @@ def test_docker_run_remote_browser_sidecar_command_with_mock_runtime(
         host_port=None,
         harness="codex",
         browser_cdp_url="wss://remote.example.test/session/devtools?apiKey=secret",
+        browser_cdp_url_file=cdp_secret_file,
         browser_mode="remote",
-        recording_mode="disabled",
+        recording_mode="provider",
     )
 
     cmd = commands[0]
     assert "-p" not in cmd
-    assert (
-        "CLAWBENCH_BROWSER_CDP_URL=wss://remote.example.test/session/devtools?apiKey=secret"
-        in cmd
+    assert not any(
+        "wss://remote.example.test" in part or "apiKey=secret" in part for part in cmd
     )
+    assert (
+        "CLAWBENCH_BROWSER_CDP_URL_FILE=/run/secrets/clawbench-browser-cdp-url" in cmd
+    )
+    assert (
+        f"{cdp_secret_file.resolve()}:/run/secrets/clawbench-browser-cdp-url:ro"
+    ) in cmd
     assert "CLAWBENCH_BROWSER_MODE=remote" in cmd
-    assert "CLAWBENCH_RECORDING_MODE=disabled" in cmd
+    assert "CLAWBENCH_RECORDING_MODE=provider" in cmd
     assert cmd[-1] == "clawbench-codex"
 
 

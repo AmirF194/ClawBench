@@ -156,7 +156,25 @@ def test_harnesses_are_browser_provider_neutral() -> None:
     assert offenders == []
 
 
-def test_runtime_server_cdp_url_comes_from_env_with_local_default() -> None:
+def test_openclaw_profiles_share_the_configured_cdp_endpoint() -> None:
+    setup_path = RUNTIME_ROOT / "harnesses" / "openclaw" / "setup-openclaw.sh"
+    source = setup_path.read_text(encoding="utf-8")
+
+    assert '"defaultProfile": "container"' in source
+    assert '"openclaw": {' in source
+    assert '"container": {' in source
+    assert source.count('"cdpUrl": "$CLAWBENCH_BROWSER_CDP_URL"') == 2
+
+
+def test_hermes_uses_config_for_custom_provider() -> None:
+    run_path = RUNTIME_ROOT / "harnesses" / "hermes" / "run-hermes.sh"
+    source = run_path.read_text(encoding="utf-8")
+
+    assert 'if [ "$HERMES_PROVIDER" != "custom" ]; then' in source
+    assert 'HERMES_ARGS+=(--provider "$HERMES_PROVIDER")' in source
+
+
+def test_runtime_server_cdp_url_supports_remote_secret_with_local_default() -> None:
     server_path = RUNTIME_ROOT / "runtime-server" / "server.py"
     tree = ast.parse(server_path.read_text(encoding="utf-8"))
 
@@ -172,14 +190,23 @@ def test_runtime_server_cdp_url_comes_from_env_with_local_default() -> None:
 
     assert len(cdp_assignments) == 1
     value = cdp_assignments[0].value
-    assert isinstance(value, ast.Call)
-    assert isinstance(value.func, ast.Attribute)
-    assert value.func.attr == "get"
-    assert isinstance(value.func.value, ast.Attribute)
-    assert value.func.value.attr == "environ"
-    assert isinstance(value.func.value.value, ast.Name)
-    assert value.func.value.value.id == "os"
-    assert [arg.value for arg in value.args if isinstance(arg, ast.Constant)] == [
+    assert isinstance(value, ast.BoolOp)
+    assert isinstance(value.op, ast.Or)
+    assert isinstance(value.values[0], ast.Name)
+    assert value.values[0].id == "REMOTE_CDP_URL"
+    local_value = value.values[1]
+    assert isinstance(local_value, ast.Call)
+    assert isinstance(local_value.func, ast.Attribute)
+    assert local_value.func.attr == "get"
+    assert isinstance(local_value.func.value, ast.Attribute)
+    assert local_value.func.value.attr == "environ"
+    assert isinstance(local_value.func.value.value, ast.Name)
+    assert local_value.func.value.value.id == "os"
+    assert [arg.value for arg in local_value.args if isinstance(arg, ast.Constant)] == [
         "CLAWBENCH_BROWSER_CDP_URL",
         "http://127.0.0.1:9222",
     ]
+
+    source = server_path.read_text(encoding="utf-8")
+    assert "CLAWBENCH_BROWSER_CDP_URL_FILE" in source
+    assert "CLAWBENCH_REMOTE_BROWSER_CDP_URL" in source
