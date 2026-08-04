@@ -306,6 +306,7 @@ def test_tui_main_single_run_flow_builds_runner_command(
             "single",
             "model-a",
             "codex",
+            "local",
             "001-daily-life-food-uber-eats",
             "exit",
         ],
@@ -324,6 +325,8 @@ def test_tui_main_single_run_flow_builds_runner_command(
             "model-a",
             "--harness",
             "codex",
+            "--browser-runtime",
+            "local",
         ]
     ]
     driver.assert_done()
@@ -333,7 +336,7 @@ def test_tui_main_batch_range_flow_builds_dry_run_command(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     driver = _QuestionaryDriver(
-        select=["v2", "batch", "openclaw", "range", "exit"],
+        select=["v2", "batch", "openclaw", "local", "range", "exit"],
         checkbox=[["model-a"]],
         text=["1-2", "3"],
         confirm=[True, True],
@@ -357,6 +360,8 @@ def test_tui_main_batch_range_flow_builds_dry_run_command(
             "3",
             "--harness",
             "openclaw",
+            "--browser-runtime",
+            "local",
             "--dry-run",
         ]
     ]

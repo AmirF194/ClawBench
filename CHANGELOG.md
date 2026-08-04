@@ -6,7 +6,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.9.0] - 2026-08-03
+
+### Added
+
+- Supported Browserbase as a remote browser runtime for less resource consumption and better scalability.
+
+### Fixed
+
+- Fixed Hermes startup with custom OpenAI-compatible model endpoints.
+
+## [0.8.0] - 2026-08-01
 ### Added
 - Added support for remote browsers with CDP connection.
 - Added a preflight API call to check if the LLM API is valid before starting actual tasks.

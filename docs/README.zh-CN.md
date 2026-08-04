@@ -24,7 +24,15 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/reacher-z/ClawBench?style=flat-square&logo=github&logoColor=white)](https://github.com/reacher-z/ClawBench/graphs/commit-activity)
 [![License](https://img.shields.io/github/license/reacher-z/ClawBench?style=flat-square&color=A42E2B)](https://github.com/reacher-z/ClawBench/blob/main/LICENSE)
 
-<p align="center"><sub><i>已被 35 个精选列表收录</i></sub></p>
+<p align="center">
+  <a href="https://huggingface.co/papers/2604.08523"><img src="https://img.shields.io/badge/%233_Paper_of_the_Day-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000" alt="#3 Paper of the Day"></a>
+</p>
+
+<p align="center">
+  <a href="https://deepwiki.com/reacher-z/ClawBench"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg" /></a>
+</p>
+<details>
+<summary><sub><i>已被 37 个精选列表收录</i></sub></summary>
 <p align="center">
   <a href="https://github.com/walkinglabs/awesome-harness-engineering"><img alt="awesome-harness-engineering" src="https://img.shields.io/badge/Featured-awesome--harness--engineering-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/Picrew/awesome-agent-harness"><img alt="awesome-agent-harness" src="https://img.shields.io/badge/Featured-awesome--agent--harness-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
@@ -64,14 +72,7 @@
   <a href="https://github.com/h9-tec/llm-systems-engineering-roadmap"><img alt="llm-systems-engineering-roadmap" src="https://img.shields.io/badge/Featured-LLM--systems--roadmap-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
   <a href="https://github.com/Necolizer/awesome-rl-for-agents"><img alt="awesome-rl-for-agents" src="https://img.shields.io/badge/Featured-RL--for--agents-7C3AED?style=flat-square&logo=awesomelists&logoColor=white"></a>
 </p>
-
-<p align="center">
-  <a href="https://huggingface.co/papers/2604.08523"><img src="https://img.shields.io/badge/%233_Paper_of_the_Day-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000" alt="#3 Paper of the Day"></a>
-</p>
-
-<p align="center">
-  <a href="https://deepwiki.com/reacher-z/ClawBench"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg" /></a>
-</p>
+</details>
 
 </div>
 
@@ -623,6 +624,9 @@ ClawBench 定位:**真实消费级网站、日常任务、端到端录制**。�
 # 单次运行:
 uv run clawbench-run test-cases/v1/001-daily-life-food-uber-eats claude-sonnet-4-6
 
+# 使用 Browserbase 云浏览器进行单次运行（密钥读取自 .env.local）:
+uv run clawbench-run test-cases/v1/001-daily-life-food-uber-eats claude-sonnet-4-6 --browser-runtime browserbase
+
 # 人工模式 (通过 noVNC 控制浏览器):
 uv run clawbench-run test-cases/v1/001-daily-life-food-uber-eats --human
 
@@ -650,6 +654,19 @@ uvx --from harbor==0.15.0 harbor run -p ./harbor-datasets/clawbench-v2 -a "<agen
 #   Hermes 通过 OpenRouter:
 #     -a hermes -m deepseek/deepseek-v4-flash
 ```
+
+使用 Browserbase 前，请把密钥放在不会提交到 Git 的 `.env.local` 中：
+
+```dotenv
+BROWSERBASE_API_KEY=bb_...
+```
+
+Browserbase 运行会复用本地运行相同的 CDP 动作捕获、动作截图、HTTP
+日志和请求拦截逻辑。视频由 Browserbase 保存；Session Inspector 地址写入
+`run-meta.json` 的 `browser_runtime.recording_url`，因此不会生成本地
+`recording.mp4`。批量运行默认并发数为 1；可用
+`--browser-runtime-options '{"region":"us-west-2","proxies":true}'`
+传入区域或代理等选项。
 
 V1 任务位于 [`test-cases/v1/`](../test-cases/v1/)（153 个任务）。V2 任务位于 `test-cases/v2/`（130 个任务），Lite 位于 `test-cases/v1-lite/`（20 个任务）。所有 suite 都使用 [`test-cases/task.schema.json`](../test-cases/task.schema.json)。测试用例编写细节见 [CONTRIBUTING.md](../CONTRIBUTING.md)；输出结构与评测流程见 [eval/README.md](../eval/README.md)。
 
@@ -682,8 +699,8 @@ V1 任务位于 [`test-cases/v1/`](../test-cases/v1/)（153 个任务）。V2 �
 
 | 层 | 文件 | 描述 |
 |-------|------|-------------|
-| 会话回放 | `recording.mp4` | 完整的会话视频 (H.264, 15fps) |
-| 动作截图 | `screenshots/*.png` | 每个浏览器动作的带时间戳 PNG |
+| 会话回放 | `recording.mp4` 或 `run-meta.json` 中的录制 URL | 本地 H.264 视频，或 Browserbase Session Inspector 回放 |
+| 动作截图 | `screenshots/*.png` | 浏览器动作后经限流捕获的带时间戳 PNG |
 | 浏览器动作 | `actions.jsonl` | 每个 DOM 事件 (click, keydown, input, pageLoad, scroll 等) |
 | HTTP 流量 | `requests.jsonl` | 每个 HTTP 请求,包含 headers、body 和查询参数 |
 | 智能体消息 | `agent-messages.jsonl` | 完整的智能体对话记录 (思考、文本、工具调用) |
