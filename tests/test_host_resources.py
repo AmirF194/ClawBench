@@ -166,6 +166,14 @@ def test_openclaw_profiles_share_the_configured_cdp_endpoint() -> None:
     assert source.count('"cdpUrl": "$CLAWBENCH_BROWSER_CDP_URL"') == 2
 
 
+def test_hermes_uses_config_for_custom_provider() -> None:
+    run_path = RUNTIME_ROOT / "harnesses" / "hermes" / "run-hermes.sh"
+    source = run_path.read_text(encoding="utf-8")
+
+    assert 'if [ "$HERMES_PROVIDER" != "custom" ]; then' in source
+    assert 'HERMES_ARGS+=(--provider "$HERMES_PROVIDER")' in source
+
+
 def test_runtime_server_cdp_url_supports_remote_secret_with_local_default() -> None:
     server_path = RUNTIME_ROOT / "runtime-server" / "server.py"
     tree = ast.parse(server_path.read_text(encoding="utf-8"))
