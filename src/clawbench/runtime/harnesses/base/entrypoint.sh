@@ -214,14 +214,13 @@ socat TCP-LISTEN:9223,fork,reuseaddr,bind=0.0.0.0 TCP:127.0.0.1:9222 &
 # Always start noVNC so users can watch the browser in any mode.
 # In human mode x11vnc also fires disconnect hooks for the watchdog.
 echo "Starting noVNC..."
-VNC_GONE_HOOK=""
-VNC_ACCEPT_HOOK=""
 if [ "$HUMAN_MODE" = "1" ]; then
-  VNC_GONE_HOOK="-gone touch /data/.vnc-disconnected"
-  VNC_ACCEPT_HOOK="-afteraccept rm -f /data/.vnc-disconnected"
+  x11vnc -display :99 -nopw -shared -forever -rfbport 5900 -xkb \
+    -gone "touch /data/.vnc-disconnected" \
+    -afteraccept "rm -f /data/.vnc-disconnected" &
+else
+  x11vnc -display :99 -nopw -shared -forever -rfbport 5900 -xkb &
 fi
-x11vnc -display :99 -nopw -shared -forever -rfbport 5900 -xkb \
-  $VNC_GONE_HOOK $VNC_ACCEPT_HOOK &
 sleep 1
 
 /opt/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 6080 &
