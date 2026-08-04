@@ -179,7 +179,7 @@ order food, book travel, apply for jobs, write reviews, manage projects.<br/>
 </table>
 
 ## News
-
+- **[2026.08.03]** - Added support for using [Browserbase](https://www.browserbase.com) as a remote browser runtime for ClawBench.
 - **[2026.07.30]** — v0.8.0 released: Gemini-as-judge, random-click baseline harness, EdgeBench/SForge adapter, remote-browser CDP support. [Details →](CHANGELOG.md)
 - **[2026.07.25]** — 🏆 Our paper has been accepted by [COLM 2026 WAB](https://www.aiagentbehavior.com/).
 - **[2026.06.22]** — v0.7.0 released: Harbor-adapter task export; action recording moved into the CDP server. [Details →](CHANGELOG.md)
