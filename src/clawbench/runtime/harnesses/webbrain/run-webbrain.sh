@@ -37,8 +37,11 @@ while kill -0 "$AGENT_PID" 2>/dev/null && [ "$ELAPSED" -lt "$MAX_WAIT" ]; do
   ELAPSED=$((ELAPSED + 5))
 
   if [ -f /data/.stop-requested ]; then
-    echo "Stop requested by server (eval matched), stopping WebBrain."
-    STOP_REASON="eval_matched"
+    if ! STOP_REASON=$(/app/src/runtime-server/.venv/bin/python \
+      /run-webbrain-agent.py --classify-stop-request); then
+      STOP_REASON="stop_requested"
+    fi
+    echo "Stop requested by server (${STOP_REASON}), stopping WebBrain."
     break
   fi
 

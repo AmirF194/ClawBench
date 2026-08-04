@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
 import time
 import urllib.parse
 import urllib.request
@@ -16,6 +17,7 @@ from typing import Any, Mapping
 DATA_DIR = Path("/data")
 TRANSCRIPT_PATH = DATA_DIR / "agent-messages.jsonl"
 USAGE_PATH = DATA_DIR / "usage.jsonl"
+INTERCEPTION_PATH = DATA_DIR / "interception.json"
 WEBBRAIN_WORKER_RE = re.compile(
     r"^chrome-extension://([a-z]+)/src/background\.js(?:[?#].*)?$"
 )
@@ -300,6 +302,11 @@ def webbrain_storage_config(config: Mapping[str, str]) -> dict[str, Any]:
         },
         "activeProvider": "clawbench",
         "tracingEnabled": True,
+        # ClawBench runs are unattended. The task instruction supplies the
+        # authorization while the request interceptor remains the final
+        # boundary for consequential submissions.
+        "onboardingComplete": True,
+        "askBeforeConsequentialActions": False,
         "planBeforeActMode": "try",
         "planReviewMode": "never",
         # WebBrain's supported Instant setting. The benchmark instruction is
@@ -308,6 +315,17 @@ def webbrain_storage_config(config: Mapping[str, str]) -> dict[str, Any]:
         "clarifyTimeoutSec": 0,
         "clarifyTimeoutSemanticsV2": True,
     }
+
+
+def stop_request_reason(interception_path: Path = INTERCEPTION_PATH) -> str:
+    """Classify a runtime stop marker without assuming it was an eval match."""
+    try:
+        interception = json.loads(interception_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return "stop_requested"
+    return (
+        "eval_matched" if interception.get("intercepted") is True else "stop_requested"
+    )
 
 
 def _configuration_expression(config: Mapping[str, str]) -> str:
@@ -412,4 +430,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    if sys.argv[1:] == ["--classify-stop-request"]:
+        print(stop_request_reason())
+        raise SystemExit(0)
     raise SystemExit(main())

@@ -55,6 +55,8 @@ def test_storage_config_maps_model_without_assuming_vision_support() -> None:
 
     assert stored["activeProvider"] == "clawbench"
     assert stored["tracingEnabled"] is True
+    assert stored["onboardingComplete"] is True
+    assert stored["askBeforeConsequentialActions"] is False
     assert stored["clarifyTimeoutSec"] == 0
     assert stored["planReviewMode"] == "never"
     assert stored["providers"]["clawbench"] == {
@@ -73,6 +75,30 @@ def test_storage_config_maps_model_without_assuming_vision_support() -> None:
         "enabled": True,
         "configured": True,
     }
+
+
+def test_stop_request_reason_requires_a_confirmed_interception(tmp_path: Path) -> None:
+    driver = _load_driver()
+    interception = tmp_path / "interception.json"
+
+    assert driver.stop_request_reason(interception) == "stop_requested"
+
+    interception.write_text('{"intercepted": false, "request": null}', encoding="utf-8")
+    assert driver.stop_request_reason(interception) == "stop_requested"
+
+    interception.write_text(
+        '{"intercepted": true, "request": {"url": "https://example.test"}}',
+        encoding="utf-8",
+    )
+    assert driver.stop_request_reason(interception) == "eval_matched"
+
+
+def test_stop_request_reason_fails_closed_for_invalid_json(tmp_path: Path) -> None:
+    driver = _load_driver()
+    interception = tmp_path / "interception.json"
+    interception.write_text("not-json", encoding="utf-8")
+
+    assert driver.stop_request_reason(interception) == "stop_requested"
 
 
 @pytest.mark.parametrize(

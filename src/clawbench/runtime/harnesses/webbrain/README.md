@@ -15,9 +15,10 @@ extension message interface.
 - ClawBench model configs do not expose model vision capability, so the generic provider is
   configured text/tool-only.
 
-WebBrain's supported Instant clarification setting is enabled for unattended benchmark runs. The
-task instruction is the authoritative user request, and ClawBench's request interceptor remains
-the final boundary for consequential submissions.
+WebBrain's supported Instant clarification setting and prompt-free permission mode are enabled for
+unattended benchmark runs. The task instruction is the authoritative user request, and ClawBench's
+request interceptor remains the final boundary for consequential submissions. First-run onboarding
+is also marked complete because the harness configures the provider and run mode directly.
 
 ## Output
 
