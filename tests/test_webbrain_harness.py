@@ -281,7 +281,8 @@ def test_interrupted_capture_preserves_partial_transcript_and_usage(
         "assistant",
     ]
     assert transcript_rows[-1]["conversation_id"] == "conversation-1"
-    assert transcript_rows[-1]["error"].endswith("eval_matched")
+    assert transcript_rows[-1]["interrupted"] is True
+    assert transcript_rows[-1]["stop_reason"] == "eval_matched"
     assert len(usage_rows) == 1
     assert usage_rows[0]["call_id"] == "run-1:1"
     assert usage_rows[0]["total_tokens"] == 16

@@ -257,7 +257,8 @@ def write_interrupted_artifacts(
                 "role": "assistant",
                 "content": "",
                 "conversation_id": conversation_id,
-                "error": f"WebBrain interrupted after ClawBench stop: {stop_reason}",
+                "interrupted": True,
+                "stop_reason": stop_reason,
             }
         )
     _append_jsonl(transcript_path, trace_rows)
@@ -457,6 +458,7 @@ def _partial_trace_expression() -> str:
   const open=()=>new Promise((resolve,reject)=>{const q=indexedDB.open('webbrain_traces');q.onsuccess=()=>resolve(q.result);q.onerror=()=>reject(q.error);});
   const all=store=>new Promise((resolve,reject)=>{const q=store.getAll();q.onsuccess=()=>resolve(q.result||[]);q.onerror=()=>reject(q.error);});
   const db=await open();
+  if(!db.objectStoreNames.contains('runs')||!db.objectStoreNames.contains('events')) return [];
   let previousSignature='';
   let output=[];
   for(let attempt=0;attempt<20;attempt++){
@@ -514,7 +516,12 @@ def capture_interrupted(stop_reason: str) -> int:
     target = _open_extension_page(cdp_url, extension_id)
     page = CdpPage(str(target["webSocketDebuggerUrl"]), timeout=30)
     try:
-        page.evaluate(_abort_expression())
+        try:
+            page.evaluate(_abort_expression())
+        except Exception:
+            # The run may already have ended between the shell's process check
+            # and this cleanup pass. Its persisted traces are still useful.
+            pass
         raw_traces = page.evaluate(_partial_trace_expression())
         traces = raw_traces if isinstance(raw_traces, list) else []
         write_interrupted_artifacts(traces, fallback_model, stop_reason)
