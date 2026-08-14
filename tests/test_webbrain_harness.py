@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 import pytest
@@ -226,3 +227,61 @@ def test_usage_rows_normalize_webbrain_trace_usage() -> None:
             "cost_status": "price_unavailable",
         }
     ]
+
+
+def test_interrupted_capture_preserves_partial_transcript_and_usage(
+    tmp_path: Path,
+) -> None:
+    driver = _load_driver()
+    transcript = tmp_path / "agent-messages.jsonl"
+    usage = tmp_path / "usage.jsonl"
+    transcript.write_text(
+        json.dumps({"type": "user", "role": "user", "content": "Submit it"}) + "\n",
+        encoding="utf-8",
+    )
+    traces = [
+        {
+            "run": {"runId": "run-1", "conversationId": "conversation-1"},
+            "events": [
+                {
+                    "seq": 1,
+                    "kind": "llm_response",
+                    "data": {
+                        "model": "example/model",
+                        "usage": {"prompt_tokens": 11, "completion_tokens": 5},
+                    },
+                },
+                {"seq": 2, "kind": "tool", "data": {"name": "click"}},
+            ],
+        }
+    ]
+
+    driver.write_interrupted_artifacts(
+        traces,
+        "fallback-model",
+        "eval_matched",
+        transcript_path=transcript,
+        usage_path=usage,
+    )
+    # A retry must not duplicate trace events or usage calls.
+    driver.write_interrupted_artifacts(
+        traces,
+        "fallback-model",
+        "eval_matched",
+        transcript_path=transcript,
+        usage_path=usage,
+    )
+
+    transcript_rows = [json.loads(line) for line in transcript.read_text().splitlines()]
+    usage_rows = [json.loads(line) for line in usage.read_text().splitlines()]
+    assert [row["type"] for row in transcript_rows] == [
+        "user",
+        "webbrain_trace",
+        "webbrain_trace",
+        "assistant",
+    ]
+    assert transcript_rows[-1]["conversation_id"] == "conversation-1"
+    assert transcript_rows[-1]["error"].endswith("eval_matched")
+    assert len(usage_rows) == 1
+    assert usage_rows[0]["call_id"] == "run-1:1"
+    assert usage_rows[0]["total_tokens"] == 16

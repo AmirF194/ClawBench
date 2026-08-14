@@ -69,15 +69,26 @@ if [ -z "$STOP_REASON" ]; then
     if [ "$AGENT_STATUS" -eq 0 ]; then
       STOP_REASON="agent_exited"
     else
-      STOP_REASON="agent_error"
+      STOP_REASON="webbrain_failed"
       echo "WebBrain driver exited with status ${AGENT_STATUS}; see captured agent messages."
     fi
   fi
 fi
 
+CAPTURE_INTERRUPTED=0
 if kill -0 "$AGENT_PID" 2>/dev/null; then
   kill "$AGENT_PID" 2>/dev/null || true
   wait "$AGENT_PID" 2>/dev/null || true
+  CAPTURE_INTERRUPTED=1
+fi
+
+# The normal driver writes the transcript and usage after background/chat
+# returns. Forced stops terminate that blocking call, so export the trace data
+# WebBrain already persisted before asking the runtime server to finalize.
+if [ "$CAPTURE_INTERRUPTED" -eq 1 ]; then
+  /app/src/runtime-server/.venv/bin/python /run-webbrain-agent.py \
+    --capture-interrupted "$STOP_REASON" || \
+    echo "WARNING: failed to capture interrupted WebBrain artifacts"
 fi
 
 echo "$STOP_REASON" > /data/.stop-reason

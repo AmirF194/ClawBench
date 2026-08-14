@@ -196,6 +196,87 @@ def _append_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
             handle.flush()
 
 
+def _read_jsonl(path: Path) -> list[dict[str, Any]]:
+    try:
+        lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+    except OSError:
+        return []
+    rows: list[dict[str, Any]] = []
+    for line in lines:
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(row, dict):
+            rows.append(row)
+    return rows
+
+
+def write_interrupted_artifacts(
+    traces: list[dict[str, Any]],
+    fallback_model: str,
+    stop_reason: str,
+    *,
+    transcript_path: Path = TRANSCRIPT_PATH,
+    usage_path: Path = USAGE_PATH,
+) -> None:
+    """Persist partial trace/usage data after the main driver is terminated."""
+    existing_transcript = _read_jsonl(transcript_path)
+    existing_trace_keys = {
+        (str(row.get("run", {}).get("runId")), str(row.get("trace", {}).get("seq")))
+        for row in existing_transcript
+        if row.get("type") == "webbrain_trace"
+        and isinstance(row.get("run"), dict)
+        and isinstance(row.get("trace"), dict)
+    }
+    trace_rows: list[dict[str, Any]] = []
+    for trace_entry in traces:
+        run = trace_entry.get("run") or {}
+        for event in trace_entry.get("events") or []:
+            key = (str(run.get("runId")), str(event.get("seq")))
+            if key in existing_trace_keys:
+                continue
+            existing_trace_keys.add(key)
+            trace_rows.append({"type": "webbrain_trace", "run": run, "trace": event})
+
+    if not any(row.get("type") == "assistant" for row in existing_transcript):
+        conversation_id = next(
+            (
+                entry.get("run", {}).get("conversationId")
+                for entry in traces
+                if isinstance(entry.get("run"), dict)
+                and entry.get("run", {}).get("conversationId")
+            ),
+            None,
+        )
+        trace_rows.append(
+            {
+                "type": "assistant",
+                "role": "assistant",
+                "content": "",
+                "conversation_id": conversation_id,
+                "error": f"WebBrain interrupted after ClawBench stop: {stop_reason}",
+            }
+        )
+    _append_jsonl(transcript_path, trace_rows)
+
+    existing_call_ids = {
+        str(row.get("call_id"))
+        for row in _read_jsonl(usage_path)
+        if row.get("type") == "usage" and row.get("call_id")
+    }
+    new_usage = []
+    for row in usage_rows(traces, fallback_model):
+        call_id = str(row["call_id"])
+        if call_id in existing_call_ids:
+            continue
+        existing_call_ids.add(call_id)
+        new_usage.append(row)
+    _append_jsonl(usage_path, new_usage)
+
+
 def _http_json(url: str, *, method: str = "GET") -> Any:
     request = urllib.request.Request(url, method=method)
     with urllib.request.urlopen(request, timeout=10) as response:
@@ -354,6 +435,49 @@ def _chat_expression(instruction: str) -> str:
 """
 
 
+def _abort_expression() -> str:
+    return """
+(async()=>{
+  const tabs=await chrome.tabs.query({});
+  const candidates=tabs.filter(t=>t.id&&!(t.url||'').startsWith('chrome-extension://')&&!(t.url||'').startsWith('devtools://'));
+  const tab=candidates.find(t=>t.active)||candidates[0];
+  if(!tab) return {error:'No task tab available'};
+  return await new Promise(resolve=>chrome.runtime.sendMessage(
+    {target:'background',action:'abort',tabId:tab.id},
+    value=>{const error=chrome.runtime.lastError;resolve(error?{error:error.message}:value);}
+  ));
+})()
+"""
+
+
+def _partial_trace_expression() -> str:
+    """Read every persisted trace after its event count has settled."""
+    return """
+(async()=>{
+  const open=()=>new Promise((resolve,reject)=>{const q=indexedDB.open('webbrain_traces');q.onsuccess=()=>resolve(q.result);q.onerror=()=>reject(q.error);});
+  const all=store=>new Promise((resolve,reject)=>{const q=store.getAll();q.onsuccess=()=>resolve(q.result||[]);q.onerror=()=>reject(q.error);});
+  const db=await open();
+  let previousSignature='';
+  let output=[];
+  for(let attempt=0;attempt<20;attempt++){
+    const runs=await all(db.transaction('runs','readonly').objectStore('runs'));
+    output=[];
+    for(const run of runs){
+      const tx=db.transaction('events','readonly');
+      const index=tx.objectStore('events').index('runId');
+      const events=await new Promise((resolve,reject)=>{const q=index.getAll(IDBKeyRange.only(run.runId));q.onsuccess=()=>resolve(q.result||[]);q.onerror=()=>reject(q.error);});
+      output.push({run,events});
+    }
+    const signature=output.map(x=>`${x.run.runId}:${x.events.length}:${x.run.endedAt||''}`).join('|');
+    if(attempt>1&&signature&&signature===previousSignature) return output;
+    previousSignature=signature;
+    await new Promise(r=>setTimeout(r,250));
+  }
+  return output;
+})()
+"""
+
+
 def _trace_expression(conversation_id: str) -> str:
     conversation = json.dumps(conversation_id)
     return f"""
@@ -377,6 +501,26 @@ def _trace_expression(conversation_id: str) -> str:
   return [];
 }})()
 """
+
+
+def capture_interrupted(stop_reason: str) -> int:
+    """Abort WebBrain and export the partial run left by a forced stop."""
+    cdp_url = os.environ.get("CLAWBENCH_BROWSER_CDP_URL", "").strip().rstrip("/")
+    if not cdp_url:
+        raise ValueError("CLAWBENCH_BROWSER_CDP_URL must be set")
+    fallback_model = os.environ.get("MODEL_NAME", "").strip() or "unknown"
+
+    extension_id = _wait_for_extension_id(cdp_url)
+    target = _open_extension_page(cdp_url, extension_id)
+    page = CdpPage(str(target["webSocketDebuggerUrl"]), timeout=30)
+    try:
+        page.evaluate(_abort_expression())
+        raw_traces = page.evaluate(_partial_trace_expression())
+        traces = raw_traces if isinstance(raw_traces, list) else []
+        write_interrupted_artifacts(traces, fallback_model, stop_reason)
+        return 0
+    finally:
+        page.close()
 
 
 def main() -> int:
@@ -433,4 +577,6 @@ if __name__ == "__main__":
     if sys.argv[1:] == ["--classify-stop-request"]:
         print(stop_request_reason())
         raise SystemExit(0)
+    if len(sys.argv) == 3 and sys.argv[1] == "--capture-interrupted":
+        raise SystemExit(capture_interrupted(sys.argv[2]))
     raise SystemExit(main())
