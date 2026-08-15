@@ -209,7 +209,7 @@ git clone https://github.com/reacher-z/ClawBench.git && cd ClawBench && ./run.sh
 
 ## <a id="awesome-works-using-clawbench"></a>✨ 使用 ClawBench 的研究工作
 
-**社区作者来自 Google DeepMind、Stanford、UC Berkeley、Google、Microsoft Research、Harvard、ETH Zürich、Oxford、Northwestern、字节跳动 Seed、HKUST 等机构。**
+**社区作者来自 Google DeepMind、Stanford、UC Berkeley、Google、Microsoft Research、Harvard、ETH Zürich、Oxford、Northwestern、Princeton、Carnegie Mellon、字节跳动 Seed、HKUST 等机构。**
 
 很高兴看到 ClawBench 被研究社区广泛使用。如果我们遗漏了你的工作，欢迎[提 issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose) 或直接提交 PR。完整条目列表见[英文版 README](../README.md#awesome-works-using-clawbench)。
 

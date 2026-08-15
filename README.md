@@ -202,7 +202,7 @@ order food, book travel, apply for jobs, write reviews, manage projects.<br/>
 
 ## <a id="awesome-works-using-clawbench"></a>✨ Awesome Works using ClawBench
 
-**The growing community includes authors from Google DeepMind, Stanford, UC Berkeley, Google, Microsoft Research, Harvard, ETH Zürich, Oxford, Northwestern, ByteDance Seed, HKUST, and more.**
+**The growing community includes authors from Google DeepMind, Stanford, UC Berkeley, Google, Microsoft Research, Harvard, ETH Zürich, Oxford, Northwestern, Princeton, Carnegie Mellon, ByteDance Seed, HKUST, and more.**
 
 We are delighted to see ClawBench used across the research community. If we missed your work, please [open an issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose) or submit a pull request.
 
@@ -215,6 +215,8 @@ We are delighted to see ClawBench used across the research community. If we miss
 😊 **Harvard Kempner Institute, Massachusetts General Hospital & CUHK**, [NeuroClaw Technical Report](https://arxiv.org/abs/2604.24696) ([Code](https://github.com/CUHK-AIM-Group/NeuroClaw), [Project](https://cuhk-aim-group.github.io/NeuroClaw/))
 
 😊 **ETH Zürich & Handshake AI Research**, [Verifying Agents in Rubric-Graded Environments](https://openreview.net/pdf?id=ayA2tJNDET) ([Code](https://github.com/Handshake-AI-Research/gandalf-the-grader), [Workshop](https://rl-eval.github.io/))
+
+😊 **Carnegie Mellon University**, [MyPCBench: A Benchmark for Personally Intelligent Computer-Use Agents](https://arxiv.org/abs/2606.16748) ([Code](https://github.com/ljang0/MyPCBench), [Project](https://mypcbench.com))
 
 😊 **Princeton University & University of Chicago**, [PAST-Bench: Benchmarking the Foundations of Recursive Self-Improvement in Personal Agents](https://arxiv.org/abs/2608.04003) ([Code](https://github.com/Gen-Verse/PAST-Bench))
 
@@ -232,6 +234,10 @@ We are delighted to see ClawBench used across the research community. If we miss
 
 😊 **Tongyi Lab, Alibaba Cloud & HKUST**, [SecRespond: Benchmarking AI Agents for Real-World Post-Compromise Incident Response](https://arxiv.org/abs/2607.26791) ([Code](https://github.com/Alibaba-NLP/qqr/tree/main/data/secrespond))
 
+😊 **Meituan**, [ClawTrack: Towards Trace-Level Evaluation and Improvement of Real-World Autonomous Agents](https://arxiv.org/abs/2607.28037) ([Leaderboard](https://1997-hank-wu.github.io/ClawTrack-Leaderboard/))
+
+😊 **Li Auto (Foundation Model Team)**, [Mach-Mind-4-Flash Technical Report](https://arxiv.org/abs/2607.09375)
+
 😊 **Unipat AI**, [VibeSearchBench: Benchmarking Long-horizon Proactive Search in the Wild](https://arxiv.org/abs/2605.27882) ([Code](https://github.com/VibeBench/VibeSearchBench), [Project](https://vibebench.github.io/VibeSearchBench.github.io/))
 
 😊 **Tsinghua University & CUHK**, [WildClawBench: A Benchmark for Real-World, Long-Horizon Agent Evaluation](https://arxiv.org/abs/2605.10912) ([Code](https://github.com/InternLM/WildClawBench), [Project](https://internlm.github.io/WildClawBench/))
@@ -241,6 +247,8 @@ We are delighted to see ClawBench used across the research community. If we miss
 😊 **HKU MMLab**, [UniClawBench: A Universal Benchmark for Proactive Agents on Real-World Tasks](https://arxiv.org/abs/2607.08768) ([Code](https://github.com/HKU-MMLab/UniClawBench), [Project](https://uniclawbench.github.io/))
 
 😊 **Tsinghua University & SJTU**, [MacAgentBench: Benchmarking AI Agents on Real-World macOS Desktop](https://arxiv.org/abs/2606.22557) ([Code](https://github.com/JetAstra/MacAgentBench), [Project](https://jetastra.github.io/MacAgentBench/))
+
+😊 **Peking University & Qiyuan Tech**, [Harness-Bench: Measuring Harness Effects across Models in Realistic Agent Workflows](https://arxiv.org/abs/2605.27922) ([Code](https://github.com/Qihoo360/harness-bench), [Project](http://www.harness-bench.ai/))
 
 😊 **Horizon Research & Frontis.AI**, [EnterpriseClawBench: Benchmarking Agents from Real Workplace Sessions](https://arxiv.org/abs/2606.23654) ([Code](https://github.com/FrontisAI/EnterpriseClawBench), [Project](https://frontisai.github.io/EnterpriseClawBench/))
 
