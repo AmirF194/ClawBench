@@ -101,6 +101,10 @@ def main() -> int:
         "Please review and add curated entries to the *Awesome Works using ClawBench*",
         "section of README.md (apply the maintainers' inclusion criteria before adding).",
         "",
+        "S2 misses some works Google Scholar catches (ResearchGate/OSF/OpenReview items,",
+        "and slow-linked arXiv refs) — worth an occasional manual [Scholar cited-by check]"
+        "(https://scholar.google.com/scholar?q=ClawBench) alongside this list.",
+        "",
         "cc @Perry2004",
         "",
     ]
