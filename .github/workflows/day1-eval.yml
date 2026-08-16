@@ -1,0 +1,44 @@
+name: day1-eval-watch
+
+on:
+  schedule:
+    - cron: "0 7 * * *" # daily 07:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Collect previously reported models
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --repo "$GITHUB_REPOSITORY" --label day1-eval --state all \
+            --limit 200 --json body --jq '.[].body' > seen.txt || true
+
+      - name: Scan OpenRouter for new frontier models
+        run: |
+          python scripts/day1_watch.py --days 2 --out day1-candidates.md --seen-file seen.txt
+
+      - name: Open runbook issue
+        if: ${{ hashFiles('day1-candidates.md') != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create day1-eval --repo "$GITHUB_REPOSITORY" \
+            --description "Day-1 evaluation runbook for a newly released frontier model" \
+            --color 0E8A16 || true
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "[day1-eval] New frontier model release — $(date -u +%Y-%m-%d)" \
+            --label day1-eval \
+            --body-file day1-candidates.md
