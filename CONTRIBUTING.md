@@ -32,7 +32,7 @@ If no `good first issue` is currently open, just open one with your idea and we'
 
 ## Adding a new test case
 
-ClawBench currently has two full task corpora: V1 lives in `test-cases/v1/` with 153 tasks, and V2 lives in `test-cases/v2/` with 130 tasks. Both use `test-cases/task.schema.json`. Unless a maintainer asks for a V2-only contribution, add new tasks to V1.
+ClawBench currently has two full task corpora: V1 lives in `test-cases/v1/` with 152 tasks, and V2 lives in `test-cases/v2/` with 129 tasks. Both use `test-cases/task.schema.json`. Unless a maintainer asks for a V2-only contribution, add new tasks to V1.
 
 1. **Pick a task ID** — find the next available number by checking existing directories in the target corpus (`test-cases/v1/` for V1, or `test-cases/v2/` for V2).
 

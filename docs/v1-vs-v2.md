@@ -8,6 +8,8 @@ The short version: **V2 is intercept-only, judge-LLM-only, and self-contained â€
 
 ## 1. Task corpus
 
+> **Note.** The counts in this document are as of the paper (V1 153 / V2 130, 144 / 64 sites). Two ASPCA-related tasks were removed afterwards, so the shipping corpus is **V1 152 / V2 129** (143 / 63 sites). Ratios below are unchanged from the original analysis.
+
 | Axis | V1 | V2 | Î” |
 |---|---:|---:|---|
 | Tasks (`task.json` count) | 153 | 130 | -23 |
