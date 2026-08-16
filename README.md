@@ -365,8 +365,6 @@ Once the container starts, the script prints a **noVNC URL** (e.g. `http://local
 
 Results land in `./test-output/<model>/<harness>-<case>-<model>-<timestamp>/` with the full five-layer recording. The default harness is `openclaw`; pass `--harness opencode` to use [opencode](https://opencode.ai), `--harness claude-code` to use [Claude Code](https://docs.anthropic.com/en/docs/claude-code), `--harness claude-code-chrome-extension` to use Claude Code + the [Claude in Chrome](https://code.claude.com/docs/en/chrome) extension (Microsoft Edge + local bridge, bypass stack so any LiteLLM-routed provider works), `--harness codex` to use [OpenAI Codex CLI](https://github.com/openai/codex), `--harness claw-code` to use [claw-code](https://github.com/ultraworkers/claw-code), `--harness browser-use` to use [browser-use](https://github.com/browser-use/browser-use) (Python framework, routed via LiteLLM), `--harness hermes` to use [Hermes Agent](https://github.com/NousResearch/hermes-agent) with native browser tools attached to ClawBench Chrome via CDP, or `--harness pi` to use [Pi](https://pi.dev/) with pinned [pi-browser-harness](https://pi.dev/packages/pi-browser-harness) browser tools attached to the same ClawBench Chrome CDP endpoint.
 
-Pass `--harness webbrain` to evaluate the pinned [WebBrain](https://github.com/webbrain-one/webbrain) browser extension. This harness currently requires local browser mode and an `openai-completions` model configuration; see the [WebBrain harness notes](src/clawbench/runtime/harnesses/webbrain/README.md) for its compatibility and output contract.
-
 To use a managed Browserbase browser, put the key in `.env.local` and select the
 runtime on a single or batch run:
 
