@@ -430,6 +430,7 @@ ClawBench ships **three** Hugging Face datasets — task definitions plus full e
 - **[2026.07.25]** — 🏆 Our paper has been accepted by [COLM 2026 WAB](https://www.aiagentbehavior.com/).
 - **[2026.06.22]** — v0.7.0: Harbor-adapter task export; action recording moved into the CDP server. [Details →](CHANGELOG.md)
 - **[2026.05.20]** — V2 is now the default corpus + lenient judge + 6 first-class harnesses. [Details →](docs/v1-vs-v2.md)
+- **[2026.05.15]** — Released **[RewardHarness](https://github.com/TIGER-AI-Lab/RewardHarness)**, our self-evolving agentic reward framework: 47.4% on EditReward-Bench from just 100 preference demos, with no reward-model training. [Details →](https://arxiv.org/abs/2605.08703)
 
 <sub>Earlier updates: [`docs/news.md`](docs/news.md) &middot; full change history: [`CHANGELOG.md`](CHANGELOG.md)</sub>
 

@@ -10,6 +10,7 @@ The five most recent items live in the [README](../README.md#news). Everything e
 - **[2026.06.22]** — v0.7.0 released: Harbor-adapter task export; action recording moved into the CDP server. [Details →](../CHANGELOG.md)
 - **[2026.05.20]** — V2 is now the default corpus + lenient judge + 6 first-class harnesses. [Details →](v1-vs-v2.md)
 - **[2026.05.16]** — Added Claw-Eval suite: 19 browser-research tasks with final-answer submission. [Details →](../test-cases/claw-eval/)
+- **[2026.05.15]** — Released **[RewardHarness](https://github.com/TIGER-AI-Lab/RewardHarness)**, our self-evolving agentic reward framework: 47.4% on EditReward-Bench from just 100 preference demos, with no reward-model training. [Details →](https://arxiv.org/abs/2605.08703)
 - **[2026.05.12]** — Canonical leaderboard moved to the TIGER-Lab/ClawBench Gradio Space. [Details →](https://huggingface.co/spaces/TIGER-Lab/ClawBench)
 - **[2026.05.11]** — V2 leaderboard ships: top so far `glm-5.1 / hermes` at 18.5% reward / 48.5% intercepted. [Details →](https://claw-bench.com/leaderboard)
 - **[2026.05.09]** — Inline LLM judge added as a second scoring stage; runs now auto-produce pass/fail. [Details →](scoring.md)

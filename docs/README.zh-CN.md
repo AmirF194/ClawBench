@@ -371,6 +371,7 @@ ClawBench 提供 **三个** Hugging Face 数据集 —— 任务定义，以及 
 - **[2026.07.25]** —— 🏆 论文被 [COLM 2026 WAB](https://www.aiagentbehavior.com/) 接收。
 - **[2026.06.22]** —— v0.7.0 发布：Harbor adapter 任务导出；action 录制迁入 CDP server。[详情 →](../CHANGELOG.md)
 - **[2026.05.20]** —— V2 成为默认语料 + lenient judge + 6 个一等 harness。[详情 →](v1-vs-v2.md)
+- **[2026.05.15]** —— 发布姊妹项目 **[RewardHarness](https://github.com/TIGER-AI-Lab/RewardHarness)**：自进化的 agentic 奖励框架，仅用 100 条偏好示例即在 EditReward-Bench 上达到 47.4%，且无需训练奖励模型。[详情 →](https://arxiv.org/abs/2605.08703)
 
 <sub>更早的动态见 [`docs/news.md`](news.md) &middot; 完整变更历史见 [`CHANGELOG.md`](../CHANGELOG.md)</sub>
 
