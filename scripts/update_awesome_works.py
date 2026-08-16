@@ -45,9 +45,14 @@ def fetch_citations(api_key: str | None) -> list[dict]:
             if e.code == 429:  # rate limited: back off once, then give up quietly
                 time.sleep(30)
                 continue
-            print(f"warning: S2 API HTTP {e.code}, stopping at offset {offset}", file=sys.stderr)
+            print(
+                f"warning: S2 API HTTP {e.code}, stopping at offset {offset}",
+                file=sys.stderr,
+            )
             break
-        batch = [row["citingPaper"] for row in page.get("data", []) if row.get("citingPaper")]
+        batch = [
+            row["citingPaper"] for row in page.get("data", []) if row.get("citingPaper")
+        ]
         papers.extend(batch)
         if "next" not in page or not batch:
             break
@@ -63,7 +68,9 @@ def known_keys(readme: str, seen: str) -> tuple[set[str], set[str]]:
     """arXiv IDs and normalized titles already in the README or prior issues."""
     corpus = readme + "\n" + seen
     ids = set(ARXIV_ID_RE.findall(corpus))
-    titles = {normalize(m) for m in re.findall(r"\[([^\]]+)\]\(", corpus) if len(m) > 20}
+    titles = {
+        normalize(m) for m in re.findall(r"\[([^\]]+)\]\(", corpus) if len(m) > 20
+    }
     return ids, titles
 
 
@@ -71,12 +78,20 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--readme", default="README.md")
     ap.add_argument("--out", default="candidates.md")
-    ap.add_argument("--seen-file", default=None, help="text dump of previous scan issues")
-    ap.add_argument("--api-key", default=None, help="optional S2_API_KEY for higher rate limits")
+    ap.add_argument(
+        "--seen-file", default=None, help="text dump of previous scan issues"
+    )
+    ap.add_argument(
+        "--api-key", default=None, help="optional S2_API_KEY for higher rate limits"
+    )
     args = ap.parse_args()
 
     readme = Path(args.readme).read_text(encoding="utf-8")
-    seen = Path(args.seen_file).read_text(encoding="utf-8") if args.seen_file and Path(args.seen_file).exists() else ""
+    seen = (
+        Path(args.seen_file).read_text(encoding="utf-8")
+        if args.seen_file and Path(args.seen_file).exists()
+        else ""
+    )
     known_ids, known_titles = known_keys(readme, seen)
 
     fresh = []
@@ -111,9 +126,15 @@ def main() -> int:
     for p, arxiv_id in fresh:
         authors = ", ".join(a.get("name", "?") for a in (p.get("authors") or [])[:3])
         more = " et al." if len(p.get("authors") or []) > 3 else ""
-        link = f"https://arxiv.org/abs/{arxiv_id}" if arxiv_id else f"https://www.semanticscholar.org/paper/{p.get('paperId', '')}"
+        link = (
+            f"https://arxiv.org/abs/{arxiv_id}"
+            if arxiv_id
+            else f"https://www.semanticscholar.org/paper/{p.get('paperId', '')}"
+        )
         venue = p.get("venue") or "arXiv"
-        lines.append(f"- [ ] [{p['title']}]({link}) — {authors}{more} ({venue} {p.get('year', '?')})")
+        lines.append(
+            f"- [ ] [{p['title']}]({link}) — {authors}{more} ({venue} {p.get('year', '?')})"
+        )
     Path(args.out).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"{len(fresh)} candidate(s) written to {args.out}")
     return 0
