@@ -10,8 +10,10 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2604.08523-B31B1B?style=flat-square&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2604.08523)
 [![Leaderboard](https://img.shields.io/badge/Leaderboard-FFD21E?style=flat-square&logo=huggingface&logoColor=000)](https://huggingface.co/spaces/TIGER-Lab/ClawBench)
 [![HF Dataset](https://img.shields.io/badge/Dataset-FFD21E?style=flat-square&logo=huggingface&logoColor=000)](https://huggingface.co/datasets/NAIL-Group/ClawBench)
+[![HF Traces](https://img.shields.io/badge/Traces-FFD21E?style=flat-square&logo=huggingface&logoColor=000)](https://huggingface.co/datasets/TIGER-Lab/ClawBenchV2Trace)
+[![Project Page](https://img.shields.io/badge/claw--bench.com-4F46E5?style=flat-square&logo=googlechrome&logoColor=white)](https://claw-bench.com)
 [![PyPI version](https://img.shields.io/pypi/v/clawbench-eval?style=flat-square&logo=pypi&color=3775A9&logoColor=white)](https://pypi.org/project/clawbench-eval/)
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/clawbench)
+[![Ask a question](https://img.shields.io/badge/Ask%20a%20question-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose)
 [![GitHub stars](https://img.shields.io/github/stars/TIGER-AI-Lab/ClawBench?style=flat-square&logo=github&color=181717&cacheSeconds=300)](https://github.com/TIGER-AI-Lab/ClawBench)
 [![License](https://img.shields.io/github/license/TIGER-AI-Lab/ClawBench?style=flat-square&color=A42E2B)](https://github.com/TIGER-AI-Lab/ClawBench/blob/main/LICENSE)
 
@@ -21,9 +23,7 @@
 <details>
 <summary><sub><i>More badges &middot; featured in 37 curated lists</i></sub></summary>
 <p align="center">
-  <a href="https://claw-bench.com"><img alt="Project page" src="https://img.shields.io/badge/claw--bench.com-4F46E5?style=flat-square&logo=googlechrome&logoColor=white"></a>
   <a href="https://huggingface.co/datasets/NAIL-Group/ClawBenchV1Trace"><img alt="V1 traces" src="https://img.shields.io/badge/V1_Traces-FFD21E?style=flat-square&logo=huggingface&logoColor=000"></a>
-  <a href="https://huggingface.co/datasets/TIGER-Lab/ClawBenchV2Trace"><img alt="V2 traces" src="https://img.shields.io/badge/V2_Traces-FFD21E?style=flat-square&logo=huggingface&logoColor=000"></a>
   <a href="https://pypi.org/project/clawbench-eval/"><img alt="PyPI downloads" src="https://img.shields.io/pypi/dm/clawbench-eval?style=flat-square&logo=pypi&color=3775A9&logoColor=white&label=PyPI%20downloads"></a>
   <a href="https://codespaces.new/TIGER-AI-Lab/ClawBench?quickstart=1"><img alt="Codespaces" src="https://img.shields.io/badge/Codespaces-Open-181717?style=flat-square&logo=github&logoColor=white"></a>
   <a href="https://github.com/TIGER-AI-Lab/ClawBench/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/TIGER-AI-Lab/ClawBench?style=flat-square&logo=github&logoColor=white"></a>
@@ -157,8 +157,8 @@ order food, book travel, apply for jobs, write reviews, manage projects.<br/>
 <td align="center" valign="top">
 
 ❓ **Have a question**<br/>
-[FAQ](#faq) · [Discord](https://discord.gg/clawbench)<br/>
-<sub>Or open an issue</sub>
+[FAQ](#faq) · [Open an issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose)<br/>
+<sub>Or ask on the HF dataset page</sub>
 
 </td>
 </tr>
@@ -882,11 +882,11 @@ Come hang out with researchers, builders, and contributors working on real-world
 <table>
 <tr>
 <td align="center" width="33%">
-<a href="https://discord.gg/clawbench">
-<img src="https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
+<a href="https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose">
+<img src="https://img.shields.io/badge/GitHub-Issues-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Issues">
 </a>
 <br/>
-<sub><b>English community</b><br/>Agent builders, researchers, contributors</sub>
+<sub><b>Questions &amp; bugs</b><br/>Fastest route to a maintainer</sub>
 </td>
 <td align="center" width="33%">
 <a href="assets/community/wechat_grp_422.jpg">
@@ -896,11 +896,11 @@ Come hang out with researchers, builders, and contributors working on real-world
 <sub><b>中文社区</b><br/>研究者、开发者、贡献者交流</sub>
 </td>
 <td align="center" width="33%">
-<a href="https://github.com/TIGER-AI-Lab/ClawBench/discussions">
-<img src="https://img.shields.io/badge/GitHub-Discussions-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Discussions">
+<a href="https://huggingface.co/datasets/NAIL-Group/ClawBench/discussions">
+<img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hub-Discussions-FFD21E?style=for-the-badge&logoColor=000" alt="Hugging Face discussions">
 </a>
 <br/>
-<sub><b>Async Q&A</b><br/>Searchable, long-form, permanent</sub>
+<sub><b>Dataset &amp; leaderboard talk</b><br/>On the Hub, next to the data</sub>
 </td>
 </tr>
 </table>

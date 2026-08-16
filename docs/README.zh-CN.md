@@ -10,8 +10,10 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2604.08523-B31B1B?style=flat-square&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2604.08523)
 [![Leaderboard](https://img.shields.io/badge/Leaderboard-FFD21E?style=flat-square&logo=huggingface&logoColor=000)](https://huggingface.co/spaces/TIGER-Lab/ClawBench)
 [![HF Dataset](https://img.shields.io/badge/Dataset-FFD21E?style=flat-square&logo=huggingface&logoColor=000)](https://huggingface.co/datasets/NAIL-Group/ClawBench)
+[![HF Traces](https://img.shields.io/badge/Traces-FFD21E?style=flat-square&logo=huggingface&logoColor=000)](https://huggingface.co/datasets/TIGER-Lab/ClawBenchV2Trace)
+[![Project Page](https://img.shields.io/badge/claw--bench.com-4F46E5?style=flat-square&logo=googlechrome&logoColor=white)](https://claw-bench.com)
 [![PyPI version](https://img.shields.io/pypi/v/clawbench-eval?style=flat-square&logo=pypi&color=3775A9&logoColor=white)](https://pypi.org/project/clawbench-eval/)
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/clawbench)
+[![Ask a question](https://img.shields.io/badge/Ask%20a%20question-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose)
 [![GitHub stars](https://img.shields.io/github/stars/TIGER-AI-Lab/ClawBench?style=flat-square&logo=github&color=181717&cacheSeconds=300)](https://github.com/TIGER-AI-Lab/ClawBench)
 [![License](https://img.shields.io/github/license/TIGER-AI-Lab/ClawBench?style=flat-square&color=A42E2B)](https://github.com/TIGER-AI-Lab/ClawBench/blob/main/LICENSE)
 
@@ -104,8 +106,8 @@
 <td align="center" valign="top">
 
 ❓ **有问题**<br/>
-[FAQ](#faq) · [Discord](https://discord.gg/clawbench)<br/>
-<sub>也欢迎开 issue</sub>
+[FAQ](#faq) · [提 issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose)<br/>
+<sub>也可在 HF 数据集页提问</sub>
 
 </td>
 </tr>
@@ -822,11 +824,11 @@ Pi 的 `agent.log`、`proxy.log` 等 harness 诊断日志不会复制到最终�
 <table>
 <tr>
 <td align="center" width="33%">
-<a href="https://discord.gg/clawbench">
-<img src="https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
+<a href="https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose">
+<img src="https://img.shields.io/badge/GitHub-Issues-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Issues">
 </a>
 <br/>
-<sub><b>English community</b><br/>Agent builders, researchers, contributors</sub>
+<sub><b>提问与报 bug</b><br/>找到维护者最快的路径</sub>
 </td>
 <td align="center" width="33%">
 <a href="../assets/community/wechat_grp_422.jpg">
@@ -836,11 +838,11 @@ Pi 的 `agent.log`、`proxy.log` 等 harness 诊断日志不会复制到最终�
 <sub><b>中文社区</b><br/>研究者、开发者、贡献者交流</sub>
 </td>
 <td align="center" width="33%">
-<a href="https://github.com/TIGER-AI-Lab/ClawBench/discussions">
-<img src="https://img.shields.io/badge/GitHub-Discussions-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Discussions">
+<a href="https://huggingface.co/datasets/NAIL-Group/ClawBench/discussions">
+<img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hub-Discussions-FFD21E?style=for-the-badge&logoColor=000" alt="Hugging Face discussions">
 </a>
 <br/>
-<sub><b>异步问答</b><br/>可搜索 / 长期保存</sub>
+<sub><b>数据集与榜单讨论</b><br/>就在数据旁边</sub>
 </td>
 </tr>
 </table>

@@ -125,9 +125,9 @@ Please use the [issue templates](https://github.com/reacher-z/ClawBench/issues/n
 
 Questions, task ideas, model submissions, or just want to chat about browser agents?
 
-- **Discord:** [discord.gg/clawbench](https://discord.gg/clawbench) — English, agent-builder-friendly, `#contributors` channel
+- **GitHub issues:** [open one](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose) — fastest route to a maintainer
 - **微信群:** use the [QR code](./assets/community/wechat_grp_422.jpg)
-- **GitHub Discussions:** [github.com/reacher-z/ClawBench/discussions](https://github.com/reacher-z/ClawBench/discussions) — asynchronous, searchable
+- **Hugging Face:** [dataset discussions](https://huggingface.co/datasets/NAIL-Group/ClawBench/discussions) — asynchronous, searchable, next to the data
 - **Email:** open an issue; we respond there first
 
 ## Code of conduct
