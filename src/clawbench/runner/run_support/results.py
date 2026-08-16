@@ -18,6 +18,7 @@ INFRA_STOP_REASONS = {
     "browser_use_failed",
     "hermes_failed",
     "pi_failed",
+    "webbrain_failed",
     "proxy_failed",
     "missing_harness",
 }
@@ -318,6 +319,7 @@ def ensure_interception(output_dir: Path):
         "browser_use_failed": "Session stopped: browser-use process died on startup.",
         "hermes_failed": "Session stopped: Hermes Agent process died on startup.",
         "pi_failed": "Session stopped: Pi coding agent process died on startup.",
+        "webbrain_failed": "Session stopped: WebBrain driver exited with an error.",
         "proxy_failed": "Session stopped: LiteLLM API translation proxy failed to start.",
         "missing_harness": "Session stopped: container image was built without a harness layer.",
     }
