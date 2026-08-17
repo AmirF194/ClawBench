@@ -87,6 +87,36 @@ def test_classify_run_detects_api_or_credit_evidence(tmp_path: Path) -> None:
     assert "429" in result["metrics"]["api_or_credit_evidence"]
 
 
+def test_classify_run_treats_webbrain_failure_as_infrastructure(tmp_path: Path) -> None:
+    data = tmp_path / "data"
+    data.mkdir()
+    _write_jsonl(data / "actions.jsonl", [{"type": "click"}])
+    _write_jsonl(data / "requests.jsonl", [{"url": "https://example.test"}])
+    _write_jsonl(data / "agent-messages.jsonl", [{"type": "assistant"}])
+    _write_jsonl(
+        data / "usage.jsonl",
+        [
+            {
+                "type": "usage",
+                "call_id": "run-1:1",
+                "input_tokens": 1,
+                "output_tokens": 1,
+                "total_tokens": 2,
+            }
+        ],
+    )
+    (data / "recording.mp4").write_bytes(b"recording")
+    (data / "interception.json").write_text(
+        json.dumps({"intercepted": False, "stop_reason": "webbrain_failed"})
+    )
+
+    result = classify_run(tmp_path, intercepted=False)
+
+    assert result["result_category"] == "infra_failure"
+    assert result["failure_category"] == "infra_failure"
+    assert result["infra_failure"] is True
+
+
 def test_print_results_includes_usage_summary(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
