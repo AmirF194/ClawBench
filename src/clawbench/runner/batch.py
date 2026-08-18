@@ -289,6 +289,8 @@ async def run_job(
                     cmd_parts += ["--harness", harness]
                 if browser_runtime:
                     cmd_parts += ["--browser-runtime", browser_runtime]
+                    if browser_runtime == "kernel":
+                        cmd_parts.append("--hide-browser-viewer")
                 if browser_cdp_url:
                     cmd_parts += ["--browser-cdp-url", browser_cdp_url]
                 if browser_runtime_options:
@@ -589,14 +591,15 @@ async def async_main(args: argparse.Namespace) -> int:
     shutdown_event = asyncio.Event()
     running_procs.clear()
     browser_runtime = getattr(args, "browser_runtime", None) or "local"
+    managed_browser_runtimes = {"browserbase", "kernel"}
     if getattr(args, "max_concurrent", None) is None:
-        args.max_concurrent = 1 if browser_runtime == "browserbase" else 2
+        args.max_concurrent = 1 if browser_runtime in managed_browser_runtimes else 2
     if (
-        browser_runtime == "browserbase"
+        browser_runtime in managed_browser_runtimes
         and args.harness == "claude-code-chrome-extension"
     ):
         print(
-            "ERROR: browserbase runtime does not support the "
+            f"ERROR: {browser_runtime} runtime does not support the "
             "claude-code-chrome-extension harness"
         )
         return 1
@@ -821,7 +824,7 @@ def main() -> None:
         "--max-concurrent",
         type=int,
         default=None,
-        help="Max parallel jobs (default: 1 for browserbase, otherwise 2)",
+        help="Max parallel jobs (default: 1 for managed runtimes, otherwise 2)",
     )
     p.add_argument("--output-dir", default="test-output", help="Base output directory")
     p.add_argument(
@@ -863,7 +866,7 @@ def main() -> None:
         choices=BROWSER_RUNTIME_CHOICES,
         default=None,
         help=(
-            "Browser runtime provider: local, remote-cdp, steel, or browserbase "
+            "Browser runtime provider: local, remote-cdp, steel, browserbase, or kernel "
             "(default: local)"
         ),
     )

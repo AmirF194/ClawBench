@@ -6,13 +6,15 @@ import argparse
 import json
 import os
 import socket
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, Protocol
 
-BROWSER_RUNTIME_CHOICES = ("local", "remote-cdp", "steel", "browserbase")
+BROWSER_RUNTIME_CHOICES = ("local", "remote-cdp", "steel", "browserbase", "kernel")
 _BROWSERBASE_API_URL = "https://api.browserbase.com/v1"
 _BROWSERBASE_ALLOWED_OPTIONS = {
     "browserSettings",
@@ -21,6 +23,13 @@ _BROWSERBASE_ALLOWED_OPTIONS = {
     "proxies",
     "region",
     "userMetadata",
+}
+_KERNEL_API_URL = "https://api.onkernel.com"
+_KERNEL_ALLOWED_OPTIONS = {
+    "proxy",
+    "region",
+    "stealth",
+    "tags",
 }
 DEFAULT_BROWSER_CDP_URL = os.environ.get(
     "CLAWBENCH_BROWSER_CDP_URL",
@@ -48,6 +57,7 @@ class BrowserSession:
     mode: str
     session_id: str | None = None
     viewer_url: str | None = None
+    viewer_url_sensitive: bool = False
     debug_url: str | None = None
     recording_url: str | None = None
     metadata: dict[str, Any] = field(default_factory=dict)
@@ -62,7 +72,13 @@ class BrowserSession:
             "mode": self.mode,
             "session_id": self.session_id,
             "cdp_url": redact_cdp_url(self.cdp_url),
-            "viewer_url": redact_cdp_url(self.viewer_url) if self.viewer_url else None,
+            "viewer_url": (
+                "[REDACTED]"
+                if self.viewer_url_sensitive
+                else redact_cdp_url(self.viewer_url)
+                if self.viewer_url
+                else None
+            ),
             "debug_url": redact_cdp_url(self.debug_url) if self.debug_url else None,
             "recording_url": (
                 redact_cdp_url(self.recording_url) if self.recording_url else None
@@ -77,9 +93,14 @@ class BrowserSession:
 
 class BrowserRuntimeProvider(Protocol):
     name: str
+    default_recording_mode: str
 
     def start(self, task: dict[str, Any], time_limit_s: int) -> BrowserSession:
         """Start or reserve a browser runtime and return its CDP endpoint."""
+        ...
+
+    def finalize(self, session: BrowserSession, output_dir: Path) -> None:
+        """Collect provider artifacts after the browser workload finishes."""
         ...
 
     def cleanup(self, session: BrowserSession) -> None:
@@ -114,7 +135,8 @@ def redact_cdp_url(url: str) -> str:
     for key, val in query:
         normalized = key.lower().replace("-", "").replace("_", "")
         sensitive = any(
-            part in normalized for part in ("apikey", "token", "secret", "signingkey")
+            part in normalized
+            for part in ("apikey", "jwt", "token", "secret", "signingkey")
         )
         redacted.append((key, "[REDACTED]" if sensitive else val))
     return urllib.parse.urlunsplit(
@@ -123,6 +145,12 @@ def redact_cdp_url(url: str) -> str:
 
 
 class _BrowserbaseApiError(RuntimeError):
+    def __init__(self, message: str, *, status: int | None = None) -> None:
+        super().__init__(message)
+        self.status = status
+
+
+class _KernelApiError(RuntimeError):
     def __init__(self, message: str, *, status: int | None = None) -> None:
         super().__init__(message)
         self.status = status
@@ -154,6 +182,7 @@ def _pick_free_port() -> int:
 
 class LocalBrowserRuntimeProvider:
     name = "local"
+    default_recording_mode = "x11"
 
     def start(self, task: dict[str, Any], time_limit_s: int) -> BrowserSession:
         return BrowserSession(
@@ -164,12 +193,16 @@ class LocalBrowserRuntimeProvider:
             local_viewer_port=_pick_free_port(),
         )
 
+    def finalize(self, session: BrowserSession, output_dir: Path) -> None:
+        pass
+
     def cleanup(self, session: BrowserSession) -> None:
         session.cleanup_status = "not_required"
 
 
 class RemoteCdpBrowserRuntimeProvider:
     name = "remote-cdp"
+    default_recording_mode = "disabled"
 
     def __init__(self, *, cdp_url: str | None, options: dict[str, Any]) -> None:
         self.cdp_url = cdp_url
@@ -191,12 +224,16 @@ class RemoteCdpBrowserRuntimeProvider:
             recording_mode="disabled",
         )
 
+    def finalize(self, session: BrowserSession, output_dir: Path) -> None:
+        pass
+
     def cleanup(self, session: BrowserSession) -> None:
         session.cleanup_status = "not_required"
 
 
 class SteelBrowserRuntimeProvider:
     name = "steel"
+    default_recording_mode = "disabled"
 
     def __init__(self, *, options: dict[str, Any]) -> None:
         self.options = options
@@ -206,12 +243,16 @@ class SteelBrowserRuntimeProvider:
             "steel browser runtime is reserved but not implemented yet"
         )
 
+    def finalize(self, session: BrowserSession, output_dir: Path) -> None:
+        pass
+
     def cleanup(self, session: BrowserSession) -> None:
         session.cleanup_status = "not_required"
 
 
 class BrowserbaseRuntimeProvider:
     name = "browserbase"
+    default_recording_mode = "provider"
 
     def __init__(
         self,
@@ -377,6 +418,9 @@ class BrowserbaseRuntimeProvider:
             recording_mode="provider",
         )
 
+    def finalize(self, session: BrowserSession, output_dir: Path) -> None:
+        pass
+
     def cleanup(self, session: BrowserSession) -> None:
         if not session.session_id:
             session.cleanup_status = "not_required"
@@ -384,6 +428,281 @@ class BrowserbaseRuntimeProvider:
         try:
             session.cleanup_status = self._release(session.session_id)
         except _BrowserbaseApiError as e:
+            raise BrowserRuntimeError(str(e)) from None
+
+
+class KernelRuntimeProvider:
+    name = "kernel"
+    default_recording_mode = "provider-download"
+
+    def __init__(
+        self,
+        *,
+        api_key: str | None,
+        options: dict[str, Any],
+        api_url: str = _KERNEL_API_URL,
+        replay_poll_interval_s: float = 1,
+        replay_poll_timeout_s: float = 30,
+    ) -> None:
+        unknown = sorted(set(options) - _KERNEL_ALLOWED_OPTIONS)
+        if unknown:
+            allowed = ", ".join(sorted(_KERNEL_ALLOWED_OPTIONS))
+            raise BrowserRuntimeError(
+                "kernel runtime options contain unsupported field(s): "
+                f"{', '.join(unknown)}; allowed fields: {allowed}"
+            )
+        stealth = options.get("stealth")
+        if stealth is not None and not isinstance(stealth, bool):
+            raise BrowserRuntimeError("kernel stealth option must be a boolean")
+        region = options.get("region")
+        if region is not None and region not in {"us-east", "eu-west"}:
+            raise BrowserRuntimeError(
+                "kernel region option must be 'us-east' or 'eu-west'"
+            )
+        proxy = options.get("proxy")
+        if proxy is not None and not isinstance(proxy, dict):
+            raise BrowserRuntimeError("kernel proxy option must be a JSON object")
+        tags = options.get("tags")
+        if tags is not None and not isinstance(tags, dict):
+            raise BrowserRuntimeError("kernel tags option must be a JSON object")
+        self.api_key = api_key
+        self.options = options
+        self.api_url = api_url.rstrip("/")
+        self.replay_poll_interval_s = replay_poll_interval_s
+        self.replay_poll_timeout_s = replay_poll_timeout_s
+
+    def _request(
+        self,
+        method: str,
+        path: str,
+        payload: dict[str, Any] | None = None,
+        *,
+        accept: str = "application/json",
+    ) -> bytes:
+        assert self.api_key is not None
+        data = (
+            json.dumps(payload, separators=(",", ":")).encode()
+            if payload is not None
+            else None
+        )
+        request = urllib.request.Request(
+            f"{self.api_url}{path}",
+            data=data,
+            method=method,
+            headers={
+                "Accept": accept,
+                "Authorization": f"Bearer {self.api_key}",
+                **({"Content-Type": "application/json"} if data is not None else {}),
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                return response.read()
+        except urllib.error.HTTPError as e:
+            if e.code in {401, 403}:
+                message = "Kernel authentication failed"
+            elif e.code in {402, 429}:
+                message = "Kernel quota or concurrency limit was exceeded"
+            else:
+                message = f"Kernel API returned HTTP {e.code}"
+            raise _KernelApiError(message, status=e.code) from None
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            reason = str(getattr(e, "reason", e))
+            for secret in (
+                self.api_key,
+                urllib.parse.quote(self.api_key, safe=""),
+                urllib.parse.quote_plus(self.api_key, safe=""),
+            ):
+                if secret:
+                    reason = reason.replace(secret, "[REDACTED]")
+            raise _KernelApiError(f"Kernel API request failed: {reason}") from None
+
+    def _request_json(
+        self,
+        method: str,
+        path: str,
+        payload: dict[str, Any] | None = None,
+    ) -> Any:
+        raw = self._request(method, path, payload)
+        try:
+            return json.loads(raw)
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            raise _KernelApiError("Kernel API returned malformed JSON") from None
+
+    def _delete(self, session_id: str) -> str:
+        try:
+            self._request("DELETE", f"/browsers/{session_id}")
+        except _KernelApiError as e:
+            if e.status == 404:
+                return "already_closed"
+            raise
+        return "deleted"
+
+    def _stop_replay(self, session_id: str, replay_id: str) -> None:
+        try:
+            self._request(
+                "POST",
+                f"/browsers/{session_id}/replays/{replay_id}/stop",
+            )
+        except _KernelApiError as e:
+            if e.status not in {404, 409}:
+                raise
+
+    def start(self, task: dict[str, Any], time_limit_s: int) -> BrowserSession:
+        if not self.api_key:
+            raise BrowserRuntimeError("kernel browser runtime requires KERNEL_API_KEY")
+
+        timeout_seconds = min(259200, max(10, time_limit_s + 120))
+        payload = {
+            **self.options,
+            "headless": False,
+            "timeout_seconds": timeout_seconds,
+            "viewport": {
+                "width": 1920,
+                "height": 1080,
+                "refresh_rate": 25,
+            },
+        }
+        try:
+            result = self._request_json("POST", "/browsers", payload)
+        except _KernelApiError as e:
+            raise BrowserRuntimeError(str(e)) from None
+        if not isinstance(result, dict):
+            raise BrowserRuntimeError("Kernel browser response was not a JSON object")
+
+        session_id = result.get("session_id")
+        cdp_url = result.get("cdp_ws_url")
+        viewer_url = result.get("browser_live_view_url")
+        if not isinstance(session_id, str) or not session_id:
+            raise BrowserRuntimeError(
+                "Kernel browser response did not include a valid session_id"
+            )
+        if not isinstance(cdp_url, str) or not cdp_url.startswith(("ws://", "wss://")):
+            try:
+                self._delete(session_id)
+            except _KernelApiError:
+                pass
+            raise BrowserRuntimeError(
+                "Kernel browser response did not include a valid cdp_ws_url"
+            )
+        if not isinstance(viewer_url, str) or not viewer_url.startswith(
+            ("http://", "https://")
+        ):
+            viewer_url = None
+
+        try:
+            replay = self._request_json(
+                "POST",
+                f"/browsers/{session_id}/replays",
+                {
+                    "framerate": 15,
+                    "max_duration_in_seconds": timeout_seconds,
+                },
+            )
+        except _KernelApiError as e:
+            try:
+                self._delete(session_id)
+            except _KernelApiError:
+                pass
+            raise BrowserRuntimeError(str(e)) from None
+        replay_id = replay.get("replay_id") if isinstance(replay, dict) else None
+        if not isinstance(replay_id, str) or not replay_id:
+            try:
+                self._delete(session_id)
+            except _KernelApiError:
+                pass
+            raise BrowserRuntimeError(
+                "Kernel replay response did not include a valid replay_id"
+            )
+
+        return BrowserSession(
+            provider=self.name,
+            mode="remote",
+            session_id=session_id,
+            cdp_url=cdp_url,
+            viewer_url=viewer_url,
+            viewer_url_sensitive=viewer_url is not None,
+            metadata={
+                "region": result.get("region"),
+                "replay_id": replay_id,
+                "stealth": result.get("stealth"),
+                "timeout_seconds": result.get("timeout_seconds"),
+            },
+            recording_mode="provider-download",
+        )
+
+    def finalize(self, session: BrowserSession, output_dir: Path) -> None:
+        if not session.session_id:
+            return
+        replay_id = session.metadata.get("replay_id")
+        if not isinstance(replay_id, str) or not replay_id:
+            raise BrowserRuntimeError(
+                "Kernel browser session is missing its replay_id",
+                category="browser_runtime_artifact_failed",
+            )
+
+        try:
+            self._stop_replay(session.session_id, replay_id)
+            deadline = time.monotonic() + self.replay_poll_timeout_s
+            while True:
+                replays = self._request_json(
+                    "GET", f"/browsers/{session.session_id}/replays"
+                )
+                if not isinstance(replays, list):
+                    raise _KernelApiError(
+                        "Kernel replay list response was not a JSON array"
+                    )
+                matching = next(
+                    (
+                        replay
+                        for replay in replays
+                        if isinstance(replay, dict)
+                        and replay.get("replay_id") == replay_id
+                    ),
+                    None,
+                )
+                if matching and matching.get("finished_at"):
+                    break
+                if time.monotonic() >= deadline:
+                    raise _KernelApiError(
+                        "Kernel replay did not finish processing before timeout"
+                    )
+                time.sleep(self.replay_poll_interval_s)
+
+            recording = self._request(
+                "GET",
+                f"/browsers/{session.session_id}/replays/{replay_id}",
+                accept="video/mp4",
+            )
+            if not recording:
+                raise _KernelApiError("Kernel replay download was empty")
+            recording_path = output_dir / "data" / "recording.mp4"
+            recording_path.parent.mkdir(parents=True, exist_ok=True)
+            recording_path.write_bytes(recording)
+            session.metadata["recording_bytes"] = len(recording)
+            session.metadata["replay_status"] = "downloaded"
+        except (_KernelApiError, OSError) as e:
+            raise BrowserRuntimeError(
+                str(e), category="browser_runtime_artifact_failed"
+            ) from None
+
+    def cleanup(self, session: BrowserSession) -> None:
+        if not session.session_id:
+            session.cleanup_status = "not_required"
+            return
+        replay_id = session.metadata.get("replay_id")
+        try:
+            if (
+                isinstance(replay_id, str)
+                and replay_id
+                and session.metadata.get("replay_status") != "downloaded"
+            ):
+                self._stop_replay(session.session_id, replay_id)
+        except _KernelApiError:
+            pass
+        try:
+            session.cleanup_status = self._delete(session.session_id)
+        except _KernelApiError as e:
             raise BrowserRuntimeError(str(e)) from None
 
 
@@ -426,6 +745,15 @@ def make_browser_runtime_provider(
                 "browserbase browser runtime requires BROWSERBASE_API_KEY"
             )
         return BrowserbaseRuntimeProvider(api_key=api_key, options=options)
+    if runtime == "kernel":
+        api_key = _env_value(env, "KERNEL_API_KEY")
+        if not api_key:
+            raise BrowserRuntimeError("kernel browser runtime requires KERNEL_API_KEY")
+        return KernelRuntimeProvider(
+            api_key=api_key,
+            options=options,
+            api_url=_env_value(env, "KERNEL_BASE_URL") or _KERNEL_API_URL,
+        )
     raise BrowserRuntimeError(
         f"unknown browser runtime {runtime!r}; expected one of {BROWSER_RUNTIME_CHOICES}"
     )

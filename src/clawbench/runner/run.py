@@ -127,7 +127,7 @@ def main():
         choices=BROWSER_RUNTIME_CHOICES,
         default=None,
         help=(
-            "Browser runtime provider: local, remote-cdp, steel, or browserbase "
+            "Browser runtime provider: local, remote-cdp, steel, browserbase, or kernel "
             "(default: CLAWBENCH_BROWSER_RUNTIME or local)"
         ),
     )
@@ -140,6 +140,11 @@ def main():
         "--browser-runtime-options",
         default=None,
         help="JSON object with provider-specific browser runtime options",
+    )
+    parser.add_argument(
+        "--hide-browser-viewer",
+        action="store_true",
+        help=argparse.SUPPRESS,
     )
     parser.add_argument(
         "--judge",
@@ -184,11 +189,11 @@ def main():
     if args.human and browser_runtime_provider.name != "local":
         parser.error("human mode currently supports only --browser-runtime local")
     if (
-        browser_runtime_provider.name == "browserbase"
+        browser_runtime_provider.name in {"browserbase", "kernel"}
         and args.harness == "claude-code-chrome-extension"
     ):
         parser.error(
-            "browserbase runtime does not support the "
+            f"{browser_runtime_provider.name} runtime does not support the "
             "claude-code-chrome-extension harness"
         )
 
@@ -230,6 +235,7 @@ def main():
     judge_cfg: dict | None = None
     personal_info_metadata: dict[str, Any] | None = None
     browser_session: BrowserSession | None = None
+    browser_runtime_finalized = False
     browser_runtime_cleaned = False
     browser_cdp_secret_dir: Path | None = None
 
@@ -237,12 +243,10 @@ def main():
         if browser_session is not None:
             return browser_session.to_metadata()
         mode = "local" if browser_runtime_provider.name == "local" else "remote"
-        recording_mode = (
-            "x11"
-            if mode == "local"
-            else "provider"
-            if browser_runtime_provider.name == "browserbase"
-            else "disabled"
+        recording_mode = getattr(
+            browser_runtime_provider,
+            "default_recording_mode",
+            "x11" if mode == "local" else "disabled",
         )
         return {
             "provider": browser_runtime_provider.name,
@@ -260,7 +264,10 @@ def main():
         }
 
     def _recording_required() -> bool:
-        return browser_session is None or browser_session.recording_mode == "x11"
+        return browser_session is None or browser_session.recording_mode in {
+            "x11",
+            "provider-download",
+        }
 
     def _write_browser_cdp_secret(session: BrowserSession) -> Path | None:
         nonlocal browser_cdp_secret_dir
@@ -292,6 +299,13 @@ def main():
             secret_root.rmdir()
         except OSError:
             pass
+
+    def _finalize_browser_runtime() -> None:
+        nonlocal browser_runtime_finalized
+        if browser_session is None or browser_runtime_finalized:
+            return
+        browser_runtime_provider.finalize(browser_session, output_dir)
+        browser_runtime_finalized = True
 
     def _cleanup_browser_runtime() -> None:
         nonlocal browser_runtime_cleaned
@@ -527,10 +541,16 @@ def main():
                     )
                 console.print("  Open the URL above to watch the agent in real-time.\n")
             elif browser_session.viewer_url:
-                viewer_url = browser_session.to_metadata()["viewer_url"]
-                console.print(
-                    f"\n  Browser viewer: [link={viewer_url}]{viewer_url}[/link]\n"
-                )
+                if args.hide_browser_viewer:
+                    console.print(
+                        f"\n  Remote browser: {browser_session.provider} "
+                        "(viewer URL hidden in batch mode)\n"
+                    )
+                else:
+                    viewer_url = browser_session.viewer_url
+                    console.print(
+                        f"\n  Browser viewer: [link={viewer_url}]{viewer_url}[/link]\n"
+                    )
             else:
                 console.print(
                     f"\n  Remote browser: {browser_session.provider} "
@@ -564,6 +584,12 @@ def main():
             output_dir,
             model_cfg=None if args.human else model_cfg,
         )
+
+        phase = "finalizing_browser_runtime"
+        _finalize_browser_runtime()
+        phase = "cleaning_browser_runtime"
+        _cleanup_browser_runtime()
+        _cleanup_browser_cdp_secret()
 
         # Stage 2 — LLM judge (default on, --no-judge to skip).
         # Only invoked when stage 1 (intercepted) succeeded; otherwise the
@@ -615,10 +641,6 @@ def main():
                     json.dumps(judge_result, indent=2, ensure_ascii=False)
                 )
                 print(f"Judge skipped due to error: {e}")
-
-        phase = "cleaning_browser_runtime"
-        _cleanup_browser_runtime()
-        _cleanup_browser_cdp_secret()
 
         # Write run metadata
         phase = "writing_run_meta"

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Added Kernel as a managed remote browser runtime with live view and downloaded replay recordings.
 - Added support for the [WebBrain](https://github.com/webbrain-one/webbrain) harness. Thanks to @alectimison-maker.
 
 ## [0.9.1] - 2026-08-04

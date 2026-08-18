@@ -243,7 +243,7 @@ uv run clawbench-run test-cases/v1/001-daily-life-food-uber-eats claude-sonnet-4
 clawbench-batch --models your-model --cases-suite v2 --all-cases
 ```
 
-`your-model` 是你在第 1 步里配置的 key；`--cases-suite v2` 跑完整 V2 语料（换成 `v1-lite` 则是 20 题子集）。`--max-concurrent N` 控制并发（本地默认 2，Browserbase 默认 1），`--harness <name>` 选择智能体。每个任务都会被拦截并由第 1 步配置的 `deepseek-v4-pro` judge 打分 —— 加 `--no-judge` 可跳过评分。`batch-summary.json` 和各次运行的录制都会写到 `./test-output/`。
+`your-model` 是你在第 1 步里配置的 key；`--cases-suite v2` 跑完整 V2 语料（换成 `v1-lite` 则是 20 题子集）。`--max-concurrent N` 控制并发（本地默认 2，Kernel 或 Browserbase 默认 1），`--harness <name>` 选择智能体。每个任务都会被拦截并由第 1 步配置的 `deepseek-v4-pro` judge 打分 —— 加 `--no-judge` 可跳过评分。`batch-summary.json` 和各次运行的录制都会写到 `./test-output/`。
 
 **自己上手操作，产出人工参考轨迹：**
 
@@ -277,7 +277,7 @@ harness 是驱动浏览器的智能体框架，和模型是两个独立维度。
 
 | 我想…… | 去哪看 |
 | --- | --- |
-| 用托管的远程浏览器代替本地容器 | [`docs/browser-runtimes.md`](browser-runtimes.md) —— Browserbase 配置、参数、录制地址 |
+| 用托管的远程浏览器代替本地容器 | [`docs/browser-runtimes.md`](browser-runtimes.md) —— Kernel 和 Browserbase 配置、参数与录制 |
 | 用 Harbor 框架跑 V2（并且跑得快） | [`docs/harbor.md`](harbor.md) —— 转换、judge 配置、并发、排错 |
 | 查所有 CLI 命令和参数 | [`docs/cli.md`](cli.md) |
 
@@ -649,7 +649,7 @@ ClawBench 的定位：**真实消费级网站、日常任务、端到端录制**
 
 | 层 | 文件 | 描述 |
 |-------|------|-------------|
-| 会话回放 | `recording.mp4` 或 `run-meta.json` 中的录制 URL | 本地 H.264 视频，或 Browserbase Session Inspector 回放 |
+| 会话回放 | `recording.mp4` 或 `run-meta.json` 中的录制 URL | 本地/Kernel H.264 视频，或 Browserbase Session Inspector 回放 |
 | 动作截图 | `screenshots/*.png` | 浏览器动作后经限流捕获的带时间戳 PNG |
 | 浏览器动作 | `actions.jsonl` | 每个 DOM 事件 (click, keydown, input, pageLoad, scroll 等) |
 | HTTP 流量 | `requests.jsonl` | 每个 HTTP 请求，包含 headers、body 和查询参数 |
