@@ -1,0 +1,31 @@
+{
+  "$schema": "../../task.schema.json",
+  "metadata": {
+    "task_id": 944,
+    "metaclass": "academia-research",
+    "class": "public-registry-verification",
+    "description": "A benchmark auditor must confirm a small public fact set without using memory. Open the authoritative sec-edgar public record at https://www.sec.gov/edgar/browse/?CIK=1067983 and complete this verification: Use SEC EDGAR for CIK 0001067983. Report the registrant name, zero-padded CIK, primary ticker, primary exchange, and SIC code. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+    "sites_involved": [
+      "sec.gov"
+    ],
+    "platform": "sec-edgar",
+    "common_info": {
+      "email_credentials": "credentials to use the assigned disposable email account",
+      "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+      "user_resume": "PDF resume with disposable email account injected"
+    },
+    "source_snapshot_date": "2026-08-18",
+    "source_key": "0001067983"
+  },
+  "instruction": "A benchmark auditor must confirm a small public fact set without using memory. Open the authoritative sec-edgar public record at https://www.sec.gov/edgar/browse/?CIK=1067983 and complete this verification: Use SEC EDGAR for CIK 0001067983. Report the registrant name, zero-padded CIK, primary ticker, primary exchange, and SIC code. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+  "eval_schema": {
+    "url_pattern": "__PLACEHOLDER_WILL_NOT_MATCH__",
+    "method": "POST"
+  },
+  "time_limit": 10,
+  "extra_info": [],
+  "judge_context": {
+    "rubric": "Award full credit only when every requested labeled field matches the frozen reference solution exactly in substance, the identifier is correct, and no extra unsupported fact is asserted. Minor punctuation or whitespace differences are acceptable.",
+    "reference_solution": "Registrant name: BERKSHIRE HATHAWAY INC\nCIK: 0001067983\nPrimary ticker: BRK-B\nPrimary exchange: NYSE\nSIC: 6331"
+  }
+}

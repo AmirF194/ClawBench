@@ -1,0 +1,31 @@
+{
+  "$schema": "../../task.schema.json",
+  "metadata": {
+    "task_id": 895,
+    "metaclass": "academia-research",
+    "class": "public-registry-verification",
+    "description": "A metadata engineer is checking a record before it enters a versioned catalog. Open the authoritative crossref public record at https://search.crossref.org/?q=10.18653/v1/N19-1423 and complete this verification: Use Crossref to look up DOI 10.18653/v1/N19-1423. Report its exact title, publication year, Crossref work type, and canonical DOI. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+    "sites_involved": [
+      "crossref.org"
+    ],
+    "platform": "crossref",
+    "common_info": {
+      "email_credentials": "credentials to use the assigned disposable email account",
+      "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+      "user_resume": "PDF resume with disposable email account injected"
+    },
+    "source_snapshot_date": "2026-08-18",
+    "source_key": "10.18653/v1/N19-1423"
+  },
+  "instruction": "A metadata engineer is checking a record before it enters a versioned catalog. Open the authoritative crossref public record at https://search.crossref.org/?q=10.18653/v1/N19-1423 and complete this verification: Use Crossref to look up DOI 10.18653/v1/N19-1423. Report its exact title, publication year, Crossref work type, and canonical DOI. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+  "eval_schema": {
+    "url_pattern": "__PLACEHOLDER_WILL_NOT_MATCH__",
+    "method": "POST"
+  },
+  "time_limit": 10,
+  "extra_info": [],
+  "judge_context": {
+    "rubric": "Award full credit only when every requested labeled field matches the frozen reference solution exactly in substance, the identifier is correct, and no extra unsupported fact is asserted. Minor punctuation or whitespace differences are acceptable.",
+    "reference_solution": "Title: \nPublication year: 2019\nCrossref type: proceedings-article\nDOI: 10.18653/v1/n19-1423"
+  }
+}

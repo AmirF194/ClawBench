@@ -1,0 +1,31 @@
+{
+  "$schema": "../../task.schema.json",
+  "metadata": {
+    "task_id": 917,
+    "metaclass": "academia-research",
+    "class": "public-registry-verification",
+    "description": "A citation-quality analyst must repair one incomplete audit row. Open the authoritative github public record at https://github.com/python/cpython and complete this verification: On GitHub, inspect repository python/cpython. Report its canonical full name, creation date, default branch, and detected license SPDX identifier. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+    "sites_involved": [
+      "github.com"
+    ],
+    "platform": "github",
+    "common_info": {
+      "email_credentials": "credentials to use the assigned disposable email account",
+      "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+      "user_resume": "PDF resume with disposable email account injected"
+    },
+    "source_snapshot_date": "2026-08-18",
+    "source_key": "python/cpython"
+  },
+  "instruction": "A citation-quality analyst must repair one incomplete audit row. Open the authoritative github public record at https://github.com/python/cpython and complete this verification: On GitHub, inspect repository python/cpython. Report its canonical full name, creation date, default branch, and detected license SPDX identifier. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+  "eval_schema": {
+    "url_pattern": "__PLACEHOLDER_WILL_NOT_MATCH__",
+    "method": "POST"
+  },
+  "time_limit": 10,
+  "extra_info": [],
+  "judge_context": {
+    "rubric": "Award full credit only when every requested labeled field matches the frozen reference solution exactly in substance, the identifier is correct, and no extra unsupported fact is asserted. Minor punctuation or whitespace differences are acceptable.",
+    "reference_solution": "Repository: python/cpython\nCreated date: 2017-02-10\nDefault branch: main\nLicense SPDX: NOASSERTION"
+  }
+}

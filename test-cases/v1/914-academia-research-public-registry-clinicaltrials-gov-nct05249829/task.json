@@ -1,0 +1,31 @@
+{
+  "$schema": "../../task.schema.json",
+  "metadata": {
+    "task_id": 914,
+    "metaclass": "academia-research",
+    "class": "public-registry-verification",
+    "description": "A benchmark auditor must confirm a small public fact set without using memory. Open the authoritative clinicaltrials-gov public record at https://clinicaltrials.gov/study/NCT05249829 and complete this verification: Open ClinicalTrials.gov study NCT05249829. Report its brief title, overall status, start date, study type, and NCT number exactly as displayed. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+    "sites_involved": [
+      "clinicaltrials.gov"
+    ],
+    "platform": "clinicaltrials-gov",
+    "common_info": {
+      "email_credentials": "credentials to use the assigned disposable email account",
+      "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+      "user_resume": "PDF resume with disposable email account injected"
+    },
+    "source_snapshot_date": "2026-08-18",
+    "source_key": "NCT05249829"
+  },
+  "instruction": "A benchmark auditor must confirm a small public fact set without using memory. Open the authoritative clinicaltrials-gov public record at https://clinicaltrials.gov/study/NCT05249829 and complete this verification: Open ClinicalTrials.gov study NCT05249829. Report its brief title, overall status, start date, study type, and NCT number exactly as displayed. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+  "eval_schema": {
+    "url_pattern": "__PLACEHOLDER_WILL_NOT_MATCH__",
+    "method": "POST"
+  },
+  "time_limit": 10,
+  "extra_info": [],
+  "judge_context": {
+    "rubric": "Award full credit only when every requested labeled field matches the frozen reference solution exactly in substance, the identifier is correct, and no extra unsupported fact is asserted. Minor punctuation or whitespace differences are acceptable.",
+    "reference_solution": "Brief title: A Study to Evaluate the Immunogenicity and Safety of Omicron Variant Vaccines in Comparison With mRNA-1273 Booster Vaccine for COVID-19\nOverall status: COMPLETED\nStart date: 2022-02-16\nStudy type: INTERVENTIONAL\nNCT number: NCT05249829"
+  }
+}

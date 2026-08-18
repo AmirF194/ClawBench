@@ -1,0 +1,31 @@
+{
+  "$schema": "../../task.schema.json",
+  "metadata": {
+    "task_id": 904,
+    "metaclass": "academia-research",
+    "class": "public-registry-verification",
+    "description": "A benchmark auditor must confirm a small public fact set without using memory. Open the authoritative pubmed public record at https://pubmed.ncbi.nlm.nih.gov/34401850/ and complete this verification: Open PubMed record 34401850. Report the exact article title, full journal name, displayed publication date, first listed author, and PMID. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+    "sites_involved": [
+      "pubmed.ncbi.nlm.nih.gov"
+    ],
+    "platform": "pubmed",
+    "common_info": {
+      "email_credentials": "credentials to use the assigned disposable email account",
+      "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+      "user_resume": "PDF resume with disposable email account injected"
+    },
+    "source_snapshot_date": "2026-08-18",
+    "source_key": "34401850"
+  },
+  "instruction": "A benchmark auditor must confirm a small public fact set without using memory. Open the authoritative pubmed public record at https://pubmed.ncbi.nlm.nih.gov/34401850/ and complete this verification: Open PubMed record 34401850. Report the exact article title, full journal name, displayed publication date, first listed author, and PMID. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+  "eval_schema": {
+    "url_pattern": "__PLACEHOLDER_WILL_NOT_MATCH__",
+    "method": "POST"
+  },
+  "time_limit": 10,
+  "extra_info": [],
+  "judge_context": {
+    "rubric": "Award full credit only when every requested labeled field matches the frozen reference solution exactly in substance, the identifier is correct, and no extra unsupported fact is asserted. Minor punctuation or whitespace differences are acceptable.",
+    "reference_solution": "Title: Commentary: What's old is new again: Atrial baffle for complex cardiac transplantation\nJournal: JTCVS techniques\nPublication date: 2021 Aug\nFirst listed author: Bryant R 3rd\nPMID: 34401850"
+  }
+}

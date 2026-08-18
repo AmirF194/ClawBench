@@ -1,0 +1,31 @@
+{
+  "$schema": "../../task.schema.json",
+  "metadata": {
+    "task_id": 908,
+    "metaclass": "academia-research",
+    "class": "public-registry-verification",
+    "description": "A release manager is checking a frozen public-record export before publication. Open the authoritative clinicaltrials-gov public record at https://clinicaltrials.gov/study/NCT04368728 and complete this verification: Open ClinicalTrials.gov study NCT04368728. Report its brief title, overall status, start date, study type, and NCT number exactly as displayed. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+    "sites_involved": [
+      "clinicaltrials.gov"
+    ],
+    "platform": "clinicaltrials-gov",
+    "common_info": {
+      "email_credentials": "credentials to use the assigned disposable email account",
+      "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+      "user_resume": "PDF resume with disposable email account injected"
+    },
+    "source_snapshot_date": "2026-08-18",
+    "source_key": "NCT04368728"
+  },
+  "instruction": "A release manager is checking a frozen public-record export before publication. Open the authoritative clinicaltrials-gov public record at https://clinicaltrials.gov/study/NCT04368728 and complete this verification: Open ClinicalTrials.gov study NCT04368728. Report its brief title, overall status, start date, study type, and NCT number exactly as displayed. Return only the requested labeled fields, one per line. Do not infer missing values, do not use a search-result snippet as the final source, and do not perform any write action.",
+  "eval_schema": {
+    "url_pattern": "__PLACEHOLDER_WILL_NOT_MATCH__",
+    "method": "POST"
+  },
+  "time_limit": 10,
+  "extra_info": [],
+  "judge_context": {
+    "rubric": "Award full credit only when every requested labeled field matches the frozen reference solution exactly in substance, the identifier is correct, and no extra unsupported fact is asserted. Minor punctuation or whitespace differences are acceptable.",
+    "reference_solution": "Brief title: Study to Describe the Safety, Tolerability, Immunogenicity, and Efficacy of RNA Vaccine Candidates Against COVID-19 in Healthy Individuals\nOverall status: COMPLETED\nStart date: 2020-04-29\nStudy type: INTERVENTIONAL\nNCT number: NCT04368728"
+  }
+}
