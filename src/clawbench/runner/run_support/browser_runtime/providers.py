@@ -442,7 +442,7 @@ class KernelRuntimeProvider:
         options: dict[str, Any],
         api_url: str = _KERNEL_API_URL,
         replay_poll_interval_s: float = 1,
-        replay_poll_timeout_s: float = 30,
+        replay_poll_timeout_s: float = 300,
     ) -> None:
         unknown = sorted(set(options) - _KERNEL_ALLOWED_OPTIONS)
         if unknown:
@@ -471,14 +471,14 @@ class KernelRuntimeProvider:
         self.replay_poll_interval_s = replay_poll_interval_s
         self.replay_poll_timeout_s = replay_poll_timeout_s
 
-    def _request(
+    def _request_response(
         self,
         method: str,
         path: str,
         payload: dict[str, Any] | None = None,
         *,
         accept: str = "application/json",
-    ) -> bytes:
+    ) -> tuple[int, Any, bytes]:
         assert self.api_key is not None
         data = (
             json.dumps(payload, separators=(",", ":")).encode()
@@ -497,7 +497,11 @@ class KernelRuntimeProvider:
         )
         try:
             with urllib.request.urlopen(request, timeout=30) as response:
-                return response.read()
+                return (
+                    int(getattr(response, "status", 200)),
+                    getattr(response, "headers", {}),
+                    response.read(),
+                )
         except urllib.error.HTTPError as e:
             if e.code in {401, 403}:
                 message = "Kernel authentication failed"
@@ -516,6 +520,22 @@ class KernelRuntimeProvider:
                 if secret:
                     reason = reason.replace(secret, "[REDACTED]")
             raise _KernelApiError(f"Kernel API request failed: {reason}") from None
+
+    def _request(
+        self,
+        method: str,
+        path: str,
+        payload: dict[str, Any] | None = None,
+        *,
+        accept: str = "application/json",
+    ) -> bytes:
+        _status, _headers, raw = self._request_response(
+            method,
+            path,
+            payload,
+            accept=accept,
+        )
+        return raw
 
     def _request_json(
         self,
@@ -669,11 +689,31 @@ class KernelRuntimeProvider:
                     )
                 time.sleep(self.replay_poll_interval_s)
 
-            recording = self._request(
-                "GET",
-                f"/browsers/{session.session_id}/replays/{replay_id}",
-                accept="video/mp4",
-            )
+            while True:
+                status, headers, recording = self._request_response(
+                    "GET",
+                    f"/browsers/{session.session_id}/replays/{replay_id}",
+                    accept="video/mp4",
+                )
+                if status != 202:
+                    break
+                if time.monotonic() >= deadline:
+                    raise _KernelApiError(
+                        "Kernel replay did not finish downloading before timeout"
+                    )
+                retry_after: str | None = (
+                    headers.get("Retry-After") if headers else None
+                )
+                if retry_after is None:
+                    delay = self.replay_poll_interval_s
+                else:
+                    try:
+                        delay = float(retry_after)
+                    except ValueError:
+                        delay = self.replay_poll_interval_s
+                time.sleep(min(max(0, delay), max(0, deadline - time.monotonic())))
+            if status != 200:
+                raise _KernelApiError(f"Kernel replay download returned HTTP {status}")
             if not recording:
                 raise _KernelApiError("Kernel replay download was empty")
             recording_path = output_dir / "data" / "recording.mp4"

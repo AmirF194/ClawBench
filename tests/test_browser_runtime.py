@@ -26,8 +26,16 @@ from clawbench.runner.run_support.browser_runtime.providers import (
 
 
 class _FakeResponse:
-    def __init__(self, payload: object) -> None:
+    def __init__(
+        self,
+        payload: object,
+        *,
+        status: int = 200,
+        headers: dict[str, str] | None = None,
+    ) -> None:
         self.payload = payload
+        self.status = status
+        self.headers = headers or {}
 
     def __enter__(self) -> _FakeResponse:
         return self
@@ -322,11 +330,13 @@ def test_kernel_session_replay_and_cleanup(
     tmp_path: Path,
 ) -> None:
     calls: list[tuple[str, str, object, str | None]] = []
+    replay_downloads = 0
 
     def fake_urlopen(
         request: urllib.request.Request,
         timeout: int,
     ) -> _FakeResponse:
+        nonlocal replay_downloads
         assert timeout == 30
         if request.data:
             assert isinstance(request.data, bytes)
@@ -373,6 +383,13 @@ def test_kernel_session_replay_and_cleanup(
         if request.full_url.endswith("/replays/replay_123/stop"):
             return _FakeResponse(b"")
         if request.full_url.endswith("/replays/replay_123"):
+            replay_downloads += 1
+            if replay_downloads == 1:
+                return _FakeResponse(
+                    b"not-ready",
+                    status=202,
+                    headers={"Retry-After": "0"},
+                )
             return _FakeResponse(b"mp4-data")
         if request.full_url.endswith("/browsers/browser_123"):
             return _FakeResponse(b"")
@@ -383,7 +400,7 @@ def test_kernel_session_replay_and_cleanup(
         api_key="kernel-secret",
         options={"stealth": True, "region": "us-east"},
         replay_poll_interval_s=0,
-        replay_poll_timeout_s=0,
+        replay_poll_timeout_s=1,
     )
 
     session = provider.start({}, 1800)
@@ -401,6 +418,7 @@ def test_kernel_session_replay_and_cleanup(
     assert session.provider == "kernel"
     assert session.recording_mode == "provider-download"
     assert session.cleanup_status == "deleted"
+    assert replay_downloads == 2
     assert (tmp_path / "data" / "recording.mp4").read_bytes() == b"mp4-data"
     metadata = json.dumps(session.to_metadata())
     assert "cdp-secret" not in metadata

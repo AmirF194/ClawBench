@@ -49,6 +49,7 @@ CASE_SUITES = {
     "claw-eval": "test-cases/claw-eval",
 }
 DEFAULT_CASES_SUITE = "v2"
+MANAGED_BROWSER_RUNTIMES = frozenset({"browserbase", "kernel"})
 
 
 def load_models_yaml() -> dict:
@@ -289,7 +290,7 @@ async def run_job(
                     cmd_parts += ["--harness", harness]
                 if browser_runtime:
                     cmd_parts += ["--browser-runtime", browser_runtime]
-                    if browser_runtime == "kernel":
+                    if browser_runtime in MANAGED_BROWSER_RUNTIMES:
                         cmd_parts.append("--hide-browser-viewer")
                 if browser_cdp_url:
                     cmd_parts += ["--browser-cdp-url", browser_cdp_url]
@@ -591,11 +592,10 @@ async def async_main(args: argparse.Namespace) -> int:
     shutdown_event = asyncio.Event()
     running_procs.clear()
     browser_runtime = getattr(args, "browser_runtime", None) or "local"
-    managed_browser_runtimes = {"browserbase", "kernel"}
     if getattr(args, "max_concurrent", None) is None:
-        args.max_concurrent = 1 if browser_runtime in managed_browser_runtimes else 2
+        args.max_concurrent = 1 if browser_runtime in MANAGED_BROWSER_RUNTIMES else 2
     if (
-        browser_runtime in managed_browser_runtimes
+        browser_runtime in MANAGED_BROWSER_RUNTIMES
         and args.harness == "claude-code-chrome-extension"
     ):
         print(
