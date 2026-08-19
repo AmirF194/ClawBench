@@ -7,6 +7,12 @@ repos:
         args: [--check]
   - repo: local
     hooks:
+      - id: validate-docs
+        name: validate docs
+        entry: python scripts/ci/check_markdown_links.py
+        language: system
+        pass_filenames: false
+        files: '(^docs/|\.md$|\.markdown$|^scripts/ci/check_markdown_links\.py$|^\.github/workflows/validate-docs\.yml$|^\.pre-commit-config\.yaml$)'
       - id: pyright
         name: pyright
         entry: uv run --frozen pyright src/clawbench tests
