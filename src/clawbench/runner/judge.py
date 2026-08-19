@@ -172,6 +172,25 @@ def _call_anthropic_messages(
     return resp["content"][0]["text"]
 
 
+def _coerce_match(value: object) -> bool | None:
+    """Normalize a judge's `match` field into a tri-state verdict.
+
+    Models answer with real booleans, but also with the *strings* "true" and
+    "false", and occasionally with nothing at all. `bool("false")` is True, so
+    a stringly-typed mismatch used to score as a pass; a missing key used to
+    score as a hard mismatch rather than as inconclusive.
+    """
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        token = value.strip().strip('".').lower()
+        if token in {"true", "yes", "pass", "match"}:
+            return True
+        if token in {"false", "no", "fail", "mismatch"}:
+            return False
+    return None
+
+
 def _parse_verdict(text: str) -> tuple[bool | None, str]:
     """Best-effort parse of the judge's reply into (match, reason)."""
     text = (text or "").strip()
@@ -184,7 +203,7 @@ def _parse_verdict(text: str) -> tuple[bool | None, str]:
         start = text.index("{")
         end = text.rindex("}") + 1
         obj = json.loads(text[start:end])
-        return bool(obj.get("match")), str(obj.get("reason", ""))
+        return _coerce_match(obj.get("match")), str(obj.get("reason", ""))
     except (ValueError, json.JSONDecodeError):
         # Heuristic fallback
         low = text.lower()

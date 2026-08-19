@@ -1,0 +1,38 @@
+name: validate-docs
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/validate-docs.yml"
+      - "scripts/ci/check_markdown_links.py"
+      - "docs/**"
+      - "**/*.md"
+      - "**/*.markdown"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/validate-docs.yml"
+      - "scripts/ci/check_markdown_links.py"
+      - "docs/**"
+      - "**/*.md"
+      - "**/*.markdown"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Validate repo-relative Markdown links
+        run: python scripts/ci/check_markdown_links.py

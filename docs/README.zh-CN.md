@@ -368,11 +368,11 @@ ClawBench 提供 **三个** Hugging Face 数据集 —— 任务定义，以及 
 
 ## <img src="../assets/icons/bullhorn.svg" width="20" height="20"> 动态
 
+- **[2026.08.18]** —— 新增 [WebBrain](https://github.com/webbrain-one/webbrain) 作为支持的 harness。感谢 @[alectimison-maker](https://github.com/alectimison-maker)。
 - **[2026.08.16]** —— 发布姊妹项目 **[RewardHarness](https://github.com/TIGER-AI-Lab/RewardHarness)**：自进化的 agentic 奖励框架，仅用 100 条偏好示例即在 EditReward-Bench 上达到 47.4%，且无需训练奖励模型。[详情 →](https://arxiv.org/abs/2605.08703)
 - **[2026.08.03]** —— 新增 [Browserbase](https://www.browserbase.com) 远程浏览器运行时。[详情 →](browser-runtimes.md)
 - **[2026.07.30]** —— v0.8.0 发布：Gemini-as-judge、random-click 基线 harness、EdgeBench/SForge adapter、远程浏览器 CDP 支持。[详情 →](../CHANGELOG.md)
 - **[2026.07.25]** —— 🏆 论文被 [COLM 2026 WAB](https://www.aiagentbehavior.com/) 接收。
-- **[2026.06.22]** —— v0.7.0 发布：Harbor adapter 任务导出；action 录制迁入 CDP server。[详情 →](../CHANGELOG.md)
 
 <sub>更早的动态见 [`docs/news.md`](news.md) &middot; 完整变更历史见 [`CHANGELOG.md`](../CHANGELOG.md)</sub>
 
@@ -867,7 +867,7 @@ Pi 的 `agent.log`、`proxy.log` 等 harness 诊断日志不会复制到最终�
 
 有问题、建议或希望开展研究合作？请联系维护者：
 
-- **张宇轩 (Yuxuan Zhang)** &mdash; `reacher` &lbrack;at&rbrack; `cs.ubc.ca`（UBC, NAIL Group）&middot; [个人主页 &#8599;](https://reacher-z.github.io)
+- **Yuxuan Zhang** &mdash; `reacher` &lbrack;at&rbrack; `cs.ubc.ca`（UBC, NAIL Group）&middot; [个人主页 &#8599;](https://reacher-z.github.io)
 - Bug 反馈或功能请求请[提 GitHub issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose) —— 比邮件更快，且所有维护者都能看到。
 
 ## 核心贡献者
@@ -958,12 +958,14 @@ Pi 的 `agent.log`、`proxy.log` 等 harness 诊断日志不会复制到最终�
 
 ## Star 历史
 
-<a href="https://star-history.com/#TIGER-AI-Lab/ClawBench&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=TIGER-AI-Lab/ClawBench&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=TIGER-AI-Lab/ClawBench&type=Date" />
-    <img alt="ClawBench Star History" src="https://api.star-history.com/svg?repos=TIGER-AI-Lab/ClawBench&type=Date" width="600" />
-  </picture>
+## Star History
+
+<a href="https://www.star-history.com/?type=date&repos=TIGER-AI-Lab%2FClawBench">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&theme=dark&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
+ </picture>
 </a>
 
 ## 许可证与致谢

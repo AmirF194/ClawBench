@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from clawbench.runner import judge
+import pytest
+
+from clawbench.runner import judge, judge_llm
 
 
 def test_gemini_openai_cfg_normalizes_native_root() -> None:
@@ -52,3 +54,57 @@ def test_unsupported_api_type_reports_error(monkeypatch) -> None:
         {"request": {"url": "x"}},
     )
     assert r["match"] is None and r["error"] == "unsupported_api_type"
+
+
+# --- verdict parsing (see #295) -------------------------------------------
+#
+# The `match` field decides whether a run counts as a pass, so it has to be
+# read exactly. Models answer with real booleans, with the *strings* "true"
+# and "false", and sometimes with no verdict at all — `bool("false")` is True,
+# so a stringly-typed mismatch used to be scored as a pass.
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        # real booleans
+        ('{"match": true, "reason": "ok"}', True),
+        ('{"match": false, "reason": "wrong item"}', False),
+        # stringly-typed verdicts — the regression this pins
+        ('{"match": "false", "reason": "wrong item"}', False),
+        ('{"match": "true"}', True),
+        ('{"match": "FALSE"}', False),
+        ('{"match": "False"}', False),
+        # no usable verdict → inconclusive, never an implicit pass/fail
+        ('{"reason": "forgot the verdict"}', None),
+        ('{"match": null}', None),
+        ('{"match": "maybe"}', None),
+        # fenced JSON still parses
+        ('```json\n{"match": false, "reason": "r"}\n```', False),
+    ],
+)
+def test_parse_verdict_is_tri_state(raw: str, expected: bool | None) -> None:
+    assert judge._parse_verdict(raw)[0] is expected
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        ('{"match": "false", "reason": "wrong item"}', False),
+        ('{"match": false}', False),
+        ('{"match": true}', True),
+        # a reply with no verdict key must not default to a pass: this module
+        # produces the published Reward-lenient column
+        ('{"reason": "forgot the verdict"}', None),
+        ("not json at all", None),
+    ],
+)
+def test_lenient_judge_parse_verdict_is_tri_state(
+    raw: str, expected: bool | None
+) -> None:
+    assert judge_llm._parse_verdict(raw)[0] is expected
+
+
+def test_coerce_match_rejects_non_verdict_types() -> None:
+    for value in (1, 0, [], {}, None, "  "):
+        assert judge._coerce_match(value) is None
