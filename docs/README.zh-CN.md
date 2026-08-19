@@ -867,7 +867,7 @@ Pi 的 `agent.log`、`proxy.log` 等 harness 诊断日志不会复制到最终�
 
 有问题、建议或希望开展研究合作？请联系维护者：
 
-- **张宇轩 (Yuxuan Zhang)** &mdash; `reacher` &lbrack;at&rbrack; `cs.ubc.ca`（UBC, NAIL Group）&middot; [个人主页 &#8599;](https://reacher-z.github.io)
+- **Yuxuan Zhang** &mdash; `reacher` &lbrack;at&rbrack; `cs.ubc.ca`（UBC, NAIL Group）&middot; [个人主页 &#8599;](https://reacher-z.github.io)
 - Bug 反馈或功能请求请[提 GitHub issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose) —— 比邮件更快，且所有维护者都能看到。
 
 ## 核心贡献者
