@@ -425,11 +425,11 @@ ClawBench ships **three** Hugging Face datasets — task definitions plus full e
 
 ## <img src="assets/icons/bullhorn.svg" width="20" height="20"> News
 
+- **[2026.08.18]** — Added [WebBrain](https://github.com/webbrain-one/webbrain) as a supported harness. Thanks to @[alectimison-maker](https://github.com/alectimison-maker).
 - **[2026.08.16]** — Released **[RewardHarness](https://github.com/TIGER-AI-Lab/RewardHarness)**, our self-evolving agentic reward framework: 47.4% on EditReward-Bench from just 100 preference demos, with no reward-model training. [Details →](https://arxiv.org/abs/2605.08703)
 - **[2026.08.03]** — Added [Browserbase](https://www.browserbase.com) as a remote browser runtime. [Details →](docs/browser-runtimes.md)
 - **[2026.07.30]** — v0.8.0: Gemini-as-judge, random-click baseline harness, EdgeBench/SForge adapter, remote-browser CDP support. [Details →](CHANGELOG.md)
 - **[2026.07.25]** — 🏆 Our paper has been accepted by [COLM 2026 WAB](https://www.aiagentbehavior.com/).
-- **[2026.06.22]** — v0.7.0: Harbor-adapter task export; action recording moved into the CDP server. [Details →](CHANGELOG.md)
 
 <sub>Earlier updates: [`docs/news.md`](docs/news.md) &middot; full change history: [`CHANGELOG.md`](CHANGELOG.md)</sub>
 
