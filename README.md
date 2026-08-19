@@ -1019,12 +1019,14 @@ Open to contributions — new test cases, bug fixes, or evaluation submissions f
 
 ## Star History
 
-<a href="https://star-history.com/#TIGER-AI-Lab/ClawBench&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=TIGER-AI-Lab/ClawBench&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=TIGER-AI-Lab/ClawBench&type=Date" />
-    <img alt="ClawBench Star History" src="https://api.star-history.com/svg?repos=TIGER-AI-Lab/ClawBench&type=Date" width="600" />
-  </picture>
+## Star History
+
+<a href="https://www.star-history.com/?type=date&repos=TIGER-AI-Lab%2FClawBench">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&theme=dark&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
+ </picture>
 </a>
 
 ## License & Acknowledgments
