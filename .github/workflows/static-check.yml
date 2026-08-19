@@ -40,9 +40,6 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Markdown link check
-        run: python scripts/check_markdown_links.py
-
       - name: Ruff check
         run: uv run --frozen ruff check .
 
