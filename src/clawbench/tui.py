@@ -527,11 +527,14 @@ def run_cmd(cmd: list[str], *, hint: str | None = None) -> None:
 def _pick_browser_runtime(harness: str) -> str | None:
     choices = [questionary.Choice("Local Chrome", value="local")]
     if harness != "claude-code-chrome-extension":
-        choices.append(
-            questionary.Choice(
-                "Browserbase cloud browser",
-                value="browserbase",
-            )
+        choices.extend(
+            [
+                questionary.Choice("Kernel cloud browser", value="kernel"),
+                questionary.Choice(
+                    "Browserbase cloud browser",
+                    value="browserbase",
+                ),
+            ]
         )
     return questionary.select(
         "Browser runtime:",
@@ -683,6 +686,9 @@ def mode_single(
             "  [dim]Tip: open the Browserbase Inspector URL printed below\n"
             "  to watch the cloud browser and access its recording.[/]"
             if browser_runtime == "browserbase"
+            else "  [dim]Tip: open the Kernel live-view URL printed below\n"
+            "  to watch the cloud browser in real time.[/]"
+            if browser_runtime == "kernel"
             else "  [dim]Tip: once the container starts, open the noVNC URL\n"
             "  printed below to watch the agent operate the browser\n"
             "  in real-time.[/]"
@@ -781,10 +787,10 @@ def mode_batch(
         case_args = ["--cases"] + [f"{cases_dir_name}/{c}" for c in selected_cases]
         case_summary = f"{len(selected_cases)} selected"
 
-    if browser_runtime == "browserbase":
+    if browser_runtime in {"browserbase", "kernel"}:
         recommended = 1
         console.print(
-            "  Browserbase concurrency depends on the account limit; "
+            f"  {browser_runtime.capitalize()} concurrency depends on the account limit; "
             "defaulting to [green bold]1[/]."
         )
     else:
