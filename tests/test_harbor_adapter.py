@@ -172,7 +172,7 @@ def test_harbor_adapter_help_without_container_runtime(tmp_path: Path) -> None:
     assert "usage" in (result.stdout + result.stderr).lower()
 
 
-def test_harbor_verifier_reward_json_contains_metadata(tmp_path: Path) -> None:
+def test_harbor_verifier_separates_metrics_from_metadata(tmp_path: Path) -> None:
     write_reward(
         0.0,
         {
@@ -187,11 +187,31 @@ def test_harbor_verifier_reward_json_contains_metadata(tmp_path: Path) -> None:
     assert (tmp_path / "reward.txt").read_text() == "0.0"
     reward = json.loads((tmp_path / "reward.json").read_text())
     detailed = json.loads((tmp_path / "clawbench-result.json").read_text())
-    assert reward == detailed
     assert reward == {
+        "reward": 0.0,
+        "intercepted": 1.0,
+        "judge_match": 0.0,
+    }
+    assert detailed == {
         "reward": 0.0,
         "intercepted": True,
         "judge_match": False,
         "reason": "wrong payload",
         "task_id": 47,
     }
+
+
+def test_harbor_verifier_omits_unknown_judge_match_metric(tmp_path: Path) -> None:
+    write_reward(
+        0.0,
+        {
+            "intercepted": False,
+            "judge_match": None,
+            "reason": "not intercepted",
+            "task_id": 47,
+        },
+        output_dir=tmp_path,
+    )
+
+    reward = json.loads((tmp_path / "reward.json").read_text())
+    assert reward == {"reward": 0.0, "intercepted": 0.0}

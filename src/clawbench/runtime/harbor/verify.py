@@ -35,8 +35,16 @@ def write_reward(
     out = output_dir
     out.mkdir(parents=True, exist_ok=True)
     result = {"reward": reward, **payload}
+    metrics = {
+        "reward": reward,
+        "intercepted": float(bool(payload.get("intercepted"))),
+    }
+    judge_match = payload.get("judge_match")
+    if isinstance(judge_match, bool):
+        metrics["judge_match"] = float(judge_match)
+
     (out / "reward.txt").write_text(str(reward))
-    (out / "reward.json").write_text(json.dumps(result, indent=2, ensure_ascii=False))
+    (out / "reward.json").write_text(json.dumps(metrics, indent=2))
     (out / "clawbench-result.json").write_text(
         json.dumps(result, indent=2, ensure_ascii=False)
     )
