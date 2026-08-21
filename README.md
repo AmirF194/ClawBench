@@ -424,7 +424,7 @@ ClawBench ships **three** Hugging Face datasets — task definitions plus full e
 > **🏆 Live leaderboard:** [`claw-bench.com/leaderboard`](https://claw-bench.com/leaderboard) (V2 default, two-stage scoring — interception + LLM judge). Full scoring formula in [`eval/scoring.md`](eval/scoring.md). Add your run: PR to [`leaderboard/results.csv`](https://huggingface.co/datasets/TIGER-Lab/ClawBench/blob/main/leaderboard/results.csv).
 
 ## <img src="assets/icons/bullhorn.svg" width="20" height="20"> News
-
+- **[2026.08.20]** - Added [Kernel](https://www.kernel.sh) as a supported remote browser runtime. Thanks to @[rgarcia](https://github.com/rgarcia).
 - **[2026.08.18]** — Added [WebBrain](https://github.com/webbrain-one/webbrain) as a supported harness. Thanks to @[alectimison-maker](https://github.com/alectimison-maker).
 - **[2026.08.16]** — Released **[RewardHarness](https://github.com/TIGER-AI-Lab/RewardHarness)**, our self-evolving agentic reward framework: 47.4% on EditReward-Bench from just 100 preference demos, with no reward-model training. [Details →](https://arxiv.org/abs/2605.08703)
 - **[2026.08.03]** — Added [Browserbase](https://www.browserbase.com) as a remote browser runtime. [Details →](docs/browser-runtimes.md)
