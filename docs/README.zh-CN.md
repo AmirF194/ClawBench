@@ -368,6 +368,7 @@ ClawBench 提供 **三个** Hugging Face 数据集 —— 任务定义，以及 
 
 ## <img src="../assets/icons/bullhorn.svg" width="20" height="20"> 动态
 
+- **[2026.08.20]** —— 🏆 论文被 [EMNLP 2026 Findings](https://2026.emnlp.org/) 接收。
 - **[2026.08.20]** —— 新增 [Kernel](https://www.kernel.sh) 作为支持的远程浏览器运行时。感谢 @[rgarcia](https://github.com/rgarcia)。
 - **[2026.08.18]** —— 新增 [WebBrain](https://github.com/webbrain-one/webbrain) 作为支持的 harness。感谢 @[alectimison-maker](https://github.com/alectimison-maker)。
 - **[2026.08.16]** —— 发布姊妹项目 **[RewardHarness](https://github.com/TIGER-AI-Lab/RewardHarness)**：自进化的 agentic 奖励框架，仅用 100 条偏好示例即在 EditReward-Bench 上达到 47.4%，且无需训练奖励模型。[详情 →](https://arxiv.org/abs/2605.08703)
