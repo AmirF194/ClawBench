@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 import time
@@ -53,3 +54,24 @@ def test_stop_wrapper_interrupts_agent_and_exits_cleanly(tmp_path: Path) -> None
     stop_file.touch()
     assert process.wait(timeout=3) == 0
     assert json.loads(stop_result.read_text())["signal"] == "INT"
+
+
+def test_redcross_task_intercepts_zip_lookup_not_chapter_finder_page() -> None:
+    task_path = (
+        REPO_ROOT
+        / "test-cases"
+        / "v2"
+        / "v2-1134-chapter-finder-redcross"
+        / "task.json"
+    )
+    schema = json.loads(task_path.read_text())["eval_schema"]
+
+    assert not re.search(
+        schema["url_pattern"],
+        "https://www.redcross.org/find-your-local-chapter.html",
+    )
+    assert re.search(
+        schema["url_pattern"],
+        "https://www.redcross.org/api/lookup/v1/region-mappings/90210?type=RCO",
+    )
+    assert schema["params"] == {"type": "RCO"}
