@@ -14,6 +14,7 @@ from clawbench.eval.harbor_adapter import (
     unique_output_name,
     write_harbor_task,
 )
+from clawbench.runtime.harbor import verify as harbor_verify
 from clawbench.runtime.harbor.verify import write_reward
 
 SRC_ROOT = Path(__file__).resolve().parents[1] / "src"
@@ -113,6 +114,7 @@ def test_write_harbor_task_emits_expected_tree_and_extra_info(tmp_path: Path) ->
     assert config["environment"]["env"]["BROWSER_CDP_URL"] == "http://127.0.0.1:9223"
     assert config["environment"]["env"]["PLAYWRIGHT_CDP_URL"] == "http://127.0.0.1:9223"
     assert config["steps"][0]["agent"]["timeout_sec"] == 1800.0
+    assert config["steps"][0]["verifier"]["timeout_sec"] == 300.0
     assert (
         "http://127.0.0.1:9223"
         in (out / "steps" / "run" / "instruction.md").read_text()
@@ -198,6 +200,74 @@ def test_harbor_verifier_separates_metrics_from_metadata(tmp_path: Path) -> None
         "judge_match": False,
         "reason": "wrong payload",
         "task_id": 47,
+    }
+
+
+def test_harbor_judge_supports_lenient_and_strict_prompts(monkeypatch) -> None:
+    requests = []
+
+    def fake_post_json(url, headers, payload, timeout=60):
+        requests.append(payload)
+        return {"choices": [{"message": {"content": '{"match": true}'}}]}
+
+    monkeypatch.setattr(harbor_verify, "post_json", fake_post_json)
+    config = {
+        "api_type": "openai-completions",
+        "model": "judge",
+        "base_url": "https://judge.example/v1",
+        "api_key": "key",
+    }
+    intercept = {"request": {"url": "https://example.com/submit", "method": "POST"}}
+
+    harbor_verify.call_judge(
+        config,
+        "submit the form",
+        intercept,
+        None,
+        harbor_verify.JUDGE_SYSTEM_LENIENT,
+        800,
+    )
+    harbor_verify.call_judge(
+        config,
+        "submit the form",
+        intercept,
+        {"rubric": "all fields are required"},
+        harbor_verify.JUDGE_SYSTEM_STRICT,
+        4096,
+    )
+
+    assert requests[0]["messages"][0]["content"] == harbor_verify.JUDGE_SYSTEM_LENIENT
+    assert requests[0]["max_tokens"] == 800
+    assert requests[1]["messages"][0]["content"] == harbor_verify.JUDGE_SYSTEM_STRICT
+    assert requests[1]["max_tokens"] == 4096
+    assert "all fields are required" in requests[1]["messages"][1]["content"]
+
+
+def test_harbor_verifier_emits_both_reward_rubrics(tmp_path: Path) -> None:
+    write_reward(
+        1.0,
+        {
+            "reward_lenient": 1.0,
+            "reward_strict": 0.0,
+            "intercepted": True,
+            "judge_match": True,
+            "judge_match_lenient": True,
+            "judge_match_strict": False,
+            "reason": {"lenient": "no contradiction", "strict": "missing time"},
+            "task_id": 47,
+        },
+        output_dir=tmp_path,
+    )
+
+    reward = json.loads((tmp_path / "reward.json").read_text())
+    assert reward == {
+        "reward": 1.0,
+        "intercepted": 1.0,
+        "reward_lenient": 1.0,
+        "reward_strict": 0.0,
+        "judge_match": 1.0,
+        "judge_match_lenient": 1.0,
+        "judge_match_strict": 0.0,
     }
 
 

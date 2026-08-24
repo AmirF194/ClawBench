@@ -175,7 +175,7 @@ name = "{STEP_NAME}"
 timeout_sec = {float(timeout_sec):.1f}
 
 [steps.verifier]
-timeout_sec = 180.0
+timeout_sec = 300.0
 
 [steps.healthcheck]
 command = "curl -sf http://127.0.0.1:7878/api/status | grep -q '\\\"eval_interceptor_ready\\\":true' && curl -sf http://127.0.0.1:9223/json/version >/dev/null"
