@@ -199,6 +199,10 @@ cp /app/eval-schema.json /eval-schema.json
   --extra-info-dir /app/extra_info \
   --output-dir /app/my-info
 
+# Harbor installs its stock agent before step setup. Wrap that executable so
+# ClawBench's existing /data/.stop-requested signal ends the agent cleanly.
+/app/src/harbor/wrap-harbor-agent.sh
+
 /app/src/harbor/start-runtime.sh
 
 for _ in $(seq 1 60); do
