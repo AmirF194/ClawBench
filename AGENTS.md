@@ -32,6 +32,12 @@ ClawBench/
     models.yaml                   # Model API configs (gitignored -- copy from example)
     models.example.yaml           # Template with placeholder keys
     model.schema.json             # JSON schema for model entries
+  harbor/                         # Harbor-format packaging: registry, dataset manifest, adapter package
+    README.md                     # How to run / publish ClawBench through Harbor
+    dataset.toml                  # Hub manifest (tiger-ai-lab/clawbench-v2)
+    adapter/                      # harbor-framework/harbor adapters/clawbench package
+    datasets/clawbench-v2/        # Committed prebuilt-mode Harbor tasks (generated, CI-checked)
+  registry.json                   # Harbor git registry (harbor run --repo TIGER-AI-Lab/ClawBench)
   test-cases/
     task.schema.json              # JSON schema for task.json
     v1/                           # V1: 152 task directories

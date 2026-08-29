@@ -1,0 +1,4 @@
+{
+  "url_pattern": "change\\.org/api-proxy/graphql.*op=GenerateAiDraft|change\\.org/api-proxy/graphql.*op=CreatePetition|change\\.org/api-proxy/graphql.*op=SAPCreatePetition",
+  "method": "POST"
+}

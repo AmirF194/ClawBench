@@ -1,0 +1,4 @@
+{
+  "url_pattern": "lowes\\.myhomeprojectcenter\\.com.*/lead|lowes\\.com.*/schedule|lowes\\.com.*/consultation|lowes\\.com.*/install-services|lowes\\.com.*/measurerequest",
+  "method": "POST"
+}

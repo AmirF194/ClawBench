@@ -1,0 +1,4 @@
+{
+  "url_pattern": "reviews\\.capterra\\.com/api/v1/products/[^/]+/partial-review",
+  "method": "POST"
+}

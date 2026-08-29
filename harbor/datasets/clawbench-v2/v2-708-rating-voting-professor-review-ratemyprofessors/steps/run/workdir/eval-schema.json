@@ -1,0 +1,7 @@
+{
+  "url_pattern": "ratemyprofessors\\.com/graphql",
+  "method": "POST",
+  "body": {
+    "operationName": "RateTeacherMutation"
+  }
+}

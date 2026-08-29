@@ -279,6 +279,7 @@ harness 是驱动浏览器的智能体框架，和模型是两个独立维度。
 | --- | --- |
 | 用托管的远程浏览器代替本地容器 | [`docs/browser-runtimes.md`](browser-runtimes.md) —— Kernel 和 Browserbase 配置、参数与录制 |
 | 用 Harbor 框架跑 V2（并且跑得快） | [`docs/harbor.md`](harbor.md) —— 转换、judge 配置、并发、排错 |
+| 把 ClawBench 当作 Harbor 数据集直接拉取（`harbor run --repo TIGER-AI-Lab/ClawBench -d clawbench-v2`） | [`harbor/README.md`](../harbor/README.md) —— 仓库内 registry、发布到 Hub、adapter 包 |
 | 查所有 CLI 命令和参数 | [`docs/cli.md`](cli.md) |
 
 <details>
@@ -960,15 +961,17 @@ Pi 的 `agent.log`、`proxy.log` 等 harness 诊断日志不会复制到最终�
 
 ## Star 历史
 
-## Star History
-
+<p align="center">
 <a href="https://www.star-history.com/?type=date&repos=TIGER-AI-Lab%2FClawBench">
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&theme=dark&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" width="720" />
  </picture>
 </a>
+</p>
+
+<p align="center"><sub>实时图表 —— 点击在 star-history.com 打开。姊妹项目：<a href="https://github.com/reacher-z/HarnessBench">HarnessBench</a> · <a href="https://github.com/TIGER-AI-Lab/RewardHarness">RewardHarness</a></sub></p>
 
 ## 许可证与致谢
 

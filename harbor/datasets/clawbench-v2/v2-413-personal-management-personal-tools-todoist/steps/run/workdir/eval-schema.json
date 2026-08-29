@@ -1,0 +1,4 @@
+{
+  "url_pattern": "app\\.todoist\\.com/api/v1/sync",
+  "method": "POST"
+}

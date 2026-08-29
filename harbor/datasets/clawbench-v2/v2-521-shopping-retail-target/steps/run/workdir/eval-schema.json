@@ -1,0 +1,4 @@
+{
+  "url_pattern": "carts\\.target\\.com/web_checkouts/v\\d+/cart_items",
+  "method": "POST"
+}

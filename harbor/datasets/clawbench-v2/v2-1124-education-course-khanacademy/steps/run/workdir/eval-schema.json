@@ -1,0 +1,4 @@
+{
+  "url_pattern": "khanacademy\\.org/api/internal/graphql/setUserCourses",
+  "method": "POST"
+}

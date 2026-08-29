@@ -1,0 +1,4 @@
+{
+  "url_pattern": "myrecipes\\.com/api/v\\d+/review/save",
+  "method": "POST"
+}

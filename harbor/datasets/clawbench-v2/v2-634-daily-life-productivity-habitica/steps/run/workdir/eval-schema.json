@@ -1,0 +1,4 @@
+{
+  "url_pattern": "habitica\\.com/api/v\\d+/tasks/user",
+  "method": "POST"
+}

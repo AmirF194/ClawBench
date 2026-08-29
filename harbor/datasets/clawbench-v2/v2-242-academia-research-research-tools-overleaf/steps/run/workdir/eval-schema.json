@@ -1,0 +1,4 @@
+{
+  "url_pattern": "overleaf\\.com/project/[a-f0-9]+/settings",
+  "method": "POST"
+}

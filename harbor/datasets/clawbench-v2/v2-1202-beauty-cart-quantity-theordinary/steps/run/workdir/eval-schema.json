@@ -1,0 +1,4 @@
+{
+  "url_pattern": "theordinary\\.com.*Cart-AddProduct",
+  "method": "POST"
+}

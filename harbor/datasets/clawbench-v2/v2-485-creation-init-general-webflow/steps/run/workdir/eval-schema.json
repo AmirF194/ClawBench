@@ -1,0 +1,4 @@
+{
+  "url_pattern": "webflow\\.com/api/workspaces/[^/]+/sites",
+  "method": "POST"
+}

@@ -1,0 +1,4 @@
+{
+  "url_pattern": "semanticscholar\\.org/api/1/alert",
+  "method": "POST"
+}

@@ -1,0 +1,4 @@
+{
+  "url_pattern": "strava\\.com\\/activities",
+  "method": "POST"
+}

@@ -1,0 +1,4 @@
+{
+  "url_pattern": "coolors\\.co/ajax/export-palette",
+  "method": "POST"
+}

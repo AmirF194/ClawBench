@@ -1,0 +1,4 @@
+{
+  "url_pattern": "redcross\\.org\\/take-a-class\\/search.*(?:q|query|zip|searchtype|location)=",
+  "method": "GET"
+}

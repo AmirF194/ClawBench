@@ -1,0 +1,4 @@
+{
+  "url_pattern": "workable\\.com.*(jobs?/(create|publish|new|draft)|api/(spi|v\\d+)/jobs|careers/publish|/openings)",
+  "method": "POST"
+}

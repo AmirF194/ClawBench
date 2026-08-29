@@ -120,6 +120,35 @@ def test_write_harbor_task_emits_expected_tree_and_extra_info(tmp_path: Path) ->
     assert "BROWSER_CDP_URL" in (out / "steps" / "run" / "instruction.md").read_text()
 
 
+def test_write_harbor_task_prebuilt_image_mode(tmp_path: Path) -> None:
+    case = _write_case(
+        tmp_path / "v2", "v2-047-daily-life-personal-care-taskrabbit", _task()
+    )
+
+    out = write_harbor_task(
+        task_dir=case,
+        task=_task(),
+        output_root=tmp_path / "out",
+        output_name="v2-047-daily-life-personal-care-taskrabbit",
+        org="clawbench",
+        dataset_name="v2",
+        docker_image="ghcr.io/tiger-ai-lab/clawbench-harbor-runtime:0.9.2",
+    )
+
+    # No build context is shipped; the image carries the runtime instead.
+    assert not (out / "environment").exists()
+    assert (out / "steps" / "run" / "workdir" / "setup.sh").is_file()
+    assert (out / "steps" / "run" / "tests" / "test.sh").is_file()
+
+    config = tomllib.loads((out / "task.toml").read_text())
+    assert (
+        config["environment"]["docker_image"]
+        == "ghcr.io/tiger-ai-lab/clawbench-harbor-runtime:0.9.2"
+    )
+    assert config["environment"]["workdir"] == "/app"
+    assert config["environment"]["network_mode"] == "public"
+
+
 def test_harbor_adapter_cli_smoke(tmp_path: Path) -> None:
     out = tmp_path / "harbor-v2"
     env = os.environ.copy()

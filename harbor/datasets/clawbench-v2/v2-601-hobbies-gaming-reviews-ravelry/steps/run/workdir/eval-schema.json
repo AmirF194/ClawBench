@@ -1,0 +1,4 @@
+{
+  "url_pattern": "ravelry\\.com/patterns/library/[^/]+/bookmark",
+  "method": "POST"
+}

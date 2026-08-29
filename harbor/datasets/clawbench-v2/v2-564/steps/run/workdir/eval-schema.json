@@ -1,0 +1,4 @@
+{
+  "url_pattern": "eventbrite\\.com/purchase-flow-webapp/api/v\\d+/orders/create",
+  "method": "POST"
+}

@@ -1,0 +1,4 @@
+{
+  "url_pattern": "trakt\\.tv.*(users/me/lists)",
+  "method": "POST"
+}

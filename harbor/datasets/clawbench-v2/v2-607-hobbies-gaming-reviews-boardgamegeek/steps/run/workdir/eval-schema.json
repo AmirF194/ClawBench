@@ -1,0 +1,4 @@
+{
+  "url_pattern": "boardgamegeek\\.com/(geekplay|api/plays)",
+  "method": "POST"
+}

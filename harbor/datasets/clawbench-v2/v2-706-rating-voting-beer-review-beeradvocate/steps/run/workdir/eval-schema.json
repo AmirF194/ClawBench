@@ -1,0 +1,4 @@
+{
+  "url_pattern": "beeradvocate\\.com/beer/rate/\\d+",
+  "method": "POST"
+}

@@ -1,0 +1,4 @@
+{
+  "url_pattern": "smartapply\\.indeed\\.com/beta/indeedapply/resumeapply|apply\\.indeed\\.com/indeedapply/postresumeapply|smartapply\\.indeed\\.com/beta/indeedapply/submit",
+  "method": "POST"
+}

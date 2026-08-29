@@ -1,0 +1,4 @@
+{
+  "url_pattern": "airtable\\.com/v0\\.3/application/[^/]+/create",
+  "method": "POST"
+}

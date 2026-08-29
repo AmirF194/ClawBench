@@ -1,0 +1,4 @@
+{
+  "url_pattern": "services\\.ticketmaster\\.com/api/ismds/event/[A-Z0-9]+/quickpicks.*qty=4.*sort=-quality",
+  "method": "GET"
+}

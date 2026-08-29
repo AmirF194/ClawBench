@@ -1,0 +1,4 @@
+{
+  "url_pattern": "taskrabbit\\.(com|ca)/(api/v\\d+/jobs|book/\\d+/confirm)",
+  "method": "POST"
+}

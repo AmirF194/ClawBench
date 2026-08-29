@@ -19,3 +19,13 @@ build/
 run-logs/
 harbor-datasets/
 harbor-jobs/
+
+# macOS AppleDouble sidecars (created when files are copied from a Mac)
+._*
+
+# Harbor: full generated datasets are build output (see harbor/README.md);
+# only the committed prebuilt-mode dataset under harbor/datasets/ is tracked.
+harbor/datasets/*/
+!harbor/datasets/clawbench-v2/
+harbor/jobs/
+harbor/trials/

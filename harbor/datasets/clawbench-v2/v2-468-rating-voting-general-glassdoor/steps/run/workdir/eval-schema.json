@@ -1,0 +1,4 @@
+{
+  "url_pattern": "glassdoor\\.com/(graph|api|a/interview)",
+  "method": "POST"
+}

@@ -1,0 +1,4 @@
+{
+  "url_pattern": "eatthismuch\\.com/api/v\\d+/mealtype/",
+  "method": "POST"
+}

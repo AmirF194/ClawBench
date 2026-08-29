@@ -130,8 +130,15 @@ def task_toml(
     dataset_name: str,
     timeout_sec: int,
     task_dir_name: str,
+    docker_image: str | None = None,
 ) -> str:
     escaped_description = json.dumps(description)
+    # Prebuilt mode: point Harbor at a published runtime image instead of the
+    # per-task environment/ build context. The image must be built from
+    # src/clawbench/runtime/harbor/Dockerfile (see scripts/harbor/).
+    docker_image_line = (
+        f"docker_image = {json.dumps(docker_image)}\n" if docker_image else ""
+    )
     escaped_dataset = json.dumps(dataset_name)
     escaped_source = json.dumps(task_dir_name)
     escaped_package = json.dumps(package_name)
@@ -149,7 +156,7 @@ dataset = {escaped_dataset}
 source_task = {escaped_source}
 
 [environment]
-build_timeout_sec = 1200.0
+{docker_image_line}build_timeout_sec = 1200.0
 network_mode = "public"
 workdir = "/app"
 
@@ -265,6 +272,7 @@ def write_harbor_task(
     output_name: str,
     org: str,
     dataset_name: str,
+    docker_image: str | None = None,
 ) -> Path:
     dest = output_root / output_name
     if dest.exists():
@@ -274,7 +282,7 @@ def write_harbor_task(
     workdir = step_dir / "workdir"
     tests_dir = step_dir / "tests"
     solution_dir = step_dir / "solution"
-    for path in (env_dir, workdir, tests_dir, solution_dir):
+    for path in (workdir, tests_dir, solution_dir):
         path.mkdir(parents=True, exist_ok=True)
 
     raw_metadata = task.get("metadata")
@@ -292,6 +300,7 @@ def write_harbor_task(
             dataset_name=dataset_name,
             timeout_sec=timeout_sec,
             task_dir_name=task_dir.name,
+            docker_image=docker_image,
         )
     )
     (step_dir / "instruction.md").write_text(harbor_instruction(task))
@@ -302,7 +311,8 @@ def write_harbor_task(
     (tests_dir / "task.json").write_text(json.dumps(task, indent=2, ensure_ascii=False))
     write_text_executable(tests_dir / "test.sh", test_script())
     write_text_executable(solution_dir / "solve.sh", solve_script())
-    copy_environment(env_dir)
+    if docker_image is None:
+        copy_environment(env_dir)
     return dest
 
 
@@ -338,6 +348,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--overwrite",
         action="store_true",
         help="Overwrite an existing output directory",
+    )
+    parser.add_argument(
+        "--docker-image",
+        default=None,
+        help=(
+            "Prebuilt runtime image (e.g. ghcr.io/tiger-ai-lab/clawbench-harbor-runtime:0.9.2). "
+            "When set, tasks reference the image instead of shipping an environment/ build "
+            "context, which keeps a committed dataset small."
+        ),
     )
     return parser
 
@@ -384,6 +403,7 @@ def main(argv: list[str] | None = None) -> int:
                 output_name=out_name,
                 org=args.org,
                 dataset_name=args.dataset_name,
+                docker_image=args.docker_image,
             )
         )
 

@@ -1,0 +1,4 @@
+{
+  "url_pattern": "api\\.doodle\\.com/scheduling/scheduling-attempts",
+  "method": "POST"
+}

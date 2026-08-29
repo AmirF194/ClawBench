@@ -1,0 +1,4 @@
+{
+  "url_pattern": "trakt\\.tv.*(sync/history)",
+  "method": "POST"
+}

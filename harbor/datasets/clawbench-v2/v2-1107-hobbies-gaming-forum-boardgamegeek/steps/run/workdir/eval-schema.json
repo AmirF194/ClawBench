@@ -1,0 +1,4 @@
+{
+  "url_pattern": "geekdo\\.com/api/thread",
+  "method": "POST"
+}

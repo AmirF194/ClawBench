@@ -1,0 +1,4 @@
+{
+  "url_pattern": "vivino\\.com/api/vintages/\\d+/reviews",
+  "method": "POST"
+}

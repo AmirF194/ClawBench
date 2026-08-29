@@ -1,0 +1,4 @@
+{
+  "url_pattern": "api\\.bark\\.com/bark/pre",
+  "method": "POST"
+}

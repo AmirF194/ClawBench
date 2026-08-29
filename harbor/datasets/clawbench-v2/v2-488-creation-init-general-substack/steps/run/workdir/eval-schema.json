@@ -1,0 +1,4 @@
+{
+  "url_pattern": "substack\\.com/api/v1/drafts/\\d+/publish",
+  "method": "POST"
+}

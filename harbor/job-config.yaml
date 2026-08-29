@@ -1,0 +1,17 @@
+# harbor run -c harbor/job-config.yaml -m <provider/model> --env-file .env --ve CLAWBENCH_JUDGE_*=...
+# Local Docker sweep of the committed prebuilt-mode dataset. See harbor/README.md.
+jobs_dir: harbor/jobs
+n_attempts: 1
+timeout_multiplier: 1.0
+orchestrator:
+  type: local
+  n_concurrent_trials: 4
+  quiet: false
+environment:
+  type: docker
+  force_build: false
+  delete: true
+agents:
+  - name: hermes
+datasets:
+  - path: harbor/datasets/clawbench-v2

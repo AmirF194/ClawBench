@@ -1,0 +1,4 @@
+{
+  "url_pattern": "github\\.com/repositories$",
+  "method": "POST"
+}

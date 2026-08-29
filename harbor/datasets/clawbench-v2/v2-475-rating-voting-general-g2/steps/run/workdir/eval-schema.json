@@ -1,0 +1,4 @@
+{
+  "url_pattern": "g2\\.com/survey_responses/.+/autosave_answers\\.json",
+  "method": "POST"
+}

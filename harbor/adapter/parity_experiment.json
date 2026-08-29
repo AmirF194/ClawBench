@@ -1,0 +1,34 @@
+[
+  {
+    "adapter_name": "clawbench",
+    "agent": "hermes@<version>",
+    "model": "deepseek/deepseek-v4-flash",
+    "date": "YYYY-MM-DD",
+    "adapted_benchmark_size": 129,
+    "parity_benchmark_size": 129,
+    "number_of_runs": 3,
+    "notes": "Original side: clawbench-batch --harness hermes --cases-suite v2 --all-cases, rescored with clawbench-rescore --judge-model deepseek-v4-pro --rubric both. Harbor side: harbor run -c adapters/clawbench/run_clawbench.yaml -a hermes with the same judge env. Timeouts / infra failures count as reward 0.",
+    "original_parity_repo": "https://github.com/TIGER-AI-Lab/ClawBench",
+    "adapter_pr": [],
+    "dataset_pr": [],
+    "parity_pr": [],
+    "metrics": [
+      {
+        "benchmark_name": "clawbench-v2",
+        "metric": "Reward (lenient judge)",
+        "original": "<mean +/- sample_SEM>",
+        "harbor": "<mean +/- sample_SEM>",
+        "original_runs": [],
+        "harbor_runs": []
+      },
+      {
+        "benchmark_name": "clawbench-v2",
+        "metric": "Intercepted",
+        "original": "<mean +/- sample_SEM>",
+        "harbor": "<mean +/- sample_SEM>",
+        "original_runs": [],
+        "harbor_runs": []
+      }
+    ]
+  }
+]

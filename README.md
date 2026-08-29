@@ -333,6 +333,7 @@ Full registry: [`src/clawbench/runtime/harnesses/harnesses.yaml`](src/clawbench/
 | --- | --- |
 | Use a managed remote browser instead of a local container | [`docs/browser-runtimes.md`](docs/browser-runtimes.md) — Kernel and Browserbase setup, options, and recordings |
 | Run V2 through the Harbor framework (and run it fast) | [`docs/harbor.md`](docs/harbor.md) — conversion, judge wiring, concurrency, troubleshooting |
+| Pull ClawBench as a Harbor dataset (`harbor run --repo TIGER-AI-Lab/ClawBench -d clawbench-v2`) | [`harbor/README.md`](harbor/README.md) — in-repo registry, Hub publishing, adapter package |
 | See every CLI command and flag | [`docs/cli.md`](docs/cli.md) |
 
 <details>
@@ -1021,15 +1022,17 @@ Open to contributions — new test cases, bug fixes, or evaluation submissions f
 
 ## Star History
 
-## Star History
-
+<p align="center">
 <a href="https://www.star-history.com/?type=date&repos=TIGER-AI-Lab%2FClawBench">
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&theme=dark&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=TIGER-AI-Lab/ClawBench&type=date&legend=top-left&sealed_token=TZeXwgvoa-F4OXufUJG_yeQiaNJ3qK5xGDCyv4iJiF1UvtEWAfS4a3mN5_3tsdq8V-YHSGS6kjAsDJoAScK6tTCEqNl5hYsfec3LzAqQWDG2lNkdmTkIlg" width="720" />
  </picture>
 </a>
+</p>
+
+<p align="center"><sub>Live chart — click to open on star-history.com. Sister projects: <a href="https://github.com/reacher-z/HarnessBench">HarnessBench</a> · <a href="https://github.com/TIGER-AI-Lab/RewardHarness">RewardHarness</a></sub></p>
 
 ## License & Acknowledgments
 

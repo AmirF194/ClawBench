@@ -1,0 +1,4 @@
+{
+  "url_pattern": "www\\.edx\\.org/(track-select/|learn/)",
+  "method": "POST"
+}

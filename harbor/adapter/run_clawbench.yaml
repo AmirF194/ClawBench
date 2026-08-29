@@ -1,0 +1,25 @@
+jobs_dir: jobs
+n_attempts: 1
+timeout_multiplier: 1.0
+orchestrator:
+  type: local
+  n_concurrent_trials: 4
+  quiet: false
+environment:
+  type: docker
+  force_build: false
+  delete: true
+  # Judge credentials (required for a non-zero reward):
+  # env:
+  #   CLAWBENCH_JUDGE_BASE_URL: ${CLAWBENCH_JUDGE_BASE_URL}
+  #   CLAWBENCH_JUDGE_API_KEY: ${CLAWBENCH_JUDGE_API_KEY}
+  #   CLAWBENCH_JUDGE_MODEL: deepseek-v4-pro
+  #   CLAWBENCH_JUDGE_API_TYPE: openai-completions
+  #   PURELY_MAIL_API_KEY: ${PURELY_MAIL_API_KEY}
+  #   PURELY_MAIL_DOMAIN: ${PURELY_MAIL_DOMAIN}
+agents:
+  - name: hermes
+  # - name: openclaw
+  # - name: claude-code
+datasets:
+  - path: datasets/clawbench

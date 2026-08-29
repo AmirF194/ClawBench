@@ -1,0 +1,4 @@
+{
+  "url_pattern": "when2meet\\.com/(SaveNewEvent|SaveTimes|api)",
+  "method": "POST"
+}

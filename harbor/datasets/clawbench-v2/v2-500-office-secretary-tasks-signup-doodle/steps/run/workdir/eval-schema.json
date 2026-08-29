@@ -1,0 +1,4 @@
+{
+  "url_pattern": "api\\.doodle\\.com/svc-sign-up-sheet/v[\\d.]+/sheets",
+  "method": "POST"
+}

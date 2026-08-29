@@ -1,0 +1,4 @@
+{
+  "url_pattern": "spirit-rock\\.secure\\.retreat\\.guru/program/.*\\?form=1",
+  "method": "POST"
+}

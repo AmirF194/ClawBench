@@ -1,0 +1,4 @@
+{
+  "url_pattern": "boards-api\\.greenhouse\\.io/v1/boards/.+/jobs/\\d+|job-boards\\.greenhouse\\.io/.+/jobs/\\d+",
+  "method": "POST"
+}

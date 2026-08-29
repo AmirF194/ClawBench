@@ -1,0 +1,7 @@
+{
+  "url_pattern": "psl\\.petfinder\\.com/graphql",
+  "method": "POST",
+  "body": {
+    "operationName": "RemoveAnimalFavorite"
+  }
+}

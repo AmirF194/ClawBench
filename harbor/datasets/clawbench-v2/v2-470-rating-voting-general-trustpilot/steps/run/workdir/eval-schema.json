@@ -1,0 +1,4 @@
+{
+  "url_pattern": "trustpilot\\.com/api/consumer/review",
+  "method": "POST"
+}

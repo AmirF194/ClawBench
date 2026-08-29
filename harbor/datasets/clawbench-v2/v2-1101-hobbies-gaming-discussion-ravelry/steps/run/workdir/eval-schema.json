@@ -1,0 +1,4 @@
+{
+  "url_pattern": "ravelry\\.com/discuss/[^/]+/topics",
+  "method": "POST"
+}

@@ -1,0 +1,4 @@
+{
+  "url_pattern": "www\\.autoslash\\.com/quote/contact-info/[0-9a-f-]+",
+  "method": "POST"
+}

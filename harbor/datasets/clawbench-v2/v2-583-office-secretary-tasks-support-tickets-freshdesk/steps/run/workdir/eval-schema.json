@@ -1,0 +1,4 @@
+{
+  "url_pattern": "freshdesk\\.com/api/_/tickets",
+  "method": "POST"
+}

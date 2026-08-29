@@ -1,0 +1,4 @@
+{
+  "url_pattern": "tripadvisor\\.com/data/graphql/ids",
+  "method": "POST"
+}

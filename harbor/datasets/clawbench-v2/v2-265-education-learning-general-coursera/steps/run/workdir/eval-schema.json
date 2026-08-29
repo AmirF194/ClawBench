@@ -1,0 +1,4 @@
+{
+  "url_pattern": "coursera\\.org/api/subscriptions\\.v1/\\?action=createCart",
+  "method": "POST"
+}

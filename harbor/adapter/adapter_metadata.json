@@ -1,0 +1,42 @@
+[
+  {
+    "adapter_name": "clawbench",
+    "adapter_builders": [
+      "Yuxuan Zhang (mtrxcop@gmail.com)"
+    ],
+    "original_benchmark": [
+      {
+        "split": "v2",
+        "size": 129,
+        "harness": "agent",
+        "supported_agents": [
+          "openclaw",
+          "hermes",
+          "opencode",
+          "claude-code",
+          "codex",
+          "browser-use",
+          "claw-code",
+          "pi",
+          "webbrain"
+        ],
+        "adaptable": true,
+        "notes": "V2 is the leaderboard corpus (129 tasks, live consumer websites). V1 (152 tasks) is not adapted: its eval schemas predate the two-stage judge."
+      }
+    ],
+    "harbor_adapter": [
+      {
+        "split": "v2",
+        "adapted_benchmark_size": 129,
+        "parity_benchmark_size": null,
+        "parity_sampling_rate": null,
+        "registry_benchmark_size": 129,
+        "added_agents": [],
+        "parity_matching_agents": [],
+        "parity_unmatching_agents": null,
+        "parity_costs": null,
+        "notes": "Parity pending. Plan: hermes + deepseek/deepseek-v4-flash, 3 runs per side, metrics Intercepted and Reward (lenient judge, deepseek-v4-pro)."
+      }
+    ]
+  }
+]

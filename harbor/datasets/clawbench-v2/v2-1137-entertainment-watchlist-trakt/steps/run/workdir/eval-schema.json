@@ -1,0 +1,4 @@
+{
+  "url_pattern": "trakt\\.tv.*(sync/ratings)",
+  "method": "POST"
+}

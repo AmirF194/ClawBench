@@ -1,0 +1,4 @@
+{
+  "url_pattern": "etsy\\.com/cart/listing",
+  "method": "POST"
+}

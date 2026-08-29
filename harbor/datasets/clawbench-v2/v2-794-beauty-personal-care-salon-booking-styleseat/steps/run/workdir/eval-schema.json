@@ -1,0 +1,4 @@
+{
+  "url_pattern": "styleseat\\.com/api/v1/appointment-request/",
+  "method": "POST"
+}

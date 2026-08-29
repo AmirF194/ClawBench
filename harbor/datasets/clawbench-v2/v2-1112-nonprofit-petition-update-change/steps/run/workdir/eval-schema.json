@@ -1,0 +1,4 @@
+{
+  "url_pattern": "change\\.org/api-proxy/graphql.*op=CreatePetitionUpdate",
+  "method": "POST"
+}

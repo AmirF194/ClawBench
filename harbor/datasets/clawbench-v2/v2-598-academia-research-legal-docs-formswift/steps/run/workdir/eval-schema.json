@@ -1,0 +1,4 @@
+{
+  "url_pattern": "api\\.formswift\\.com/static/document/save/",
+  "method": "POST"
+}

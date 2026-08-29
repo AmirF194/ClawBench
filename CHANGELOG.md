@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 ### Added
 - Added Kernel as a managed remote browser runtime with live view and downloaded replay recordings. Thanks to @[rgarcia](https://github.com/rgarcia).
+- Added a `harbor/` package: an in-repo Harbor registry (`registry.json` + committed `harbor/datasets/clawbench-v2/`) so `harbor run --repo TIGER-AI-Lab/ClawBench -d clawbench-v2` works without conversion, a `dataset.toml` manifest for publishing to the Harbor Hub, and a Harbor-official adapter package (`harbor/adapter/`) for upstreaming to `harbor-framework/harbor`.
+- Added `clawbench-harbor-adapt --docker-image` (prebuilt-image mode): generated tasks reference a published runtime image instead of shipping a 280 KB `environment/` build context each.
+
+### Fixed
+- README: removed the duplicated `## Star History` heading (EN + zh-CN).
 
 ## [0.9.2] - 2026-08-18
 ### Added
