@@ -49,6 +49,7 @@ CASE_SUITES = {
     "claw-eval": "test-cases/claw-eval",
 }
 DEFAULT_CASES_SUITE = "v2"
+MANAGED_BROWSER_RUNTIMES = frozenset({"browserbase", "kernel"})
 
 
 def load_models_yaml() -> dict:
@@ -242,6 +243,9 @@ async def run_job(
     batch_start: float,
     no_upload: bool = False,
     harness: str | None = None,
+    browser_runtime: str | None = None,
+    browser_cdp_url: str | None = None,
+    browser_runtime_options: str | None = None,
     judge: str | None = None,
     no_judge: bool = False,
 ) -> None:
@@ -284,6 +288,17 @@ async def run_job(
                     cmd_parts.append("--no-upload")
                 if harness:
                     cmd_parts += ["--harness", harness]
+                if browser_runtime:
+                    cmd_parts += ["--browser-runtime", browser_runtime]
+                    if browser_runtime in MANAGED_BROWSER_RUNTIMES:
+                        cmd_parts.append("--hide-browser-viewer")
+                if browser_cdp_url:
+                    cmd_parts += ["--browser-cdp-url", browser_cdp_url]
+                if browser_runtime_options:
+                    cmd_parts += [
+                        "--browser-runtime-options",
+                        browser_runtime_options,
+                    ]
                 if no_judge:
                     cmd_parts.append("--no-judge")
                 elif judge:
@@ -370,7 +385,12 @@ def print_progress(jobs: list[Job], start: float) -> None:
 # ---------------------------------------------------------------------------
 
 
-def print_summary(jobs: list[Job], elapsed: float, max_concurrent: int) -> None:
+def print_summary(
+    jobs: list[Job],
+    elapsed: float,
+    max_concurrent: int,
+    browser_runtime: str = "local",
+) -> None:
     print(f"\n{'=' * 60}")
     print("BATCH SUMMARY")
     print(f"{'=' * 60}")
@@ -401,9 +421,12 @@ def print_summary(jobs: list[Job], elapsed: float, max_concurrent: int) -> None:
     # copy-paste to debug with real-time noVNC.
     bad = [j for j in jobs if j.status in ("failed", "error")]
     if bad:
-        print("\nTo debug a failed case with live noVNC, re-run it as a single run:")
+        print("\nTo debug a failed case, re-run it as a single run:")
         for j in bad[:10]:
-            print(f"  uv run clawbench-run {j.case_dir} {j.model}")
+            print(
+                f"  uv run clawbench-run {j.case_dir} {j.model} "
+                f"--browser-runtime {browser_runtime}"
+            )
         if len(bad) > 10:
             print(f"  ... and {len(bad) - 10} more")
 
@@ -433,11 +456,18 @@ def print_run_stats(base_output: Path) -> None:
                 model = meta.get("model", model_dir.name)
                 intercepted = meta.get("intercepted", False)
                 duration = meta.get("duration_seconds", 0)
+                browser_runtime = meta.get("browser_runtime")
+                provider_recording = bool(
+                    isinstance(browser_runtime, dict)
+                    and browser_runtime.get("recording_mode") == "provider"
+                    and browser_runtime.get("recording_url")
+                )
             else:
                 case = run_dir.name
                 model = model_dir.name
                 intercepted = False
                 duration = 0
+                provider_recording = False
 
             # Count actions
             actions_file = data / "actions.jsonl"
@@ -462,6 +492,7 @@ def print_run_stats(base_output: Path) -> None:
                     "actions": actions,
                     "screenshots": screenshots,
                     "recording_mb": rec_mb,
+                    "provider_recording": provider_recording,
                     "duration": duration,
                     "intercepted": intercepted,
                 }
@@ -486,13 +517,16 @@ def print_run_stats(base_output: Path) -> None:
         abnormal = (
             r["actions"] == 0
             or r["screenshots"] == 0
-            or r["recording_mb"] < 0.5
+            or (not r["provider_recording"] and r["recording_mb"] < 0.5)
             or r["duration"] < 30
+        )
+        recording = (
+            "provider" if r["provider_recording"] else f"{r['recording_mb']:.1f} MB"
         )
         line = (
             f"{case:<{case_w}}  {r['model']:<{model_w}}  "
             f"{r['actions']:>7}  {r['screenshots']:>11}  "
-            f"{r['recording_mb']:>7.1f} MB  "
+            f"{recording:>10}  "
             f"{fmt_duration(r['duration']):>8}  {result}"
         )
         if abnormal:
@@ -506,7 +540,7 @@ def print_run_stats(base_output: Path) -> None:
         for r in rows
         if r["actions"] == 0
         or r["screenshots"] == 0
-        or r["recording_mb"] < 0.5
+        or (not r["provider_recording"] and r["recording_mb"] < 0.5)
         or r["duration"] < 30
     )
     print(f"\n{total_pass}/{len(rows)} intercepted", end="")
@@ -522,6 +556,7 @@ def write_summary_json(
     elapsed: float,
     max_concurrent: int,
     started_at: str,
+    browser_runtime: str = "local",
 ) -> None:
     now = datetime.now(timezone.utc).isoformat()
     data = {
@@ -529,6 +564,7 @@ def write_summary_json(
         "finished_at": now,
         "elapsed_seconds": round(elapsed),
         "max_concurrent": max_concurrent,
+        "browser_runtime": browser_runtime,
         "jobs": [
             {
                 "model": j.model,
@@ -555,6 +591,18 @@ async def async_main(args: argparse.Namespace) -> int:
     global shutdown_event
     shutdown_event = asyncio.Event()
     running_procs.clear()
+    browser_runtime = getattr(args, "browser_runtime", None) or "local"
+    if getattr(args, "max_concurrent", None) is None:
+        args.max_concurrent = 1 if browser_runtime in MANAGED_BROWSER_RUNTIMES else 2
+    if (
+        browser_runtime in MANAGED_BROWSER_RUNTIMES
+        and args.harness == "claude-code-chrome-extension"
+    ):
+        print(
+            f"ERROR: {browser_runtime} runtime does not support the "
+            "claude-code-chrome-extension harness"
+        )
+        return 1
 
     models = discover_models(args.models, args.all_models)
     cases = discover_cases(
@@ -578,6 +626,7 @@ async def async_main(args: argparse.Namespace) -> int:
     print(
         f"Job matrix: {len(models)} model(s) x {len(cases)} case(s) = {len(jobs)} job(s)"
     )
+    print(f"Browser runtime: {browser_runtime} (max_concurrent={args.max_concurrent})")
     for j in jobs:
         print(f"  {j.case_name} x {j.model}")
 
@@ -681,6 +730,9 @@ async def async_main(args: argparse.Namespace) -> int:
                 batch_start,
                 no_upload=args.no_upload,
                 harness=args.harness,
+                browser_runtime=browser_runtime,
+                browser_cdp_url=getattr(args, "browser_cdp_url", None),
+                browser_runtime_options=getattr(args, "browser_runtime_options", None),
                 judge=args.judge,
                 no_judge=args.no_judge,
             )
@@ -700,9 +752,15 @@ async def async_main(args: argparse.Namespace) -> int:
     loop.remove_signal_handler(signal.SIGTERM)
 
     elapsed = time.monotonic() - batch_start
-    print_summary(jobs, elapsed, args.max_concurrent)
-    print_run_stats(base_output)
-    write_summary_json(jobs, base_output, elapsed, args.max_concurrent, started_at)
+    print_summary(jobs, elapsed, args.max_concurrent, browser_runtime)
+    write_summary_json(
+        jobs,
+        base_output,
+        elapsed,
+        args.max_concurrent,
+        started_at,
+        browser_runtime,
+    )
     print(f"\nSummary written to {base_output / 'batch-summary.json'}")
 
     # Upload batch summary to HuggingFace
@@ -722,6 +780,8 @@ async def async_main(args: argparse.Namespace) -> int:
                 f"batch-summaries/{safe_ts}-batch-summary.json",
                 hf_env,
             )
+
+    print_run_stats(base_output)
 
     has_errors = any(j.status == "error" for j in jobs)
     return 1 if has_errors else 0
@@ -762,7 +822,10 @@ def main() -> None:
     )
     p.add_argument("--case-range", default=None, help="Numeric ID range, e.g. 1-50")
     p.add_argument(
-        "--max-concurrent", type=int, default=2, help="Max parallel jobs (default: 2)"
+        "--max-concurrent",
+        type=int,
+        default=None,
+        help="Max parallel jobs (default: 1 for managed runtimes, otherwise 2)",
     )
     p.add_argument("--output-dir", default="test-output", help="Base output directory")
     p.add_argument(
@@ -789,13 +852,34 @@ def main() -> None:
             "any (case x model) job whose batch-logs/<case>-<model>.log already exists."
         ),
     )
-    from clawbench.runner.run import HARNESSES, DEFAULT_HARNESS
+    from clawbench.runner.run import DEFAULT_HARNESS, HARNESSES
 
     p.add_argument(
         "--harness",
         choices=HARNESSES,
         default=DEFAULT_HARNESS,
         help=f"Coding-agent harness (default: {DEFAULT_HARNESS})",
+    )
+    from clawbench.runner.run_support.browser_runtime import BROWSER_RUNTIME_CHOICES
+
+    p.add_argument(
+        "--browser-runtime",
+        choices=BROWSER_RUNTIME_CHOICES,
+        default=None,
+        help=(
+            "Browser runtime provider: local, remote-cdp, steel, browserbase, or kernel "
+            "(default: local)"
+        ),
+    )
+    p.add_argument(
+        "--browser-cdp-url",
+        default=None,
+        help="CDP endpoint for --browser-runtime remote-cdp",
+    )
+    p.add_argument(
+        "--browser-runtime-options",
+        default=None,
+        help="JSON object with provider-specific browser runtime options",
     )
     p.add_argument(
         "--judge",

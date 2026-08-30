@@ -249,9 +249,14 @@ HERMES_ARGS=(chat
   --yolo
   --ignore-rules
   --toolsets "browser,file"
-  --model "$HERMES_MODEL_NAME"
-  --provider "$HERMES_PROVIDER"
-  -q "$HERMES_INSTRUCTION")
+  --model "$HERMES_MODEL_NAME")
+# Hermes supports custom OpenAI-compatible endpoints through config.yaml, but
+# recent CLI builds reject "custom" as an explicit --provider choice. Let the
+# generated config select it; built-in providers remain explicit.
+if [ "$HERMES_PROVIDER" != "custom" ]; then
+  HERMES_ARGS+=(--provider "$HERMES_PROVIDER")
+fi
+HERMES_ARGS+=(-q "$HERMES_INSTRUCTION")
 : > /data/usage.jsonl
 python3 /hermes-capture.py "${HERMES_ARGS[@]}" > /tmp/hermes-stdout.log 2> /tmp/hermes-stderr.log &
 AGENT_PID=$!

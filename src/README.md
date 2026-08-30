@@ -196,12 +196,22 @@ A stagger delay is applied between job starts since during container startup it 
 | `--cases-dir PATH`        | Custom case directory                                     | none                                            |
 | `--all-cases`             | Use all task directories in the selected suite/dir        | false                                            |
 | `--case-range START-END`  | Filter by numeric case ID prefix                          | none                                             |
-| `--max-concurrent N`      | Max parallel jobs; a recommended value is 1/3 - 1/2 n CPU | 2                                                |
+| `--max-concurrent N`      | Max parallel jobs; managed runtimes default to 1            | 2 locally, 1 with Kernel/Browserbase             |
 | `--output-dir PATH`       | Base output directory                                     | `test-output`                                    |
 | `--stagger-delay SECONDS` | Minimum gap between consecutive container starts          | 15                                               |
 | `--dry-run`               | Print job matrix without running                          | false                                            |
 | `--no-upload`             | Skip HuggingFace upload for all runs                      | false                                            |
 | `--harness NAME`          | Harness image to use                                      | `openclaw`                                       |
+| `--browser-runtime NAME`  | Browser runtime (`local`, `remote-cdp`, `kernel`, or `browserbase`) | `local`                                  |
+| `--browser-cdp-url URL`   | CDP endpoint used with `--browser-runtime remote-cdp`      | none                                             |
+| `--browser-runtime-options JSON` | Provider options such as Browserbase region or proxies | none                                          |
+
+Kernel reads `KERNEL_API_KEY`; Browserbase reads `BROWSERBASE_API_KEY`. Both
+can be set in `.env.local` or the process environment. Kernel replay video is
+downloaded to `data/recording.mp4`; Browserbase's provider-hosted Session
+Inspector URL is stored in `browser_runtime.recording_url` in `run-meta.json`.
+Signed provider CDP URLs are mounted into the runtime container through a
+temporary read-only secret file and redacted from saved metadata.
 
 Signal handling:
 

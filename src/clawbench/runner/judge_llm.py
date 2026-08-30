@@ -30,6 +30,8 @@ import urllib.request
 import urllib.error
 from typing import Any
 
+from clawbench.runner.judge import _coerce_match
+
 
 JUDGE_SYSTEM = """You are a lenient evaluator for a web-agent benchmark.
 
@@ -143,8 +145,12 @@ def _call_anthropic_messages(
     )
 
 
-def _parse_verdict(raw: str) -> tuple[bool, str]:
-    """Best-effort parse of the judge's reply into (match, reason). Default TRUE on parse failure."""
+def _parse_verdict(raw: str) -> tuple[bool | None, str]:
+    """Best-effort parse of the judge's reply into (match, reason).
+
+    Returns None when the reply carries no usable verdict, so an unparseable
+    judge response is reported as inconclusive instead of silently passing.
+    """
     try:
         # Strip markdown fences if any
         s = raw.strip()
@@ -153,17 +159,19 @@ def _parse_verdict(raw: str) -> tuple[bool, str]:
             if s.endswith("```"):
                 s = s.rsplit("\n", 1)[0] if "\n" in s else s.rstrip("`")
         obj = json.loads(s)
-        return bool(obj.get("match", True)), str(obj.get("reason", ""))
+        return _coerce_match(obj.get("match")), str(obj.get("reason", ""))
     except Exception:
-        # Fall back to keyword scan, defaulting to TRUE (per lenient rubric)
+        # Keyword fallback for replies that are not valid JSON. An unparseable
+        # reply is inconclusive (None), never an implicit pass.
         low = raw.lower()
-        if (
-            "false" in low
-            and "match" in low
-            and low.find("false") - low.find("match") < 80
-        ):
+        if "match" not in low:
+            return None, raw[:200] or "unparseable"
+        after = low.split("match", 1)[1][:80]
+        if "false" in after:
             return False, raw[:200]
-        return True, raw[:200]
+        if "true" in after:
+            return True, raw[:200]
+        return None, raw[:200] or "unparseable"
 
 
 def judge_request(

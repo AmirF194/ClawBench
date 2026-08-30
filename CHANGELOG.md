@@ -8,8 +8,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Added Kernel as a managed remote browser runtime with live view and downloaded replay recordings. Thanks to @[rgarcia](https://github.com/rgarcia).
+
+### Fixed
+- Fixed an issue where malformed per-run metadata could prevent `batch-summary.json` from being written and, when configured, uploaded.
+
+## [0.9.2] - 2026-08-18
+### Added
+- Added support for the [WebBrain](https://github.com/webbrain-one/webbrain) harness. Thanks to @alectimison-maker.
+
+### Fixed
+- Fixed the handling of judge LLM API returns malformed JSON, which caused undetermined behavior when the of the LLM judge.
+
+## [0.9.1] - 2026-08-04
+### Fixed
+- Fixed the issue that the x11vnc is not started properly in `--human` mode.
+
+## [0.9.0] - 2026-08-03
+
+### Added
+
+- Supported Browserbase as a remote browser runtime for less resource consumption and better scalability.
+
+### Fixed
+
+- Fixed Hermes startup with custom OpenAI-compatible model endpoints.
+
+## [0.8.0] - 2026-08-01
+### Added
 - Added support for remote browsers with CDP connection.
 - Added a preflight API call to check if the LLM API is valid before starting actual tasks.
+- Added support for using Gemini API as a judge.
+- Added a random-click baseline harness to provide a baseline for comparison with LLM agents.
+- Added the adaptor to make ClawBench V2 compatible with the EdgeBench/SForge benchmark.
 
 ## [0.7.0] - 2026-06-22
 ### Added

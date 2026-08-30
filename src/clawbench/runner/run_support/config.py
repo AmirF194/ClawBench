@@ -117,9 +117,11 @@ def load_models_yaml() -> dict:
 
 
 def load_runtime_env() -> dict[str, str]:
-    """Load runtime credentials, preferring workspace overrides."""
+    """Load runtime credentials in increasing precedence order."""
     env = load_dotenv(bundled_path(".env"))
     env.update(load_dotenv(workspace_path(".env")))
+    env.update(load_dotenv(workspace_path(".env.local")))
+    env.update(os.environ)
     return env
 
 

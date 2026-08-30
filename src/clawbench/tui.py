@@ -524,6 +524,26 @@ def run_cmd(cmd: list[str], *, hint: str | None = None) -> None:
     os.execvp(cmd[0], cmd)
 
 
+def _pick_browser_runtime(harness: str) -> str | None:
+    choices = [questionary.Choice("Local Chrome", value="local")]
+    if harness != "claude-code-chrome-extension":
+        choices.extend(
+            [
+                questionary.Choice("Kernel cloud browser", value="kernel"),
+                questionary.Choice(
+                    "Browserbase cloud browser",
+                    value="browserbase",
+                ),
+            ]
+        )
+    return questionary.select(
+        "Browser runtime:",
+        choices=choices,
+        default="local",
+        style=STYLE,
+    ).ask()
+
+
 def _confirm_launch(summary: dict) -> bool:
     """Show a summary panel and ask for confirmation."""
     table = Table(show_header=False, box=None, padding=(0, 2))
@@ -621,6 +641,11 @@ def mode_single(
     if harness is None:
         return
 
+    console.print(f"\n[bold {ACCENT}]--- Select Browser Runtime ---[/]\n")
+    browser_runtime = _pick_browser_runtime(harness)
+    if browser_runtime is None:
+        return
+
     console.print(f"\n[bold {ACCENT}]--- Select Test Case ---[/]\n")
     case = questionary.select(
         "Case (arrow keys, or type to filter):",
@@ -638,6 +663,7 @@ def mode_single(
             "Dataset": dataset_summary,
             "Model": model,
             "Harness": harness,
+            "Browser runtime": browser_runtime,
             "Case": case,
         }
     )
@@ -653,9 +679,17 @@ def mode_single(
             model,
             "--harness",
             harness,
+            "--browser-runtime",
+            browser_runtime,
         ],
         hint=(
-            "  [dim]Tip: once the container starts, open the noVNC URL\n"
+            "  [dim]Tip: open the Browserbase Inspector URL printed below\n"
+            "  to watch the cloud browser and access its recording.[/]"
+            if browser_runtime == "browserbase"
+            else "  [dim]Tip: open the Kernel live-view URL printed below\n"
+            "  to watch the cloud browser in real time.[/]"
+            if browser_runtime == "kernel"
+            else "  [dim]Tip: once the container starts, open the noVNC URL\n"
             "  printed below to watch the agent operate the browser\n"
             "  in real-time.[/]"
         ),
@@ -699,6 +733,11 @@ def mode_batch(
         style=STYLE,
     ).ask()
     if harness is None:
+        return
+
+    console.print(f"\n[bold {ACCENT}]--- Select Browser Runtime ---[/]\n")
+    browser_runtime = _pick_browser_runtime(harness)
+    if browser_runtime is None:
         return
 
     console.print(f"\n[bold {ACCENT}]--- Case Selection ---[/]\n")
@@ -748,7 +787,14 @@ def mode_batch(
         case_args = ["--cases"] + [f"{cases_dir_name}/{c}" for c in selected_cases]
         case_summary = f"{len(selected_cases)} selected"
 
-    recommended = _recommend_concurrent()
+    if browser_runtime in {"browserbase", "kernel"}:
+        recommended = 1
+        console.print(
+            f"  {browser_runtime.capitalize()} concurrency depends on the account limit; "
+            "defaulting to [green bold]1[/]."
+        )
+    else:
+        recommended = _recommend_concurrent()
     concurrent = questionary.text(
         "Max concurrent jobs:",
         default=str(recommended),
@@ -768,6 +814,7 @@ def mode_batch(
             "Dataset": dataset_summary,
             "Models": ", ".join(selected_models),
             "Harness": harness,
+            "Browser runtime": browser_runtime,
             "Cases": case_summary,
             "Concurrent": concurrent,
             "Dry run": "Yes" if dry else "No",
@@ -787,6 +834,8 @@ def mode_batch(
         concurrent,
         "--harness",
         harness,
+        "--browser-runtime",
+        browser_runtime,
     ]
     if dry:
         cmd.append("--dry-run")
