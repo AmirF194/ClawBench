@@ -17,8 +17,11 @@
   },
   "instruction": "Find the nearest Red Cross chapter to zip code 90210 using the local chapter finder on redcross.org",
   "eval_schema": {
-    "url_pattern": "redcross\\.org\\/find-your-local-chapter",
-    "method": "GET"
+    "url_pattern": "redcross\\.org/api/lookup/v1/region-mappings/90210(?:\\?|$)",
+    "method": "GET",
+    "params": {
+      "type": "RCO"
+    }
   },
   "time_limit": 30,
   "extra_info": []

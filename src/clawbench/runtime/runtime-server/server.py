@@ -493,6 +493,7 @@ def start_cdp_handler(
             if not INTERCEPTION_FILE.exists():
                 result = {
                     "intercepted": True,
+                    "intercepted_at": time.time(),
                     "request": request_obj,
                     "schema": eval_schema,
                 }

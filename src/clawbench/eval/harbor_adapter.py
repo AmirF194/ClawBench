@@ -175,7 +175,7 @@ name = "{STEP_NAME}"
 timeout_sec = {float(timeout_sec):.1f}
 
 [steps.verifier]
-timeout_sec = 180.0
+timeout_sec = 300.0
 
 [steps.healthcheck]
 command = "curl -sf http://127.0.0.1:7878/api/status | grep -q '\\\"eval_interceptor_ready\\\":true' && curl -sf http://127.0.0.1:9223/json/version >/dev/null"
@@ -198,6 +198,10 @@ cp /app/eval-schema.json /eval-schema.json
   --task-json /app/task.json \
   --extra-info-dir /app/extra_info \
   --output-dir /app/my-info
+
+# Harbor installs its stock agent before step setup. Wrap that executable so
+# ClawBench's existing /data/.stop-requested signal ends the agent cleanly.
+/app/src/harbor/wrap-harbor-agent.sh
 
 /app/src/harbor/start-runtime.sh
 

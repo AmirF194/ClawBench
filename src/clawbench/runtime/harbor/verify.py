@@ -5,10 +5,11 @@ import json
 import os
 import time
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 
-JUDGE_SYSTEM = """You are a strict evaluator for a web-agent benchmark.
+JUDGE_SYSTEM_STRICT = """You are a strict evaluator for a web-agent benchmark.
 
 A user gave a natural-language INSTRUCTION to an autonomous browser agent.
 The agent navigated a real website and finally produced a single HTTP request
@@ -28,6 +29,49 @@ Reply with ONLY a single-line JSON object:
 {"match": true|false, "reason": "<one short sentence>"}
 """
 
+JUDGE_SYSTEM_LENIENT = """You are a lenient evaluator for a web-agent benchmark.
+
+A user gave a natural-language INSTRUCTION to an autonomous browser agent.
+The agent navigated a real website and finally produced a single HTTP request
+(URL + method + body) that we INTERCEPTED before it was sent to the server.
+
+You decide whether this intercepted request ALIGNS with the user's instruction.
+
+# Rubric (CRITICAL — read carefully)
+
+match = TRUE if there is NO EXPLICIT CONTRADICTION between the request and
+the instruction. The default verdict is TRUE.
+
+match = FALSE only if the request EXPLICITLY contradicts a field the user
+EXPLICITLY specified in the instruction. Examples of contradiction:
+- Instruction says "red shirt", request body shows "color: blue"
+- Instruction says "quantity 2", request body shows "qty: 5"
+- Instruction says "deliver to home", request body shows "deliver to work"
+- Instruction asks to enroll in CS50, request enrolls in CS61
+
+# What is NOT a contradiction (default to match = TRUE)
+
+- Instruction did not specify a field, request omits or has any value for it
+  → MATCH (the user did not constrain it)
+- Instruction said "3pm", request body has no time field at all
+  → MATCH (info absent, not contradicted)
+- PDF resume left blank where instruction did not require content
+  → MATCH
+- Cosmetic differences (timestamps, session IDs, affiliate codes, currency
+  symbols, formatting) → MATCH
+- Ambiguous wording where multiple interpretations work → MATCH
+- Agent picked a reasonable default for unspecified options → MATCH
+- Color, size, time, quantity not mentioned in instruction → MATCH
+
+# Output
+
+Reply with ONLY a single-line JSON object, no markdown fences, no extra prose:
+{"match": true|false, "reason": "<one short sentence>"}
+
+Default is true. Only return false when you can name a SPECIFIC explicit
+field from the instruction that the request EXPLICITLY contradicts.
+"""
+
 
 def write_reward(
     reward: float, payload: dict[str, Any], output_dir: Path = Path("/logs/verifier")
@@ -35,8 +79,23 @@ def write_reward(
     out = output_dir
     out.mkdir(parents=True, exist_ok=True)
     result = {"reward": reward, **payload}
+    metrics = {
+        "reward": reward,
+        "intercepted": float(bool(payload.get("intercepted"))),
+    }
+    for name in (
+        "reward_lenient",
+        "reward_strict",
+        "judge_match",
+        "judge_match_lenient",
+        "judge_match_strict",
+    ):
+        value = payload.get(name)
+        if isinstance(value, (bool, int, float)):
+            metrics[name] = float(value)
+
     (out / "reward.txt").write_text(str(reward))
-    (out / "reward.json").write_text(json.dumps(result, indent=2, ensure_ascii=False))
+    (out / "reward.json").write_text(json.dumps(metrics, indent=2))
     (out / "clawbench-result.json").write_text(
         json.dumps(result, indent=2, ensure_ascii=False)
     )
@@ -104,6 +163,8 @@ def call_judge(
     instruction: str,
     intercept: dict[str, Any],
     judge_context: dict[str, Any] | None,
+    system_prompt: str,
+    max_tokens: int,
 ) -> dict[str, Any]:
     api_type = model_cfg["api_type"]
     model = model_cfg["model"]
@@ -116,10 +177,10 @@ def call_judge(
             {
                 "model": model,
                 "messages": [
-                    {"role": "system", "content": JUDGE_SYSTEM},
+                    {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user},
                 ],
-                "max_tokens": 4096,
+                "max_tokens": max_tokens,
                 "temperature": 0,
             },
         )
@@ -130,9 +191,9 @@ def call_judge(
             {"Authorization": f"Bearer {model_cfg['api_key']}"},
             {
                 "model": model,
-                "instructions": JUDGE_SYSTEM,
+                "instructions": system_prompt,
                 "input": user,
-                "max_output_tokens": 4096,
+                "max_output_tokens": max_tokens,
             },
         )
         raw = resp.get("output_text") or ""
@@ -152,8 +213,8 @@ def call_judge(
             },
             {
                 "model": model,
-                "max_tokens": 4096,
-                "system": JUDGE_SYSTEM,
+                "max_tokens": max_tokens,
+                "system": system_prompt,
                 "messages": [{"role": "user", "content": user}],
             },
         )
@@ -167,6 +228,37 @@ def call_judge(
         }
     match, reason = parse_verdict(raw)
     return {"match": match, "reason": reason, "raw": raw, "error": None}
+
+
+def call_judge_with_retries(
+    model_cfg: dict[str, str],
+    instruction: str,
+    intercept: dict[str, Any],
+    judge_context: dict[str, Any] | None,
+    system_prompt: str,
+    max_tokens: int,
+) -> dict[str, Any]:
+    last_error = ""
+    for attempt in range(3):
+        try:
+            return call_judge(
+                model_cfg,
+                instruction,
+                intercept,
+                judge_context,
+                system_prompt,
+                max_tokens,
+            )
+        except Exception as exc:
+            last_error = str(exc)
+            if attempt < 2:
+                time.sleep(2**attempt)
+    return {
+        "match": None,
+        "reason": f"judge_call_failed: {last_error}",
+        "raw": None,
+        "error": last_error,
+    }
 
 
 def main() -> int:
@@ -185,8 +277,12 @@ def main() -> int:
         write_reward(
             0.0,
             {
+                "reward_lenient": 0.0,
+                "reward_strict": 0.0,
                 "intercepted": False,
                 "judge_match": None,
+                "judge_match_lenient": None,
+                "judge_match_strict": None,
                 "reason": "missing /data/interception.json",
                 "task_id": task_id,
             },
@@ -198,8 +294,12 @@ def main() -> int:
         write_reward(
             0.0,
             {
+                "reward_lenient": 0.0,
+                "reward_strict": 0.0,
                 "intercepted": False,
                 "judge_match": None,
+                "judge_match_lenient": None,
+                "judge_match_strict": None,
                 "reason": intercept.get("stop_description")
                 or intercept.get("stop_reason")
                 or "not intercepted",
@@ -218,54 +318,69 @@ def main() -> int:
         write_reward(
             0.0,
             {
+                "reward_lenient": 0.0,
+                "reward_strict": 0.0,
                 "intercepted": True,
                 "judge_match": None,
+                "judge_match_lenient": None,
+                "judge_match_strict": None,
                 "reason": "missing judge configuration",
                 "task_id": task_id,
             },
         )
         return 0
 
-    judge_result: dict[str, Any] | None = None
-    last_error = ""
-    for attempt in range(3):
-        try:
-            judge_result = call_judge(
-                cfg,
-                str(task.get("instruction") or ""),
-                intercept,
-                task.get("judge_context")
-                if isinstance(task.get("judge_context"), dict)
-                else None,
-            )
-            break
-        except Exception as exc:
-            last_error = str(exc)
-            if attempt < 2:
-                time.sleep(2**attempt)
-
-    if judge_result is None:
-        write_reward(
-            0.0,
-            {
-                "intercepted": True,
-                "judge_match": None,
-                "reason": f"judge_call_failed: {last_error}",
-                "task_id": task_id,
-            },
+    instruction = str(task.get("instruction") or "")
+    judge_context = (
+        task.get("judge_context")
+        if isinstance(task.get("judge_context"), dict)
+        else None
+    )
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        lenient_future = executor.submit(
+            call_judge_with_retries,
+            cfg,
+            instruction,
+            intercept,
+            None,
+            JUDGE_SYSTEM_LENIENT,
+            800,
         )
-        return 0
+        strict_future = executor.submit(
+            call_judge_with_retries,
+            cfg,
+            instruction,
+            intercept,
+            judge_context,
+            JUDGE_SYSTEM_STRICT,
+            4096,
+        )
+        lenient_result = lenient_future.result()
+        strict_result = strict_future.result()
 
-    match = judge_result.get("match")
-    reward = 1.0 if match is True else 0.0
+    match_lenient = lenient_result.get("match")
+    match_strict = strict_result.get("match")
+    reward_lenient = 1.0 if match_lenient is True else 0.0
+    reward_strict = 1.0 if match_strict is True else 0.0
     write_reward(
-        reward,
+        reward_lenient,
         {
+            "reward_lenient": reward_lenient,
+            "reward_strict": reward_strict,
             "intercepted": True,
-            "judge_match": match,
-            "reason": judge_result.get("reason") or judge_result.get("error") or "",
-            "task_id": task_id,
+            "judge_match": match_lenient,
+            "judge_match_lenient": match_lenient,
+            "judge_match_strict": match_strict,
+            "reason": {
+                "lenient": lenient_result.get("reason")
+                or lenient_result.get("error")
+                or "",
+                "strict": strict_result.get("reason")
+                or strict_result.get("error")
+                or "",
+            },
             "judge_model": cfg["model"],
+            "task_id": task_id,
         },
     )
     return 0
