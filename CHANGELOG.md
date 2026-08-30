@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Added Kernel as a managed remote browser runtime with live view and downloaded replay recordings. Thanks to @[rgarcia](https://github.com/rgarcia).
 
+### Fixed
+- Fixed an issue where malformed per-run metadata could prevent `batch-summary.json` from being written and, when configured, uploaded.
+
 ## [0.9.2] - 2026-08-18
 ### Added
 - Added support for the [WebBrain](https://github.com/webbrain-one/webbrain) harness. Thanks to @alectimison-maker.

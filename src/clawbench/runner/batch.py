@@ -753,7 +753,6 @@ async def async_main(args: argparse.Namespace) -> int:
 
     elapsed = time.monotonic() - batch_start
     print_summary(jobs, elapsed, args.max_concurrent, browser_runtime)
-    print_run_stats(base_output)
     write_summary_json(
         jobs,
         base_output,
@@ -781,6 +780,8 @@ async def async_main(args: argparse.Namespace) -> int:
                 f"batch-summaries/{safe_ts}-batch-summary.json",
                 hf_env,
             )
+
+    print_run_stats(base_output)
 
     has_errors = any(j.status == "error" for j in jobs)
     return 1 if has_errors else 0
@@ -851,7 +852,7 @@ def main() -> None:
             "any (case x model) job whose batch-logs/<case>-<model>.log already exists."
         ),
     )
-    from clawbench.runner.run import HARNESSES, DEFAULT_HARNESS
+    from clawbench.runner.run import DEFAULT_HARNESS, HARNESSES
 
     p.add_argument(
         "--harness",
