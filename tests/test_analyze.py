@@ -16,8 +16,10 @@ def _run(
     reward: float | None = None,
     actions: int = 5,
     claim: bool = False,
+    metaclass: str = "daily-life",
 ) -> None:
-    d = root / name / "data"
+    run = root / "model-a" / f"openclaw-{name}-model-a-20260830-120000"
+    d = run / "data"
     d.mkdir(parents=True)
     (d / "interception.json").write_text(
         json.dumps({"intercepted": intercepted, "stop_reason": "time_limit_exceeded"})
@@ -25,26 +27,56 @@ def _run(
     (d / "actions.jsonl").write_text("\n".join("{}" for _ in range(actions)))
     (d / "requests.jsonl").write_text("{}\n")
     (d / "agent-messages.jsonl").write_text(
-        "the task is completed successfully" if claim else "still working"
+        json.dumps(
+            {
+                "message": {
+                    "role": "assistant" if claim else "user",
+                    "content": (
+                        "the task is completed successfully"
+                        if claim
+                        else "report when the task is completed"
+                    ),
+                }
+            }
+        )
+        + "\n"
+    )
+    (run / "run-meta.json").write_text(
+        json.dumps(
+            {
+                "test_case": name,
+                "metaclass": metaclass,
+                "intercepted": intercepted,
+                "result_category": "intercepted"
+                if intercepted
+                else "model_not_intercepted",
+                "run_metrics": {"actions": actions},
+            }
+        )
     )
     if reward is not None:
-        (root / name / "reward.json").write_text(json.dumps({"reward": reward}))
+        (run / "judge.json").write_text(json.dumps({"match": reward >= 1.0}))
 
 
 def test_discover_and_aggregate(tmp_path: Path) -> None:
     _run(tmp_path, "v2-1-daily-life-shopping-etsy", intercepted=True, reward=1.0)
     _run(tmp_path, "v2-2-daily-life-shopping-amazon", intercepted=True, reward=0.0)
     _run(
-        tmp_path, "v2-3-job-search-hr-indeed", intercepted=False, reward=0.0, actions=0
+        tmp_path,
+        "v2-3-job-search-hr-indeed",
+        intercepted=False,
+        reward=0.0,
+        actions=0,
+        metaclass="job-search",
     )
     stats = analyze.analyze_batch(tmp_path)
     assert stats["n_runs"] == 3
     assert stats["stage1_intercepted"] == 2 and stats["stage1_rate"] == round(2 / 3, 4)
     # 2 judged runs, 1 pass
     assert stats["stage2_judged_of"] == 3 and stats["stage2_pass"] == 1
-    # per-category from task-id segments
-    assert stats["by_category"]["daily-life-shopping"]["n"] == 2
-    assert stats["by_category"]["job-search-hr"]["n"] == 1
+    # per-category from run metadata
+    assert stats["by_category"]["daily-life"]["n"] == 2
+    assert stats["by_category"]["job-search"]["n"] == 1
 
 
 def test_interceptor_false_positive_flagged(tmp_path: Path) -> None:
@@ -63,6 +95,12 @@ def test_self_report_gap(tmp_path: Path) -> None:
     stats = analyze.analyze_batch(tmp_path)
     assert stats["self_report_claimed"] == 2
     assert stats["self_report_claimed_but_failed"] == 1
+
+
+def test_user_text_is_not_a_success_claim(tmp_path: Path) -> None:
+    _run(tmp_path, "v2-1-a-b-c", intercepted=False)
+    stats = analyze.analyze_batch(tmp_path)
+    assert stats["self_report_claimed"] == 0
 
 
 def test_format_report_and_cli(tmp_path: Path, capsys) -> None:

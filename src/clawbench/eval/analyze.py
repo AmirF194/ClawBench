@@ -34,16 +34,33 @@ def _read_json(path: Path) -> Any:
         return None
 
 
-def _task_category(run_dir: Path, task: dict[str, Any] | None) -> str:
+def _task_category(
+    run_dir: Path,
+    task: dict[str, Any] | None,
+    run_meta: dict[str, Any] | None = None,
+) -> str:
     """Category from task metadata, else derived from the task-id name segments."""
+    if isinstance(run_meta, dict):
+        for key in ("metaclass", "category"):
+            if run_meta.get(key):
+                return str(run_meta[key])
     if isinstance(task, dict):
         meta = task.get("metadata")
-        if isinstance(meta, dict) and meta.get("category"):
-            return str(meta["category"])
+        if isinstance(meta, dict):
+            for key in ("metaclass", "category"):
+                if meta.get(key):
+                    return str(meta[key])
     # e.g. "v2-536-daily-life-shopping-etsy" -> "daily-life-shopping"
-    parts = run_dir.name.split("-")
+    task_name = (
+        str(run_meta.get("test_case"))
+        if isinstance(run_meta, dict) and run_meta.get("test_case")
+        else run_dir.name
+    )
+    parts = task_name.split("-")
     if len(parts) >= 4 and parts[0].startswith("v"):
         return "-".join(parts[2:-1]) or "uncategorized"
+    if len(parts) >= 3 and parts[0].isdigit():
+        return "-".join(parts[1:-1]) or "uncategorized"
     return "uncategorized"
 
 
@@ -52,40 +69,90 @@ def _claimed_success(run_dir: Path) -> bool:
     if not msgs.is_file():
         return False
     try:
-        text = msgs.read_text()
+        with msgs.open(errors="replace") as f:
+            for line in f:
+                try:
+                    event = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+
+                stack = [event]
+                while stack:
+                    value = stack.pop()
+                    if isinstance(value, dict):
+                        if (
+                            value.get("role") == "assistant"
+                            or value.get("type") == "assistant"
+                        ):
+                            if _CLAIM_RE.search(json.dumps(value, ensure_ascii=False)):
+                                return True
+                            continue
+                        stack.extend(value.values())
+                    elif isinstance(value, list):
+                        stack.extend(value)
     except OSError:
         return False
-    return bool(_CLAIM_RE.search(text))
+    return False
 
 
 def discover_runs(runs_dir: Path) -> list[Path]:
-    """Run dirs = any dir containing data/interception.json."""
-    return sorted({p.parent.parent for p in runs_dir.glob("*/data/interception.json")})
+    """Discover canonical runs recursively, with an interception-only fallback."""
+    runs = {p.parent for p in runs_dir.rglob("run-meta.json")}
+    runs.update(p.parent.parent for p in runs_dir.rglob("data/interception.json"))
+    return sorted(runs)
 
 
 def run_summary(run_dir: Path) -> dict[str, Any]:
     """Per-run: task id/category, Stage-1 intercept, Stage-2 judged, failure class."""
+    run_meta = _read_json(run_dir / "run-meta.json")
     interception = _read_json(run_dir / "data" / "interception.json")
-    intercepted = bool(
-        isinstance(interception, dict) and interception.get("intercepted")
-    )
+    if isinstance(run_meta, dict) and isinstance(run_meta.get("intercepted"), bool):
+        intercepted = run_meta["intercepted"]
+    else:
+        intercepted = bool(
+            isinstance(interception, dict) and interception.get("intercepted")
+        )
     task = _read_json(run_dir / "data" / "task.json") or _read_json(
         run_dir / "task.json"
     )
 
-    reward = _read_json(run_dir / "reward.json")
     judged = None
-    if isinstance(reward, dict) and reward.get("reward") is not None:
-        judged = float(reward["reward"]) >= 1.0
+    judge = _read_json(run_dir / "judge.json") or _read_json(
+        run_dir / "data" / "judge.json"
+    )
+    if isinstance(judge, dict) and isinstance(judge.get("match"), bool):
+        judged = judge["match"]
+    elif isinstance(run_meta, dict) and isinstance(run_meta.get("judge_match"), bool):
+        judged = run_meta["judge_match"]
+    else:
+        reward = _read_json(run_dir / "reward.json")
+        if isinstance(reward, dict) and isinstance(reward.get("reward"), (int, float)):
+            judged = float(reward["reward"]) >= 1.0
 
     cls = classify_run(run_dir, intercepted, recording_required=False)
+    meta_metrics = run_meta.get("run_metrics") if isinstance(run_meta, dict) else None
+    actions = meta_metrics.get("actions") if isinstance(meta_metrics, dict) else None
     return {
-        "task": run_dir.name,
-        "category": _task_category(run_dir, task if isinstance(task, dict) else None),
+        "task": (
+            str(run_meta.get("test_case"))
+            if isinstance(run_meta, dict) and run_meta.get("test_case")
+            else run_dir.name
+        ),
+        "category": _task_category(
+            run_dir,
+            task if isinstance(task, dict) else None,
+            run_meta if isinstance(run_meta, dict) else None,
+        ),
         "intercepted": intercepted,
         "judged": judged,
-        "result_category": cls.get("result_category"),
-        "actions": cls.get("metrics", {}).get("actions", 0),
+        "result_category": (
+            run_meta.get("result_category")
+            if isinstance(run_meta, dict) and run_meta.get("result_category")
+            else cls.get("result_category")
+        ),
+        "actions": actions
+        if isinstance(actions, int)
+        else cls.get("metrics", {}).get("actions", 0),
         "claimed_success": _claimed_success(run_dir),
     }
 
