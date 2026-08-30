@@ -112,6 +112,9 @@ def _prepare_run(
                 local_viewer_port=6080,
             )
 
+        def finalize(self, session, output_dir):
+            pass
+
         def cleanup(self, session):
             pass
 
