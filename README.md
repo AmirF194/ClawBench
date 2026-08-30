@@ -185,7 +185,7 @@ git clone https://github.com/TIGER-AI-Lab/ClawBench.git && cd ClawBench && ./run
 uv tool install clawbench-eval
 ```
 
-`pipx install clawbench-eval` and `python -m pip install clawbench-eval` work too. The installed commands are `clawbench`, `clawbench-run`, `clawbench-batch`, `clawbench-rescore`, `clawbench-reproduce`, and `clawbench-harbor-adapt`.
+`pipx install clawbench-eval` and `python -m pip install clawbench-eval` work too. The installed commands are `clawbench`, `clawbench-run`, `clawbench-batch`, `clawbench-rescore`, `clawbench-analyze`, `clawbench-reproduce`, and `clawbench-harbor-adapt`.
 
 For more granular control — modifying the driver, the bundled test cases, or the container build — clone the repo and use the root `uv` package entrypoint instead:
 
@@ -298,6 +298,12 @@ clawbench-batch --models your-model --cases-suite v2 --all-cases
 ```
 
 `your-model` is a key you configured in step 1; `--cases-suite v2` runs the full V2 corpus (swap in `v1-lite` for the 20-task subset). Add `--max-concurrent N` to run tasks in parallel (default 2 locally, 1 with Kernel or Browserbase) and `--harness <name>` to pick an agent. Each task is intercepted and scored by the `deepseek-v4-pro` judge from step 1 — pass `--no-judge` to skip scoring. A `batch-summary.json` plus per-run recordings land under `./test-output/`.
+
+Analyze a completed batch's Stage-1/Stage-2 rates, failure taxonomy, per-category results, and self-report gap:
+
+```bash
+clawbench-analyze --runs-dir test-output/batch-<timestamp> --out report.md
+```
 
 **By hand, to produce a human reference run:**
 
