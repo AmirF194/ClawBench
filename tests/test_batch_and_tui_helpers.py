@@ -111,7 +111,49 @@ def test_browserbase_batch_defaults_to_one_concurrent_session(
     assert args.max_concurrent == 1
 
 
-def test_tui_hides_browserbase_for_extension_harness(
+def test_kernel_batch_defaults_to_one_concurrent_session(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    monkeypatch.setattr(
+        batch,
+        "load_models_yaml",
+        lambda: {
+            "model-a": {
+                "base_url": "https://api.example.test",
+                "api_type": "openai-completions",
+                "api_key": "secret",
+            }
+        },
+    )
+    args = argparse.Namespace(
+        models=["model-a"],
+        all_models=False,
+        cases=["test-cases/v1/001-daily-life-food-uber-eats"],
+        all_cases=False,
+        case_range=None,
+        cases_dir=batch.CASE_SUITES["v1"],
+        dry_run=True,
+        output_dir=str(tmp_path),
+        max_concurrent=None,
+        stagger_delay=0,
+        resume=None,
+        no_upload=True,
+        harness="openclaw",
+        browser_runtime="kernel",
+        browser_cdp_url=None,
+        browser_runtime_options=None,
+        judge="judge-model",
+        no_judge=True,
+    )
+
+    rc = asyncio.run(batch.async_main(args))
+
+    assert rc == 0
+    assert args.max_concurrent == 1
+
+
+def test_tui_hides_managed_runtimes_for_extension_harness(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     captured_values: list[str] = []
@@ -131,3 +173,25 @@ def test_tui_hides_browserbase_for_extension_harness(
 
     assert selected == "local"
     assert captured_values == ["local"]
+
+
+def test_tui_lists_kernel_for_remote_capable_harness(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    captured_values: list[str] = []
+
+    class _Prompt:
+        def ask(self) -> str:
+            return "kernel"
+
+    def fake_select(*args: object, **kwargs: object) -> _Prompt:
+        choices = cast(list[Any], kwargs["choices"])
+        captured_values.extend(choice.value for choice in choices)
+        return _Prompt()
+
+    monkeypatch.setattr(tui.questionary, "select", fake_select)
+
+    selected = tui._pick_browser_runtime("openclaw")
+
+    assert selected == "kernel"
+    assert captured_values == ["local", "kernel", "browserbase"]

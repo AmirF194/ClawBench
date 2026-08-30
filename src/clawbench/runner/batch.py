@@ -49,6 +49,7 @@ CASE_SUITES = {
     "claw-eval": "test-cases/claw-eval",
 }
 DEFAULT_CASES_SUITE = "v2"
+MANAGED_BROWSER_RUNTIMES = frozenset({"browserbase", "kernel"})
 
 
 def load_models_yaml() -> dict:
@@ -289,6 +290,8 @@ async def run_job(
                     cmd_parts += ["--harness", harness]
                 if browser_runtime:
                     cmd_parts += ["--browser-runtime", browser_runtime]
+                    if browser_runtime in MANAGED_BROWSER_RUNTIMES:
+                        cmd_parts.append("--hide-browser-viewer")
                 if browser_cdp_url:
                     cmd_parts += ["--browser-cdp-url", browser_cdp_url]
                 if browser_runtime_options:
@@ -590,13 +593,13 @@ async def async_main(args: argparse.Namespace) -> int:
     running_procs.clear()
     browser_runtime = getattr(args, "browser_runtime", None) or "local"
     if getattr(args, "max_concurrent", None) is None:
-        args.max_concurrent = 1 if browser_runtime == "browserbase" else 2
+        args.max_concurrent = 1 if browser_runtime in MANAGED_BROWSER_RUNTIMES else 2
     if (
-        browser_runtime == "browserbase"
+        browser_runtime in MANAGED_BROWSER_RUNTIMES
         and args.harness == "claude-code-chrome-extension"
     ):
         print(
-            "ERROR: browserbase runtime does not support the "
+            f"ERROR: {browser_runtime} runtime does not support the "
             "claude-code-chrome-extension harness"
         )
         return 1
@@ -750,7 +753,6 @@ async def async_main(args: argparse.Namespace) -> int:
 
     elapsed = time.monotonic() - batch_start
     print_summary(jobs, elapsed, args.max_concurrent, browser_runtime)
-    print_run_stats(base_output)
     write_summary_json(
         jobs,
         base_output,
@@ -778,6 +780,8 @@ async def async_main(args: argparse.Namespace) -> int:
                 f"batch-summaries/{safe_ts}-batch-summary.json",
                 hf_env,
             )
+
+    print_run_stats(base_output)
 
     has_errors = any(j.status == "error" for j in jobs)
     return 1 if has_errors else 0
@@ -821,7 +825,7 @@ def main() -> None:
         "--max-concurrent",
         type=int,
         default=None,
-        help="Max parallel jobs (default: 1 for browserbase, otherwise 2)",
+        help="Max parallel jobs (default: 1 for managed runtimes, otherwise 2)",
     )
     p.add_argument("--output-dir", default="test-output", help="Base output directory")
     p.add_argument(
@@ -848,7 +852,7 @@ def main() -> None:
             "any (case x model) job whose batch-logs/<case>-<model>.log already exists."
         ),
     )
-    from clawbench.runner.run import HARNESSES, DEFAULT_HARNESS
+    from clawbench.runner.run import DEFAULT_HARNESS, HARNESSES
 
     p.add_argument(
         "--harness",
@@ -863,7 +867,7 @@ def main() -> None:
         choices=BROWSER_RUNTIME_CHOICES,
         default=None,
         help=(
-            "Browser runtime provider: local, remote-cdp, steel, or browserbase "
+            "Browser runtime provider: local, remote-cdp, steel, browserbase, or kernel "
             "(default: local)"
         ),
     )

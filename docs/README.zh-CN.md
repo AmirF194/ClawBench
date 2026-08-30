@@ -131,7 +131,7 @@ git clone https://github.com/TIGER-AI-Lab/ClawBench.git && cd ClawBench && ./run
 uv tool install clawbench-eval
 ```
 
-也可以用 `pipx install clawbench-eval` 或 `python -m pip install clawbench-eval`。安装后可用的命令是 `clawbench`、`clawbench-run`、`clawbench-batch`、`clawbench-rescore`、`clawbench-reproduce`、`clawbench-harbor-adapt`。
+也可以用 `pipx install clawbench-eval` 或 `python -m pip install clawbench-eval`。安装后可用的命令是 `clawbench`、`clawbench-run`、`clawbench-batch`、`clawbench-rescore`、`clawbench-analyze`、`clawbench-reproduce`、`clawbench-harbor-adapt`。
 
 如果你要改 driver、改内置测试用例或改容器构建，请克隆仓库并使用根目录的 `uv` 包入口：
 
@@ -243,7 +243,13 @@ uv run clawbench-run test-cases/v1/001-daily-life-food-uber-eats claude-sonnet-4
 clawbench-batch --models your-model --cases-suite v2 --all-cases
 ```
 
-`your-model` 是你在第 1 步里配置的 key；`--cases-suite v2` 跑完整 V2 语料（换成 `v1-lite` 则是 20 题子集）。`--max-concurrent N` 控制并发（本地默认 2，Browserbase 默认 1），`--harness <name>` 选择智能体。每个任务都会被拦截并由第 1 步配置的 `deepseek-v4-pro` judge 打分 —— 加 `--no-judge` 可跳过评分。`batch-summary.json` 和各次运行的录制都会写到 `./test-output/`。
+`your-model` 是你在第 1 步里配置的 key；`--cases-suite v2` 跑完整 V2 语料（换成 `v1-lite` 则是 20 题子集）。`--max-concurrent N` 控制并发（本地默认 2，Kernel 或 Browserbase 默认 1），`--harness <name>` 选择智能体。每个任务都会被拦截并由第 1 步配置的 `deepseek-v4-pro` judge 打分 —— 加 `--no-judge` 可跳过评分。`batch-summary.json` 和各次运行的录制都会写到 `./test-output/`。
+
+分析已完成批次的 Stage-1/Stage-2 通过率、失败分类、各类别结果与自报成功偏差：
+
+```bash
+clawbench-analyze --runs-dir test-output/batch-<timestamp> --out report.md
+```
 
 **自己上手操作，产出人工参考轨迹：**
 
@@ -277,7 +283,7 @@ harness 是驱动浏览器的智能体框架，和模型是两个独立维度。
 
 | 我想…… | 去哪看 |
 | --- | --- |
-| 用托管的远程浏览器代替本地容器 | [`docs/browser-runtimes.md`](browser-runtimes.md) —— Browserbase 配置、参数、录制地址 |
+| 用托管的远程浏览器代替本地容器 | [`docs/browser-runtimes.md`](browser-runtimes.md) —— Kernel 和 Browserbase 配置、参数与录制 |
 | 用 Harbor 框架跑 V2（并且跑得快） | [`docs/harbor.md`](harbor.md) —— 转换、judge 配置、并发、排错 |
 | 查所有 CLI 命令和参数 | [`docs/cli.md`](cli.md) |
 
@@ -362,12 +368,16 @@ ClawBench 提供 **三个** Hugging Face 数据集 —— 任务定义，以及 
 | **[NAIL-Group/ClawBenchV1Trace](https://huggingface.co/datasets/NAIL-Group/ClawBenchV1Trace)** | V1 每个模型运行一个目录，内含 `recording.mp4`、`requests.jsonl`、`actions.jsonl`、`agent-messages.jsonl`、`interception.json`、`run-meta.json`。 | `hf download --repo-type dataset NAIL-Group/ClawBenchV1Trace` |
 | **[TIGER-Lab/ClawBenchV2Trace](https://huggingface.co/datasets/TIGER-Lab/ClawBenchV2Trace)** | **V2** 运行的同款 5 层数据包。滚动更新 —— 新模型评测完成后持续加入。 | `hf download --repo-type dataset TIGER-Lab/ClawBenchV2Trace` |
 
+> **基于 trace 开展研究：** 参见 [Trace Cookbook](trace-cookbook.md)，了解下载示例、数据结构和研究方向。
+
 > Trace 数据集体积较大；可用 `hf download --include "<pattern>"` 仅拉取某个模型或某个任务。
 
 > **🏆 实时排行榜：** [`claw-bench.com/leaderboard`](https://claw-bench.com/leaderboard)（默认 V2，两阶段评分 —— 拦截 + LLM judge）。完整评分公式见 [`eval/scoring.md`](../eval/scoring.md)。提交你的结果：向 [`leaderboard/results.csv`](https://huggingface.co/datasets/TIGER-Lab/ClawBench/blob/main/leaderboard/results.csv) 提 PR。
 
 ## <img src="../assets/icons/bullhorn.svg" width="20" height="20"> 动态
 
+- **[2026.08.20]** —— 🏆 论文被 [EMNLP 2026 Findings](https://2026.emnlp.org/) 接收。
+- **[2026.08.20]** —— 新增 [Kernel](https://www.kernel.sh) 作为支持的远程浏览器运行时。感谢 @[rgarcia](https://github.com/rgarcia)。
 - **[2026.08.18]** —— 新增 [WebBrain](https://github.com/webbrain-one/webbrain) 作为支持的 harness。感谢 @[alectimison-maker](https://github.com/alectimison-maker)。
 - **[2026.08.16]** —— 发布姊妹项目 **[RewardHarness](https://github.com/TIGER-AI-Lab/RewardHarness)**：自进化的 agentic 奖励框架，仅用 100 条偏好示例即在 EditReward-Bench 上达到 47.4%，且无需训练奖励模型。[详情 →](https://arxiv.org/abs/2605.08703)
 - **[2026.08.03]** —— 新增 [Browserbase](https://www.browserbase.com) 远程浏览器运行时。[详情 →](browser-runtimes.md)
@@ -649,7 +659,7 @@ ClawBench 的定位：**真实消费级网站、日常任务、端到端录制**
 
 | 层 | 文件 | 描述 |
 |-------|------|-------------|
-| 会话回放 | `recording.mp4` 或 `run-meta.json` 中的录制 URL | 本地 H.264 视频，或 Browserbase Session Inspector 回放 |
+| 会话回放 | `recording.mp4` 或 `run-meta.json` 中的录制 URL | 本地/Kernel H.264 视频，或 Browserbase Session Inspector 回放 |
 | 动作截图 | `screenshots/*.png` | 浏览器动作后经限流捕获的带时间戳 PNG |
 | 浏览器动作 | `actions.jsonl` | 每个 DOM 事件 (click, keydown, input, pageLoad, scroll 等) |
 | HTTP 流量 | `requests.jsonl` | 每个 HTTP 请求，包含 headers、body 和查询参数 |

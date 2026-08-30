@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Added
+- Added Kernel as a managed remote browser runtime with live view and downloaded replay recordings. Thanks to @[rgarcia](https://github.com/rgarcia).
+- Added `clawbench-analyze` entrypoint for aggregate batch error analysis.
+
+### Fixed
+- Fixed an issue where malformed per-run metadata could prevent `batch-summary.json` from being written and, when configured, uploaded.
+
 ## [0.9.2] - 2026-08-18
 ### Added
 - Added support for the [WebBrain](https://github.com/webbrain-one/webbrain) harness. Thanks to @alectimison-maker.
