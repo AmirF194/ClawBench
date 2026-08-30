@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 - Fixed an issue where malformed per-run metadata could prevent `batch-summary.json` from being written and, when configured, uploaded.
+- Fixed the issue that an invalid judge model would lose the `run-meta.json` file.
 
 ## [0.9.2] - 2026-08-18
 ### Added
