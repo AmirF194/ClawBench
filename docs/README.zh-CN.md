@@ -131,7 +131,7 @@ git clone https://github.com/TIGER-AI-Lab/ClawBench.git && cd ClawBench && ./run
 uv tool install clawbench-eval
 ```
 
-也可以用 `pipx install clawbench-eval` 或 `python -m pip install clawbench-eval`。安装后可用的命令是 `clawbench`、`clawbench-run`、`clawbench-batch`、`clawbench-rescore`、`clawbench-reproduce`、`clawbench-harbor-adapt`。
+也可以用 `pipx install clawbench-eval` 或 `python -m pip install clawbench-eval`。安装后可用的命令是 `clawbench`、`clawbench-run`、`clawbench-batch`、`clawbench-rescore`、`clawbench-analyze`、`clawbench-reproduce`、`clawbench-harbor-adapt`。
 
 如果你要改 driver、改内置测试用例或改容器构建，请克隆仓库并使用根目录的 `uv` 包入口：
 
@@ -244,6 +244,12 @@ clawbench-batch --models your-model --cases-suite v2 --all-cases
 ```
 
 `your-model` 是你在第 1 步里配置的 key；`--cases-suite v2` 跑完整 V2 语料（换成 `v1-lite` 则是 20 题子集）。`--max-concurrent N` 控制并发（本地默认 2，Kernel 或 Browserbase 默认 1），`--harness <name>` 选择智能体。每个任务都会被拦截并由第 1 步配置的 `deepseek-v4-pro` judge 打分 —— 加 `--no-judge` 可跳过评分。`batch-summary.json` 和各次运行的录制都会写到 `./test-output/`。
+
+分析已完成批次的 Stage-1/Stage-2 通过率、失败分类、各类别结果与自报成功偏差：
+
+```bash
+clawbench-analyze --runs-dir test-output/batch-<timestamp> --out report.md
+```
 
 **自己上手操作，产出人工参考轨迹：**
 
