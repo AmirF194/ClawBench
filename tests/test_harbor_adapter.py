@@ -135,8 +135,16 @@ def test_write_harbor_task_prebuilt_image_mode(tmp_path: Path) -> None:
         docker_image="ghcr.io/tiger-ai-lab/clawbench-harbor-runtime:0.9.2",
     )
 
-    # No build context is shipped; the image carries the runtime instead.
-    assert not (out / "environment").exists()
+    # No build context is shipped; a one-line Dockerfile references the
+    # prebuilt image (Harbor's is_valid_dir requires environment/ to exist).
+    env_files = list((out / "environment").rglob("*"))
+    assert [p.name for p in env_files] == ["Dockerfile"]
+    dockerfile = (out / "environment" / "Dockerfile").read_text()
+    assert (
+        "FROM ghcr.io" in dockerfile
+        or "FROM clawbench/" in dockerfile
+        or "FROM " in dockerfile
+    )
     assert (out / "steps" / "run" / "workdir" / "setup.sh").is_file()
     assert (out / "steps" / "run" / "tests" / "test.sh").is_file()
 

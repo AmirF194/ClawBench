@@ -27,7 +27,7 @@ harbor run --repo TIGER-AI-Lab/ClawBench -d clawbench-v2 \
 - `-i 'v2-9*'` / `-x '...'` include or exclude tasks by glob.
 - Judge wiring, concurrency, and troubleshooting: [`docs/harbor.md`](../docs/harbor.md).
 
-**Runtime image.** Committed tasks are in *prebuilt mode*: `task.toml` points `[environment].docker_image` at `clawbench/clawbench-harbor-runtime (Docker Hub):<clawbench version>` instead of shipping a 280 KB `environment/` build context per task (129 × 280 KB ≈ 35 MB otherwise). The image is built from [`src/clawbench/runtime/harbor/Dockerfile`](../src/clawbench/runtime/harbor/Dockerfile) by `scripts/harbor/build-runtime-image.sh` and published by the `publish-harbor-image` workflow on release tags / manual dispatch (repo secrets `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN`). If you want tasks that build locally instead, generate them yourself:
+**Runtime image.** Committed tasks are in *prebuilt mode*: `task.toml` points `[environment].docker_image` at `clawbench/clawbench-harbor-runtime (Docker Hub):<clawbench version>` instead of shipping a 280 KB `environment/` build context per task (each task keeps a one-line `environment/Dockerfile` that `FROM`s the image, as Harbor requires the directory to exist) (129 × 280 KB ≈ 35 MB otherwise). The image is built from [`src/clawbench/runtime/harbor/Dockerfile`](../src/clawbench/runtime/harbor/Dockerfile) by `scripts/harbor/build-runtime-image.sh` and published by the `publish-harbor-image` workflow on release tags / manual dispatch (repo secrets `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN`). If you want tasks that build locally instead, generate them yourself:
 
 ```bash
 uv run clawbench-harbor-adapt --output-dir ./harbor-datasets/clawbench-v2 --overwrite

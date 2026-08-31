@@ -13,516 +13,516 @@ email = "mtrxcop@gmail.com"
 
 [[tasks]]
 name = "clawbench/v2-047-daily-life-personal-care-taskrabbit"
-digest = "sha256:2781dfaa38892b79d2680324cdcd2a37f0117f6d0de2162787c50f7a1b5a362d"
+digest = "sha256:dade41a43cf36dbbc352fc55102153f0e431d093bfc00bfb32abccf54b5b3637"
 
 [[tasks]]
 name = "clawbench/v2-086-job-search-hr-cv-autofill-greenhouse-meta"
-digest = "sha256:567eb60e7e1158d142fc96add795bd4f34828331dc7c60a2e21d417471271208"
+digest = "sha256:62f0698d3285980d88b0207975890a3fcb2a428a52cdea1f2209d5f5c62e2414"
 
 [[tasks]]
 name = "clawbench/v2-089-job-search-hr-cv-autofill-simplify-jobs"
-digest = "sha256:bb7592a295fb338661ce53d9ade55fd188e1be5d921560ef586fca31ecc544cc"
+digest = "sha256:26f45c750670248c2d334e0a039823c687f63d1c8457b52477a688b9390c0b1e"
 
 [[tasks]]
 name = "clawbench/v2-091-job-search-hr-job-apply-indeed"
-digest = "sha256:7103f40c1e0dffc0fb00c5ecf8b9c918d2cf2f9c9628b14ec6b86c8587d592f2"
+digest = "sha256:35ed852d1cb4d4d6f8dadd2cb2d8e07cc26bd0d1fd741663c52a6fb8f3420dff"
 
 [[tasks]]
 name = "clawbench/v2-1010-rating-voting-review-myrecipes"
-digest = "sha256:e6fd9e67d843cafadf6a32f8182e9ab433ecfa21e51608f7d8057ff494adb025"
+digest = "sha256:4e8b6715291d77dd5666ac1ff83b964fe0f76eca9da483a4ee2256061f4ee65d"
 
 [[tasks]]
 name = "clawbench/v2-1033-education-learning-registration-khanacademy"
-digest = "sha256:8fa7a1a9d07666a42a00225e27988d0b7ac45dc296c81b6d8caa22d8840bf256"
+digest = "sha256:7ff0721e00d19d56f2d6bbb6c3dd1340de51d649ba9892ed421fbe65faf01ff7"
 
 [[tasks]]
 name = "clawbench/v2-1035-education-learning-enrollment-edx"
-digest = "sha256:626c35f06ba4d45257aa8c0355273ba0a134cbbaa8729f6887ef10fb67ad8389"
+digest = "sha256:7b3b5c2dee9fd3a021f943233918eca4d83f30254391eb752b1655d1597e2221"
 
 [[tasks]]
 name = "clawbench/v2-1045-weworkremotely"
-digest = "sha256:233c00b8a514247e8b58eafa878d465b856eeccd29deb2c7c199be7addb8de6f"
+digest = "sha256:473b7e2fb80a40ff0b4dd9f4d74891c8cded2caf053cc942ffe230e2c392e819"
 
 [[tasks]]
 name = "clawbench/v2-1065b-daily-life-home-services-handy"
-digest = "sha256:6013fd9359b88d31102d10a37b2d663b9fac100a4307dbe481410e637ac24d11"
+digest = "sha256:59bf3f72f5e534d64a195e8aee77f153f4a7082acb5779829416e6c628500b67"
 
 [[tasks]]
 name = "clawbench/v2-1088-nonprofit-charity-petition-change"
-digest = "sha256:58054fb30bfd6c3195c035f8ee4705c03ccce733559d9c7c46cdd4d2eac9d329"
+digest = "sha256:f20f2cfd751155b230c8a51af6112042aff367a3027d7bbcf313c8a69f4136b7"
 
 [[tasks]]
 name = "clawbench/v2-1093-personal-management-travel-tripit"
-digest = "sha256:334c27e38132bba40c1973d28b721230200afe9ffcb4ad84f7ac304dd9200150"
+digest = "sha256:525217bdba405e2d11b4bce2beaadb3ca79f96b74c0186bf1aff86a97db79237"
 
 [[tasks]]
 name = "clawbench/v2-1095-health-mealplan-eatthismuch"
-digest = "sha256:0073d853fad9f7fd3ceca0599df62a85ac6c48e8959e7bba33441e605d5a8825"
+digest = "sha256:4bef7e79d38c5fe20f3fbce75334cab66c3405d026b69b7f3b83a7a4b1f2acb6"
 
 [[tasks]]
 name = "clawbench/v2-1097-beauty-personal-care-shopping-theordinary"
-digest = "sha256:fbfc11c8d2f5ec08645968084f164bc2890e959bd44d135cf220b61631411429"
+digest = "sha256:66dc0d7ab8d8a3e6200f65ba71c60299d8ff48caa6116269ec3e28a956ac66f8"
 
 [[tasks]]
 name = "clawbench/v2-1100-food-cooking-collection-myrecipes"
-digest = "sha256:8e4bca0aeaa56e65a01bced1904088ac4ef47a44da291dbea86ce8a058a495c5"
+digest = "sha256:912a4e887502cae5115092ba674bc7139e363ff871fe1705ca3f9f0b395c02f2"
 
 [[tasks]]
 name = "clawbench/v2-1101-hobbies-gaming-discussion-ravelry"
-digest = "sha256:4dbb0132cdac5e2e841b3f724a0d38f75137ffcd24ba6b9c9ec4ea26094dd135"
+digest = "sha256:7a6db063100ae762a581bb4cfe892c4a91d90a905027bd3690ad6af3a9e448b0"
 
 [[tasks]]
 name = "clawbench/v2-1102-fitness-social-post-strava"
-digest = "sha256:869e9fc706c97786efc46ec144865497a7ae710483606c19fef11dc68d5bc8c8"
+digest = "sha256:fe7ba8f7c6bba4e69e51b463afcc9ab55ea31d3e7788b37d4ae9e505692c8390"
 
 [[tasks]]
 name = "clawbench/v2-1103-fitness-club-strava"
-digest = "sha256:18c1994240e078c4fb265d0c7a206587cd7a430b449446a9459ebd7a434de142"
+digest = "sha256:081d8bec60f8f857faacb9153d7f666120be473bac8aa0ccecedb9283f1d6070"
 
 [[tasks]]
 name = "clawbench/v2-1104-fitness-edit-activity-strava"
-digest = "sha256:4249c64affef4b52e7252bf13249778c7f79998afb2ff1918292e58846dc6210"
+digest = "sha256:f3622d9b740596fe0c83efa0f2fd89bdf53a0a6bde79daa1e10e8d5dc57b0eff"
 
 [[tasks]]
 name = "clawbench/v2-1107-hobbies-gaming-forum-boardgamegeek"
-digest = "sha256:cd1a69ad3ac6877efe19f64ace7d19a472ba306b31971088d1978f94cf0a614a"
+digest = "sha256:c143b105af94824d2dab09d752f407917d5006c373350a255d2da65f2a88a852"
 
 [[tasks]]
 name = "clawbench/v2-1108-civic-petition-change"
-digest = "sha256:dc25ea2ed52ffc5f3d9b50d9a5b5cc39d108973033dc1974f611dece4924659e"
+digest = "sha256:21fb51471422195a75d622284299dbf6d71a74a210c8e8f691561228ba3c8ed7"
 
 [[tasks]]
 name = "clawbench/v2-1111-civic-petition-change"
-digest = "sha256:c48f9250d2604a26cbca0d2e97f9309c9f36416df673d564085cbeeb36988ca4"
+digest = "sha256:aa99c6afd31c2c2f9a630f5b96070b1c23ab033e75ea47948f0491507f24e0bf"
 
 [[tasks]]
 name = "clawbench/v2-1112-nonprofit-petition-update-change"
-digest = "sha256:a1dc3a3569738961e404959008b1d57bd9f67b78e802413404e91e21282dcb4b"
+digest = "sha256:70a9f99c0dd2b67081c31af9a46950e26438984a8010ce739d4f6188461e468d"
 
 [[tasks]]
 name = "clawbench/v2-1113-health-mealplan-eatthismuch"
-digest = "sha256:da31bde710903b0227f4eb872259d515fef973a251d938ede273df721242fb02"
+digest = "sha256:d732374209692d37ecb8028847885e9051a1d5e97cb190f4bd127eca2db0a16b"
 
 [[tasks]]
 name = "clawbench/v2-1114-education-enrollment-edx"
-digest = "sha256:63340952a0c32af262b23b720572f2c87bee7471d8770b7aaac74589971ac2c7"
+digest = "sha256:692b85b03da597160ad96f053d490b1a536089dc1f1a5b9448aa9d70d4802628"
 
 [[tasks]]
 name = "clawbench/v2-1115-education-enrollment-edx"
-digest = "sha256:1d38c294cbfebfada715d311b0e5d0a2453e540926dd89c52a95fd4fbe63d922"
+digest = "sha256:a776ac7923dbafdde12eb987b49b4e4b83f148b1add313f93a203b857b8793a0"
 
 [[tasks]]
 name = "clawbench/v2-1116-education-enrollment-edx"
-digest = "sha256:2ad6f150f5a7b77de67b88ce6bbf7f6a61fe6af99a39d4b43cd03e874f101f42"
+digest = "sha256:939484d731d4a15f24b5ff5639da1ffe7309d22df644d0e17540935a04e62be4"
 
 [[tasks]]
 name = "clawbench/v2-1117"
-digest = "sha256:feec9e03f4977bf53905d9d9438dff81f36341cc1aa9ddc6267d4a8a8d5ee564"
+digest = "sha256:9d206fabf25facd5b730de3f2eda95941344ace1f54af79f17ffb4a336ae9977"
 
 [[tasks]]
 name = "clawbench/v2-1118"
-digest = "sha256:7fef6d6543f5f39f9fdd70cb4ca93fb5257cfcb5ef7b591474d8427a2862a272"
+digest = "sha256:cd83dae20bcf6f9060255e7c0a091515161dd5591eb77facdafe87910992c83b"
 
 [[tasks]]
 name = "clawbench/v2-1120b-services-booking-handy"
-digest = "sha256:1d8aa8e51886622354c833a4b0a8cd63029231d20b295bdd604a881dd04f87b0"
+digest = "sha256:d3baaa7008a5ad5ba67beb343f32b214db81204232a282591e37c01e22001a2e"
 
 [[tasks]]
 name = "clawbench/v2-1121b-services-booking-handy"
-digest = "sha256:975999da3e17706e10745c6aca95cc24e5d7574f010d5096f015354b6698368c"
+digest = "sha256:d3f1ff9495f397dee293ed8d6a7b6e5dd4281ade9ea0099b6c00638e17f24dc5"
 
 [[tasks]]
 name = "clawbench/v2-1122-education-course-khanacademy"
-digest = "sha256:8592bc01579fbe3b1101bcf0bbacc695dfa9b038212706eee894bf7cdd75c9f2"
+digest = "sha256:92db0dfb025fdf34dac4b3e7519d507135ad4ee91f19d5c06ea8f032b4f543df"
 
 [[tasks]]
 name = "clawbench/v2-1123-education-course-khanacademy"
-digest = "sha256:9fe9f959161928be99fab960896f3574a191238f44d3a3ab12b2dda6a437db86"
+digest = "sha256:dba78d6b8dfab2b481c3a252e818a90ae224ed59ef2fcf8c51f353b9a5f5a086"
 
 [[tasks]]
 name = "clawbench/v2-1124-education-course-khanacademy"
-digest = "sha256:0c668404d1a5511aee721228844ad82dd4213c8fce69acb2cb61a47e8ed26a44"
+digest = "sha256:c0744abc2a0b917375f5a0bc29f65324b62736e8748645517717b854037f6c92"
 
 [[tasks]]
 name = "clawbench/v2-1125-education-course-khanacademy"
-digest = "sha256:afa4dcec008bafbbaad22bb3ae1bbda03a303df57e7f58dd95dc81552e4122c9"
+digest = "sha256:f57411fc200c8ce3d2d76de21ad8805536f61a4acc7b1ed362c6d99665353c5b"
 
 [[tasks]]
 name = "clawbench/v2-1126-food-cooking-collection-myrecipes"
-digest = "sha256:089c2d01ade74ffbb0a82ea5756d1c7d0634340cb218ec227b4abe998b40b800"
+digest = "sha256:f43996ef121d9a1a061052b5ff8fc297f0886b5038c876775dde42237ba59fdf"
 
 [[tasks]]
 name = "clawbench/v2-1130-training-class-search-redcross"
-digest = "sha256:57a6b1571588512fdb348f4675e4866b2d9418d3f2f2389e1a8877e109f020d9"
+digest = "sha256:738c849a4c316ae9f4923bb74b71723bf48ccf83bf5e86018cd0e2ca78ed7f62"
 
 [[tasks]]
 name = "clawbench/v2-1131-training-add-to-cart-redcross"
-digest = "sha256:ece1dd494d706d551c260cc316e94887322d123bba7400f55d7dee8036ced8a3"
+digest = "sha256:dfcade40ea0cab4936086f548dc6fd13b60655fae661ae50f9a6630205e4785a"
 
 [[tasks]]
 name = "clawbench/v2-1132-training-enroll-course-redcross"
-digest = "sha256:283d452bd89c5e485de0233652ced2d522815891dbedbdadbacb53baa5ccdb0d"
+digest = "sha256:646f408d6a3adb6c6dc8e334266503da1750667d88a9f4cf804ff2030708929f"
 
 [[tasks]]
 name = "clawbench/v2-1133-newsletter-signup-redcross"
-digest = "sha256:9af423a606bd4411ea3ea9e49636c5994bf855173b73b773a02a4e800d900e7a"
+digest = "sha256:642ccbe2aa393f6b91893994189d1475bb90f644ee31fff4ea4b8bed724e9dce"
 
 [[tasks]]
 name = "clawbench/v2-1134-chapter-finder-redcross"
-digest = "sha256:de76718b6a55818cfd5ab0e005822701af493f89449c123597a7581a1e27b357"
+digest = "sha256:5e0582cb36ffb0c801e368b104dd8d6b250fedd4b6028491d3d6ea27e6a635a1"
 
 [[tasks]]
 name = "clawbench/v2-1135-events-tickets-ticketmaster"
-digest = "sha256:747f44b111cfe726afcc65c3d81c155ce0a65fb28599eae3283efe461cf1ccd8"
+digest = "sha256:13b7e40a6e4734553b5b17383aaa2077b31dc98a6e3de8a9bc5d20b7f5a67357"
 
 [[tasks]]
 name = "clawbench/v2-1136-events-tickets-ticketmaster"
-digest = "sha256:8829204503f2f93a7e11e25deafa889b0b91074afb9eb9aabc9015f9ded9f7b4"
+digest = "sha256:c9ae3e0764ba5f1ec554ca5467e2f860fb4d6827b6976388f978ee2d5a6e31ba"
 
 [[tasks]]
 name = "clawbench/v2-1137-entertainment-watchlist-trakt"
-digest = "sha256:862d0fc69ec396f0515dbb149257321fd9a2de2f0c57e17eff1b096cdc69270a"
+digest = "sha256:404860a11bd1a96bb0d5609a770a035ee0751f7ea1fa1c15f703d527d34d6f33"
 
 [[tasks]]
 name = "clawbench/v2-1138-entertainment-watchlist-trakt"
-digest = "sha256:41e9ba2ebc182e9542beca67537184fc7e6aa344fb282c332809caab89fa07c8"
+digest = "sha256:61cd10f87817c265448a280cd6da84e762798d5325e4591d29d3b583cb9ccc3e"
 
 [[tasks]]
 name = "clawbench/v2-1139-travel-itinerary-tripit"
-digest = "sha256:cc5a1754e096b6836a4c5e86983cae0ee8a9daf47999ea98f9de7805bfefecf7"
+digest = "sha256:5d736f263a029319b78d2bec886da4dfe4bd3093294edb4e6b53973f3d5f158b"
 
 [[tasks]]
 name = "clawbench/v2-1140-travel-itinerary-tripit"
-digest = "sha256:b01e424db486bbf3ee5816c929e1db67514e63cf36fbc2ca7a3ed1d3dc073224"
+digest = "sha256:ca704a8635c5e3c20f093986a1bef03b3ddfeff06e94b84fef6204732372d000"
 
 [[tasks]]
 name = "clawbench/v2-1141-travel-itinerary-tripit"
-digest = "sha256:eba97f59a04fa8cc5824b17fde8e5290be490d7fb5000a243fb34ba220294db3"
+digest = "sha256:009a7c149d1bd88deb7ce0557bcd9a6fcdae9280b5cb71e6e972f71cc546caed"
 
 [[tasks]]
 name = "clawbench/v2-1144-weworkremotely"
-digest = "sha256:70465d2f131ef40c1c0871a9d033fe245ca9bd2f17db3a1b1e5f6f7423e424d5"
+digest = "sha256:2531e6298110975468af897adff6069bcc681be38bd2accb5a81749de8918f28"
 
 [[tasks]]
 name = "clawbench/v2-1145-weworkremotely"
-digest = "sha256:4461354a185cf9ef938b413a3d4f2ff0483c257efca72daf65d105662edde8c1"
+digest = "sha256:848fbfcff7f3756b7e2269c2bc5ca370b4e4baaecba13b4b7d49c2df1934f91e"
 
 [[tasks]]
 name = "clawbench/v2-1146-weworkremotely"
-digest = "sha256:dbffc5f9b3b16a2f13cf45708931197ae73432f6e9a20e13a71f48143d92e4d0"
+digest = "sha256:0031d805d96cb43ea16cc989bfe77ce029e99857d6efd440e507e0a7de3498b1"
 
 [[tasks]]
 name = "clawbench/v2-1201-beauty-cart-theordinary"
-digest = "sha256:156aed420f193aa1f84897f0366ed5a53bd273e4bdcee0723565f9a9d98d04f8"
+digest = "sha256:9a349d9c6ab22edcd3ca9620e3937945acb67954b5bf2093f423f89e58c6af71"
 
 [[tasks]]
 name = "clawbench/v2-1202-beauty-cart-quantity-theordinary"
-digest = "sha256:3ed46b9ba5be08ad7d9a972158b73a2e75bcb867dc35a29058446cfe69379698"
+digest = "sha256:a25c978a6821eddc78ed4d84bfd4a8f319e4b4c0bf0afe934f28a8390e974604"
 
 [[tasks]]
 name = "clawbench/v2-179-dev-tech-github-ops-github"
-digest = "sha256:08a47c05034389da91468e15b916f644b205689ec9a2280c30d2c11d8fe7b2dd"
+digest = "sha256:eb43db272ad8aba595164b63a4233665cc0a710bc30197725d6302d28b1e5901"
 
 [[tasks]]
 name = "clawbench/v2-180-dev-tech-github-ops-github"
-digest = "sha256:8038c92f6c1e64c40e467e2defbae33ef7d332533558a5485133f79cbed1339e"
+digest = "sha256:aa6d6e1c40c54cc2872b35cb0e8749288ba6f72f826b3a4737f2412cb1d1d9c1"
 
 [[tasks]]
 name = "clawbench/v2-215-academia-research-paper-tables-overleaf"
-digest = "sha256:5489de2e85655c5f2e60bb6d2bb9ea7e4c7d1428193b1f2c4548fd5938f8d374"
+digest = "sha256:e8ade6600ad3ad878265d83a660f3e98096a501bfec80191e6cca3206f28c3be"
 
 [[tasks]]
 name = "clawbench/v2-234-daily-life-events-ticketmaster"
-digest = "sha256:3a1ecb174b46f103a3f4235823057fcbec61ddcf307140413deb0a5e8441f9f6"
+digest = "sha256:68d58b663583b96e526ae9c90024828ec5bbae805235459b6a6577e776d1a800"
 
 [[tasks]]
 name = "clawbench/v2-242-academia-research-research-tools-overleaf"
-digest = "sha256:6f2d6a4fedd64785c6e7416d23c6e0ef78ffe3ab9b41f1eb5edd611cdb8b4163"
+digest = "sha256:f59ed59623ca21db9ceb1ab696cb53a8cd7895a1036c106f40195499c0f6e994"
 
 [[tasks]]
 name = "clawbench/v2-247-academia-research-research-tools-semantic-scholar"
-digest = "sha256:5931abe61664547328eeeec043e96788f6ec41537ccb5ac6c327b608a8fbfcb9"
+digest = "sha256:6d3e81483ba85f914b1d25be78d945742806b42848914cf5a621a37754ee93ae"
 
 [[tasks]]
 name = "clawbench/v2-265-education-learning-general-coursera"
-digest = "sha256:449099a7c0d63833a24ce68de1bdf1a8c04705f954f40d24f08aa2d1ff617aae"
+digest = "sha256:e6e98e7b923915c88ed9c5cb0f04c114dee4e292e49b3f147994b3368eee3f44"
 
 [[tasks]]
 name = "clawbench/v2-266-education-learning-general-leetcode"
-digest = "sha256:fd7c8ba07ad2494c405743c10e139f38faa093e4baf3217e7d1ae951a126287c"
+digest = "sha256:7e50de3efd7bc9f606bdee93284885de776d31ed0d58fd4bb16b25d05cfe4b08"
 
 [[tasks]]
 name = "clawbench/v2-273-education-learning-general-edx"
-digest = "sha256:2467bc0afe6c95d2e2b356a9af4288d3f6b52602160fa10135a5bef073d97d98"
+digest = "sha256:70a89937bd6bbaca340cb2a24235d1e4dddc077814859b8a4434f8cc8030b1f7"
 
 [[tasks]]
 name = "clawbench/v2-274-office-secretary-tasks-calendar-when2meet"
-digest = "sha256:08680ec1eeede787b9ef6d1c6821678d8cd36a80f9380feeace75ff7040ec131"
+digest = "sha256:6bc5474d28d0b8d9a462e5c98806e13ecfda9ad8c024b041ab2922280617d862"
 
 [[tasks]]
 name = "clawbench/v2-284-office-secretary-tasks-calendar-when2meet"
-digest = "sha256:830440d105252b2c1c8109f210e192a447d75c7975e351765af2e5179979a4eb"
+digest = "sha256:5a81bfee58357e7c20903776acc3a1c31190cb40be44ca1d5d92c9ecd3bd4ea6"
 
 [[tasks]]
 name = "clawbench/v2-369-entertainment-hobbies-general-goodreads"
-digest = "sha256:de1fb82d7d94a4ee574cb48eb1b2305965625e8624a370899853ffc065dabad5"
+digest = "sha256:505d25db1483eeeb7488127898dddcc61de06bb9ffcbd68edbafa39283c8e7aa"
 
 [[tasks]]
 name = "clawbench/v2-372-entertainment-hobbies-general-eventbrite"
-digest = "sha256:adce0eb6b21a9e687f08113ac0b4441d4b0df232b1b548b07e09ff1b6db31f52"
+digest = "sha256:5b9592e837ad5152ede1653ac8c70876845283a7403fa6d8c83c8f32e6ad590d"
 
 [[tasks]]
 name = "clawbench/v2-413-personal-management-personal-tools-todoist"
-digest = "sha256:a327bb21b9b6ebe4e8cfdf8b56f6a6df9f6dea14b479aca5fcb8da10b2fed66b"
+digest = "sha256:5df7d5609978a5db9080924868b72e32cb3282d26bc742213a0e7667c9022b9f"
 
 [[tasks]]
 name = "clawbench/v2-468-rating-voting-general-glassdoor"
-digest = "sha256:9bb1cc6211395d6a2472f9e1210690813106ef6109eb422f7ca8b5e808c7393e"
+digest = "sha256:3b0c0143bcf4a59e99ad2492a778ef7c5c27f9692ef95abe947aae94d29abe94"
 
 [[tasks]]
 name = "clawbench/v2-469-rating-voting-general-tripadvisor"
-digest = "sha256:0ed8774ad13c1e748922d418ce53ecde7133ca3e15e8158f01d21e098c7831b3"
+digest = "sha256:ead827ed55846d0bf95ba6365b83337093c1938716d5e7d84393f4a97a2b67a6"
 
 [[tasks]]
 name = "clawbench/v2-470-rating-voting-general-trustpilot"
-digest = "sha256:bb7f02f0bb54864b43aa17daa2fe5a94a35e3bc5cbd4fd64a208a1b45d703a6c"
+digest = "sha256:0e98e10ef4482fb77137003a1624d53a2f7297adc67d21de523b54d0a8f6de24"
 
 [[tasks]]
 name = "clawbench/v2-474-rating-voting-general-capterra"
-digest = "sha256:c9d495ca728adfe63f9bc8d7eca30616858a4bfd090ab062632e757e02d46b6f"
+digest = "sha256:d75a5bb0c6ce7a7c74455e5b79e640cd23f264baac002443c3d932a39f4e7894"
 
 [[tasks]]
 name = "clawbench/v2-475-rating-voting-general-g2"
-digest = "sha256:40a6935b6aa2d9419aeabb2186ee98f772ddd4265549283a20a6a417189dadb5"
+digest = "sha256:e6770e7de339488a1323ea066e6f8df45e7c17ee9d75686bffbd25489faa4657"
 
 [[tasks]]
 name = "clawbench/v2-483-creation-init-general-airtable"
-digest = "sha256:6b1170ee3f7dbd60b41170ba2f04d6f6da88cc6943272fe466bdbf6f2b7daeb0"
+digest = "sha256:d7b00a9d7f31c61e69659deed124b90c23f6fb99167fa526c4e1004fb5bd4733"
 
 [[tasks]]
 name = "clawbench/v2-485-creation-init-general-webflow"
-digest = "sha256:e873031679ec6b616fc59af459857811ba0de0fcc1b51be79510fd5a27b63b8d"
+digest = "sha256:b9c1b03ed0e1978bbc39772246bfd2f3b2d8660d0916fddd1d840c368f122d63"
 
 [[tasks]]
 name = "clawbench/v2-486-creation-init-general-mailchimp"
-digest = "sha256:567e63077a7019fc6ecbd267a3e430dc3f0f632d18cfb7a26e6a2658a01f4598"
+digest = "sha256:5a17170c63138eb5f52fd693d731deb75ec7c7249a31c6cadb60236d29663755"
 
 [[tasks]]
 name = "clawbench/v2-487-creation-init-general-typeform"
-digest = "sha256:f94d9f36bc5fe9c376e564098fe6043d150bb7deb03e19d1405c17f5a4713e0a"
+digest = "sha256:7014b4251848df51688411efe1965b7caef8da539d7f4a68173b3ea4c23f5221"
 
 [[tasks]]
 name = "clawbench/v2-488-creation-init-general-substack"
-digest = "sha256:2a40d4fa1437b2db131d68f4fab2616b5d75e3da46488d7e9a0122c4ecfd60df"
+digest = "sha256:60de88af02b8a1631ebea74c9524fe706b97bb3ffd7539076fa28cdae63ab62b"
 
 [[tasks]]
 name = "clawbench/v2-500-office-secretary-tasks-signup-doodle"
-digest = "sha256:ff2b926bdd36c7d9e93ddab6ef01ffab8285c80bac0b7c0fc315599b52c675e5"
+digest = "sha256:b877d0be7bcbf86333ac8ecc22c4577d1e16ae51b626020a6a95a4f04ea3916f"
 
 [[tasks]]
 name = "clawbench/v2-501-office-secretary-tasks-signup-doodle"
-digest = "sha256:643dc9e72c85ffba8a44e089e6c5ebb7f3814f3a125788e2bade7f14640ffa55"
+digest = "sha256:908f2f2bfbd903f45da9ee7b595a26c2835735380693861871f038886f63292d"
 
 [[tasks]]
 name = "clawbench/v2-502-office-secretary-tasks-calendar-doodle"
-digest = "sha256:ddbeafe0ef73b6b99e15ae877b625f69e8d8691216ac48b6ae5f4316a02b43a5"
+digest = "sha256:0f8c48001316ca297353cc4abcc5b659a94db88afefcba92457dbf233d82355f"
 
 [[tasks]]
 name = "clawbench/v2-503-office-secretary-tasks-calendar-doodle"
-digest = "sha256:2527a0a3290dd00e40b8edbc28c952d008c4e9d1c1ef831f818376c86b36b7a8"
+digest = "sha256:ebad6e7119db4f608f67f8a685fc4d4aeaae28b07c87806fe4f0e297cceea713"
 
 [[tasks]]
 name = "clawbench/v2-520-shopping-retail-target"
-digest = "sha256:e28413609b02baa562a37bdf912de8ddb8761e47637e030d4d8d9f41621c6780"
+digest = "sha256:7eab94e56e5dd7f157f27cd6323753528c7fd210f523b740ce92907302c9aa92"
 
 [[tasks]]
 name = "clawbench/v2-521-shopping-retail-target"
-digest = "sha256:50b4a0df968110243164f039050a249d40a025ef224bb1874341816a23452484"
+digest = "sha256:020653727c1fcddef316d91f1a18be3cb9056240fe0f77dc89733fb5a1946355"
 
 [[tasks]]
 name = "clawbench/v2-522-shopping-retail-target"
-digest = "sha256:14d55e7eb980826af4e536d4a97e374cce067b9ccd835ed44e16c3bef0ba7462"
+digest = "sha256:aa67f9c13578c3559565b9795d4b840ab2c2496a4f5f893f2229aa90ae02105d"
 
 [[tasks]]
 name = "clawbench/v2-523-shopping-retail-target"
-digest = "sha256:eb72748a43621e389091408c24181bb8de11d42c55519bbb9a2aca1ed5ab57bc"
+digest = "sha256:a1804c352edfc7ae34c8b7c0afcc812c5b826c895a31801c7756f6596b816be6"
 
 [[tasks]]
 name = "clawbench/v2-530-shopping-marketplace-etsy"
-digest = "sha256:305d47c997316ece985853a2a8fbc4a1346f8dd14a0122eb9ef9d75c68dc16cd"
+digest = "sha256:b8c7e2097327ec55447312c6330a6414f00ebdaabe9df8a60214c18dbdfb708f"
 
 [[tasks]]
 name = "clawbench/v2-531-shopping-marketplace-etsy"
-digest = "sha256:3d770dbb1b5bcefe44ed556ef54680b54410c66009d8961c490431cb7ef3a8f1"
+digest = "sha256:5b721d4ec1cc13f28ef2f0ec0909601a114e585622de1a9ceba7548879c03e8d"
 
 [[tasks]]
 name = "clawbench/v2-533-daily-life-utilities-inmyarea"
-digest = "sha256:b5bad91de80dabdbc061c995d18e182fd4ff8f2d8ae613cdc5ab41b336b60909"
+digest = "sha256:efd87257842e3038adf63cf83ce451e8f22460877ba56dfa527aebeaa766e3cb"
 
 [[tasks]]
 name = "clawbench/v2-535-daily-life-shopping-etsy"
-digest = "sha256:7e425f455ed8c94527ec9e2b62e6a1e4ce0c6f2c27c7e2baa6f049a99915ec11"
+digest = "sha256:e642752221d537bc52b3b6629c5f9ce4ce826a8a5fd5b7fae560b78c79075256"
 
 [[tasks]]
 name = "clawbench/v2-536-daily-life-shopping-etsy"
-digest = "sha256:6c073751c7f0cf9949da56076d6e999a480a956d5b3c8ba0c898c0a64896aa1d"
+digest = "sha256:c59486d6072565494c4caceb8ae3d70eba4667d8637ef87cdc2f21aff3392b5f"
 
 [[tasks]]
 name = "clawbench/v2-560"
-digest = "sha256:82247ba3b6b9961eaf888098654c711f04ba184aa37b2d31046d1a63e2be4523"
+digest = "sha256:34cf7c447f1f9997719296949326bbae264df9e007947263ef3937997761fe2d"
 
 [[tasks]]
 name = "clawbench/v2-564"
-digest = "sha256:42657dbfaa293b462cbb3c642f80deed1b04b20c23f6edbe31a76e7877f08093"
+digest = "sha256:28a74b9f788b5e7c02d8d37dcddd11bf0d7f4e9b1fe769a3ba0e14f42741752d"
 
 [[tasks]]
 name = "clawbench/v2-571-job-search-hr-recruitment-mgmt-workable"
-digest = "sha256:33e8f6e9d9dc7ca102b3e994e4172c19394cf22f14a76ceac2ac49f897ed1b59"
+digest = "sha256:0960d3ee80f7e50912395c077f045fa0033ec3035444b63a837c3c027018fd84"
 
 [[tasks]]
 name = "clawbench/v2-583-office-secretary-tasks-support-tickets-freshdesk"
-digest = "sha256:8e2655f374d0f6581fd933631312635ca626628b4093cac5983e680a5e2e372d"
+digest = "sha256:9928cd6967cbf93baf0d97023f17d83538e5b3d332cec9296fa9e7df8af7108b"
 
 [[tasks]]
 name = "clawbench/v2-596-daily-life-fitness-strava"
-digest = "sha256:044c019af56fbfbb77338d8a7ae746e3d6396ada5101ef0e30018bf3e6ddf189"
+digest = "sha256:860cd3f9fdc68f33aa7192307b085a967207687ae215665e1671a3833d1e1481"
 
 [[tasks]]
 name = "clawbench/v2-597-daily-life-fitness-strava"
-digest = "sha256:298f3a55775ad4c802d674379b9eebed8fb0fdf7b1f5436999789132b0cefb8a"
+digest = "sha256:6e82073b6cdfc131c2d51ec804dd84cb1e5b07c29f783eed6f1d6037626e5936"
 
 [[tasks]]
 name = "clawbench/v2-598-academia-research-legal-docs-formswift"
-digest = "sha256:451d93fa429ab7d2dcba3f78f841a64e92c96994122dfb98243f13088d4e4572"
+digest = "sha256:cc4b190988d12a73d1c5b6c6ba7dda809492fd491646cdc17e8aae08e1ab09c3"
 
 [[tasks]]
 name = "clawbench/v2-600-hobbies-crafts-community-ravelry"
-digest = "sha256:12218a8c3a866c270f2d7c0b2f35100e8d3481c011809d9d693a860a8ef206d2"
+digest = "sha256:62919bcec1c8b6393d0322af20b9868891088e9faf3ee5e4bcffe8856f339d2e"
 
 [[tasks]]
 name = "clawbench/v2-601-hobbies-gaming-reviews-ravelry"
-digest = "sha256:87e1a5e66acdcff05a147b541b0d20c1e04661f55405b89ca532039d6beaea00"
+digest = "sha256:7c64bf38e6c8ded1776c942290984439a01ceefe756e5a583a3ee0c594a30074"
 
 [[tasks]]
 name = "clawbench/v2-602-hobbies-crafts-community-ravelry"
-digest = "sha256:71384fae06ee4b7f342680e4c1daadba775cb2f222de1ba0db80dfcf1081a178"
+digest = "sha256:269e7cbea6a95193de080e6eb39cb3b4a6864facbe653a269bed06eb9dbc9c7f"
 
 [[tasks]]
 name = "clawbench/v2-603-hobbies-crafts-community-ravelry"
-digest = "sha256:e0034edb83943d1ec7a067cd8875316fef4a80791bf8cd6aa375c568a892e96d"
+digest = "sha256:9b2837912e1cd166acd8936e8d27e568302fe46234e9e9f35c3a2c6256d32401"
 
 [[tasks]]
 name = "clawbench/v2-607-hobbies-gaming-reviews-boardgamegeek"
-digest = "sha256:8fbbd191df4d6bc411306380535baa2bb8215a73011cb9de270ba9a36a23ab82"
+digest = "sha256:65e7814fbf89537c93958fe04748ad6b9027ae08be565dc7827098faa9294f6b"
 
 [[tasks]]
 name = "clawbench/v2-608-education-learning-kids-courses-outschool"
-digest = "sha256:6c125887ba2270bc86765647f561e3aa17c894e6ec9ec01d505a31a13f790366"
+digest = "sha256:7c4cf4d97a71c22c2d0a4dc954a92959bffe5d22fe31f3014fba99506284630d"
 
 [[tasks]]
 name = "clawbench/v2-609-education-learning-meditation-spirit-rock-meditation-center"
-digest = "sha256:56b6f979b73c973b38731ed5757eba66ffb7215185d12f1f8632318fbc12715f"
+digest = "sha256:2c510eb63ad7f8435fffaa30f25b7509470af305021eb6b48337a01c4b947763"
 
 [[tasks]]
 name = "clawbench/v2-610-hobbies-gaming-reviews-boardgamegeek"
-digest = "sha256:4d2f4ecc0ebd54b3c859efc3e186ac5a74371b54146b65719be4630c93400ea4"
+digest = "sha256:d42f8921b56a21aa3f6cb21f22adbd66ebc2e28ef2f597875bb93294c6ec0d49"
 
 [[tasks]]
 name = "clawbench/v2-630-daily-life-productivity-habitica"
-digest = "sha256:0052dfd7ee463f18e0e2931024f1d45db73543861266f8a53ded1d3ce38e3a22"
+digest = "sha256:37f2029c583d6e8723f5691e2597825bbb14ec3e7a5e041ad8e0cdf7f123895d"
 
 [[tasks]]
 name = "clawbench/v2-631-daily-life-productivity-habitica"
-digest = "sha256:e4d190a7a56d099e8c696f5296752eb04517f7f89ad4ecf2a492ab20e29b54e9"
+digest = "sha256:a48ba7e8a2cda090b5f1dcb4c068409082d9ddca2700ccd12a1e78969e2d1f1b"
 
 [[tasks]]
 name = "clawbench/v2-633-daily-life-productivity-habitica"
-digest = "sha256:3a2524ab34b4863d22cf1fd657f7d16db1d4655fcd4d6b8539c48b86d767369a"
+digest = "sha256:19b92247ea15410e3e2494a422e045bba2e644c62e913d035bf89120db5499ed"
 
 [[tasks]]
 name = "clawbench/v2-634-daily-life-productivity-habitica"
-digest = "sha256:374925aca2b22ad5b35ad64bb54532df56aaf35e8270a78e732fee8430fcb9bb"
+digest = "sha256:4985159d7af309b29bd1d484da731de9e9bd1006abe9849e3bc7b10ec64d59ae"
 
 [[tasks]]
 name = "clawbench/v2-635-entertainment-tracking-trakt"
-digest = "sha256:b465a3ad1bfea406d22115ca3fcece404c22967a8401d69ea589363ae6857db7"
+digest = "sha256:0e33a17ea2e83eea631f8a34345477a0f023ead6258dc1a96644000051fc2036"
 
 [[tasks]]
 name = "clawbench/v2-638-entertainment-tracking-trakt"
-digest = "sha256:d79ae90b1f3137332bf23d4e5aa4d909b9e0d508570ff91e7c0e2b982b78acbd"
+digest = "sha256:e69272f6f9fde888d7e944cfac76381cb5b8db7772a91521caa46751a6a5a2ec"
 
 [[tasks]]
 name = "clawbench/v2-705-rating-voting-wine-review-vivino"
-digest = "sha256:f0685eefe24559b66afd112f5c91203efe7765ce2b60469b6b5536669ddc400a"
+digest = "sha256:8e592cc472abdfa71100b76df2f0c7ab91c373c8e544584acf59d8a9e861200b"
 
 [[tasks]]
 name = "clawbench/v2-706-rating-voting-beer-review-beeradvocate"
-digest = "sha256:cf57f38beb2ee903b2824a864e7453f1f256fcdca98eed8677d6b13e603f217a"
+digest = "sha256:9895b2b2ca5bfc60e2d192e5e6fc7cd7be2c4c916de7992f51cdec11f9c0b77c"
 
 [[tasks]]
 name = "clawbench/v2-707-rating-voting-social-wine-untappd"
-digest = "sha256:d570502efa758c2ad385619eacc54170ec458bf8886973166f73c6af1123be9e"
+digest = "sha256:408a889f0f43ba2ff65e1f2e24ac8130fbe27ba7b8f1eb885ddd5860730d0e60"
 
 [[tasks]]
 name = "clawbench/v2-708-rating-voting-professor-review-ratemyprofessors"
-digest = "sha256:3015c7e2838a1e73cf27b94cf769b1872a7293d987f4f269753a6b4befb3178b"
+digest = "sha256:d3893062d811dca585dc443d2a70666bad79d81375cf461b6a9e469823d1d9ef"
 
 [[tasks]]
 name = "clawbench/v2-711-creation-init-color-design-coolors"
-digest = "sha256:b6924c9f27b3ac3fa02bd68a078c45bf7d59603aca889094ff40b3e100c5c59a"
+digest = "sha256:e6893db8ffcc39d23e07d996f362096c06240239ba319efffb25b67dcc6284ee"
 
 [[tasks]]
 name = "clawbench/v2-735-home-services-maintenance-house-cleaning-bark"
-digest = "sha256:4ac5b6757a7a6584f984a4881aedb995ea9a704ce73e1212a6c094655ef37447"
+digest = "sha256:cf98f85fc360e44be2894793475b7ed2806eeb9a3a0a0b4e99dd26d908ea9dac"
 
 [[tasks]]
 name = "clawbench/v2-737-home-services-maintenance-kitchen-remodel-lowes"
-digest = "sha256:81179e027035f9cc7d060d7034a978e3c567c53ed0721cea7b233e1ba74c54fa"
+digest = "sha256:079115b0bea57416ab46166b313d55b47c3644b71733eaba3fc2c64ca1832774"
 
 [[tasks]]
 name = "clawbench/v2-763-automotive-vehicle-services-car-lease-autoslash"
-digest = "sha256:3b4d044cf69d6150376fbe7c1c0a80875f7f5d38607fc4de36aa130869cf731f"
+digest = "sha256:e6cd6d9db87bd0c1925b9066423d42365f1e4098f3f4325cf87c8b30ee4ad49e"
 
 [[tasks]]
 name = "clawbench/v2-774-nonprofit-charity-nonprofit-job-apply-charity-village"
-digest = "sha256:287b9c60c4c79f117e2a3e010b79d0b9e15ec6996c17d0283b73fcd43e6c1d5e"
+digest = "sha256:431847fa294cc00751375d34c39d82e7b06e94ba8efa5706cee533480dcbb239"
 
 [[tasks]]
 name = "clawbench/v2-776-nonprofit-charity-volunteer-signup-idealist"
-digest = "sha256:074956ca4464c01c80c85044f8f1085f3134b8d0d90444f3dab221c684ffbfe7"
+digest = "sha256:14057c31e1b926c011e6993097cd0ea390862178001b8639fa38781d39d04ddf"
 
 [[tasks]]
 name = "clawbench/v2-794-beauty-personal-care-salon-booking-styleseat"
-digest = "sha256:17b7f6daaa69d78deb86f3628b8342e28db8cd9a4f7cd3a2954d557073e8fa29"
+digest = "sha256:a028d46800a45ac77a29da8bdd322aa2ba62bd2b58f7d017555a597de48329f8"
 
 [[tasks]]
 name = "clawbench/v2-815-pet-animal-care-favorite-pet"
-digest = "sha256:1a3655028c8f0b923c780613f468e01478eb088c87091c01265f93034cb3f42a"
+digest = "sha256:cf19b287efaf34c2acb94b00f5143329512c239de4669d760701d6c340cba532"
 
 [[tasks]]
 name = "clawbench/v2-816-pet-animal-care-remove-favorite"
-digest = "sha256:a33aab5aa7557dc5679dbd7f89c76fe15caab7805e8eb6946a3cd3e7b98f2df7"
+digest = "sha256:ee532c54bc3db449f7dd5e026514a4b557b38ed0123ed01b97ba914921724306"
 
 [[tasks]]
 name = "clawbench/v2-817-pet-animal-care-create-adopter-profile"
-digest = "sha256:a7b1d6e0fe411bccbef5ab3da59d4457d7f83fbe9ec3002640c5d4d05a93bc19"
+digest = "sha256:d38d0e2f3e5d7a210ac424c8f5abed40125a087e31732f9ece76bff4124394b3"
 
 [[tasks]]
 name = "clawbench/v2-901-entertainment-imdb-add-to-watchlist"
-digest = "sha256:dec849d438cb5526bde749b634f1cdca2dff567a3fef03f1c81955cdd228f684"
+digest = "sha256:f13d2830714c6a92f42d33a9e6f89e7d3c2bcca7466941f7ae169b449cbe6ac9"
 
 [[tasks]]
 name = "clawbench/v2-902-entertainment-imdb-rate-title"
-digest = "sha256:27506a959e97c9ad1fbd3addc43495e2042b313395a69aa00e67a6db78e2a3ea"
+digest = "sha256:8ba2bd45613a2602b9d0382bead28fd2c40871a27775234aca8c6ffdbe34b5f7"
 
 [[tasks]]
 name = "clawbench/v2-903-entertainment-imdb-remove-rating"
-digest = "sha256:808f3879d346cf6bb5bcf0e27f4efb1672a9bd63d5bb5ceb233f1be93eca5299"
+digest = "sha256:3cb68b31204b5c8702fe214b4629f81289cc9615f79461577ac831b585849857"
 
 [[tasks]]
 name = "clawbench/v2-904-entertainment-imdb-create-list"
-digest = "sha256:4bd3c45c7c4c302c33d4bc9d637efb046212453b1928ca54de348d49ad5afef6"
+digest = "sha256:59d0e325617fb518aaf47ed92c42d00d11e77061de858c1479336c26d798e4ad"
 
 [[tasks]]
 name = "clawbench/v2-905-entertainment-imdb-add-to-list"
-digest = "sha256:2acdface56320e4c41fb298767c8b1d65c7bc27527fe001307fe26c955bea9ac"
+digest = "sha256:bf0f0245774cf4aae78ca065f7e2cb02454978cd493f0d9510766c11eb77aebe"

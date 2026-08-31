@@ -282,7 +282,7 @@ def write_harbor_task(
     workdir = step_dir / "workdir"
     tests_dir = step_dir / "tests"
     solution_dir = step_dir / "solution"
-    for path in (workdir, tests_dir, solution_dir):
+    for path in (env_dir, workdir, tests_dir, solution_dir):
         path.mkdir(parents=True, exist_ok=True)
 
     raw_metadata = task.get("metadata")
@@ -313,6 +313,14 @@ def write_harbor_task(
     write_text_executable(solution_dir / "solve.sh", solve_script())
     if docker_image is None:
         copy_environment(env_dir)
+    else:
+        # Harbor's TaskModel.is_valid_dir requires environment/ to exist even
+        # when [environment].docker_image is set; a one-line Dockerfile keeps
+        # the task valid for local -p runs while still using the prebuilt image.
+        (env_dir / "Dockerfile").write_text(
+            "# Prebuilt mode: the runtime lives in the published image below.\n"
+            f"FROM {docker_image}\n"
+        )
     return dest
 
 
