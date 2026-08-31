@@ -20,12 +20,20 @@ ENGINE="${CONTAINER_ENGINE:-docker}"
 PUSH=0
 [ "${1:-}" = "--push" ] && PUSH=1
 
-echo "Building $IMAGE:$VERSION (engine=$ENGINE, context=$RUNTIME)"
+# Stage a build context: the runtime tree plus resume_template.json, which the
+# adapter normally copies into each task's environment/harbor/ at export time
+# (setup.sh -> prepare-task.py reads /app/src/harbor/resume_template.json).
+CTX="$(mktemp -d)"
+trap 'rm -rf "$CTX"' EXIT
+cp -r "$RUNTIME/." "$CTX/"
+cp "$ROOT/src/clawbench/runner/run_support/resume_template.json" "$CTX/harbor/resume_template.json"
+
+echo "Building $IMAGE:$VERSION (engine=$ENGINE, context=$CTX)"
 "$ENGINE" build \
-  -f "$RUNTIME/harbor/Dockerfile" \
+  -f "$CTX/harbor/Dockerfile" \
   -t "$IMAGE:$VERSION" \
   -t "$IMAGE:latest" \
-  "$RUNTIME"
+  "$CTX"
 
 if [ "$PUSH" = 1 ]; then
   "$ENGINE" push "$IMAGE:$VERSION"
