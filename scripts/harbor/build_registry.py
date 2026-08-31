@@ -89,7 +89,7 @@ def main() -> int:
     parser.add_argument(
         "--description",
         default=(
-            "ClawBench V2: 129 everyday tasks on live consumer websites, scored by "
+            "ClawBench: everyday tasks on live consumer websites, scored by "
             "request interception + LLM judge. https://claw-bench.com"
         ),
     )
@@ -99,11 +99,18 @@ def main() -> int:
 
     dataset_dir = args.dataset_dir.resolve()
     if args.output:
-        registry = build_registry(
-            dataset_dir, args.name, args.version, args.description
-        )
+        entry = build_registry(dataset_dir, args.name, args.version, args.description)[
+            0
+        ]
+        registry = []
+        if args.output.exists():
+            registry = [
+                e for e in json.loads(args.output.read_text()) if e["name"] != args.name
+            ]
+        registry.append(entry)
+        registry.sort(key=lambda e: e["name"])
         args.output.write_text(json.dumps(registry, indent=2) + "\n")
-        print(f"registry: {len(registry[0]['tasks'])} tasks -> {args.output}")
+        print(f"registry: {len(entry['tasks'])} tasks ({args.name}) -> {args.output}")
     if args.manifest:
         n = update_manifest(dataset_dir, args.manifest)
         print(f"manifest: {n} tasks -> {args.manifest}")

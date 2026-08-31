@@ -36,7 +36,7 @@ ClawBench/
     README.md                     # How to run / publish ClawBench through Harbor
     dataset.toml                  # Hub manifest (tiger-ai-lab/clawbench-v2)
     adapter/                      # harbor-framework/harbor adapters/clawbench package
-    datasets/clawbench-v2/        # Committed prebuilt-mode Harbor tasks (generated, CI-checked)
+    datasets/clawbench-{v1,v2}/   # Committed prebuilt-mode Harbor tasks (generated, CI-checked)
   registry.json                   # Harbor git registry (harbor run --repo TIGER-AI-Lab/ClawBench)
   test-cases/
     task.schema.json              # JSON schema for task.json

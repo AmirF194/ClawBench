@@ -7,9 +7,9 @@ ClawBench measures end-to-end task success while preserving replayable evidence 
 ## Canonical resources
 
 - [Project page](https://claw-bench.com): overview, task explorer, leaderboard, and evaluation details.
-- [GitHub repository](https://github.com/reacher-z/ClawBench): source code, task definitions, harnesses, and documentation.
+- [GitHub repository](https://github.com/TIGER-AI-Lab/ClawBench): source code, task definitions, harnesses, and documentation.
 - [Research paper](https://arxiv.org/abs/2604.08523): *ClawBench: Can AI Agents Complete Everyday Online Tasks?*
-- [Citation metadata](https://github.com/reacher-z/ClawBench/blob/main/CITATION.cff): machine-readable citation record.
+- [Citation metadata](https://github.com/TIGER-AI-Lab/ClawBench/blob/main/CITATION.cff): machine-readable citation record.
 - [Task and leaderboard Space](https://huggingface.co/spaces/TIGER-Lab/ClawBench): live evaluation results and task explorer.
 - [Task dataset](https://huggingface.co/datasets/NAIL-Group/ClawBench): V1/V2 task definitions and evaluation metadata.
 - [V1 execution traces](https://huggingface.co/datasets/NAIL-Group/ClawBenchV1Trace): replayable run artifacts.
@@ -24,4 +24,4 @@ ClawBench measures end-to-end task success while preserving replayable evidence 
 
 ## Citation
 
-If you use ClawBench, cite the paper listed in [CITATION.cff](https://github.com/reacher-z/ClawBench/blob/main/CITATION.cff) and link to the canonical repository.
+If you use ClawBench, cite the paper listed in [CITATION.cff](https://github.com/TIGER-AI-Lab/ClawBench/blob/main/CITATION.cff) and link to the canonical repository.

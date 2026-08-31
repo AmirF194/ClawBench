@@ -12,7 +12,7 @@ dataset = "v2"
 source_task = "v2-470-rating-voting-general-trustpilot"
 
 [environment]
-docker_image = "ghcr.io/tiger-ai-lab/clawbench-harbor-runtime:0.9.2"
+docker_image = "clawbench/clawbench-harbor-runtime:0.9.2"
 build_timeout_sec = 1200.0
 network_mode = "public"
 workdir = "/app"

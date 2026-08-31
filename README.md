@@ -157,9 +157,9 @@ order food, book travel, apply for jobs, write reviews, manage projects.<br/>
 </td>
 <td align="center" valign="top">
 
-❓ **Have a question**<br/>
-[FAQ](#faq) · [Open an issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose)<br/>
-<sub>Or ask on the HF dataset page</sub>
+🧭 **Run it via Harbor**<br/>
+[`harbor run --repo TIGER-AI-Lab/ClawBench`](harbor/README.md)<br/>
+<sub>[FAQ](#faq) · [Open an issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose)</sub>
 
 </td>
 </tr>

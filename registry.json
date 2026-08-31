@@ -1,8 +1,623 @@
 [
   {
+    "name": "clawbench-v1",
+    "version": "0.9.2",
+    "description": "ClawBench: everyday tasks on live consumer websites, scored by request interception + LLM judge. https://claw-bench.com",
+    "tasks": [
+      {
+        "name": "001-daily-life-food-uber-eats",
+        "path": "harbor/datasets/clawbench-v1/001-daily-life-food-uber-eats"
+      },
+      {
+        "name": "002-daily-life-food-doordash",
+        "path": "harbor/datasets/clawbench-v1/002-daily-life-food-doordash"
+      },
+      {
+        "name": "004-daily-life-food-instacart",
+        "path": "harbor/datasets/clawbench-v1/004-daily-life-food-instacart"
+      },
+      {
+        "name": "006-daily-life-food-uber-eats",
+        "path": "harbor/datasets/clawbench-v1/006-daily-life-food-uber-eats"
+      },
+      {
+        "name": "007-daily-life-food-instacart",
+        "path": "harbor/datasets/clawbench-v1/007-daily-life-food-instacart"
+      },
+      {
+        "name": "011-daily-life-housing-zillow",
+        "path": "harbor/datasets/clawbench-v1/011-daily-life-housing-zillow"
+      },
+      {
+        "name": "015-daily-life-housing-craigslist",
+        "path": "harbor/datasets/clawbench-v1/015-daily-life-housing-craigslist"
+      },
+      {
+        "name": "035-daily-life-health-medical-betterhelp",
+        "path": "harbor/datasets/clawbench-v1/035-daily-life-health-medical-betterhelp"
+      },
+      {
+        "name": "041-daily-life-pets-rover",
+        "path": "harbor/datasets/clawbench-v1/041-daily-life-pets-rover"
+      },
+      {
+        "name": "043-daily-life-pets-rover",
+        "path": "harbor/datasets/clawbench-v1/043-daily-life-pets-rover"
+      },
+      {
+        "name": "045-daily-life-personal-care-booksy",
+        "path": "harbor/datasets/clawbench-v1/045-daily-life-personal-care-booksy"
+      },
+      {
+        "name": "047-daily-life-personal-care-taskrabbit",
+        "path": "harbor/datasets/clawbench-v1/047-daily-life-personal-care-taskrabbit"
+      },
+      {
+        "name": "086-job-search-hr-cv-autofill-greenhouse-meta",
+        "path": "harbor/datasets/clawbench-v1/086-job-search-hr-cv-autofill-greenhouse-meta"
+      },
+      {
+        "name": "089-job-search-hr-cv-autofill-simplify-jobs",
+        "path": "harbor/datasets/clawbench-v1/089-job-search-hr-cv-autofill-simplify-jobs"
+      },
+      {
+        "name": "091-job-search-hr-job-apply-indeed",
+        "path": "harbor/datasets/clawbench-v1/091-job-search-hr-job-apply-indeed"
+      },
+      {
+        "name": "120-office-secretary-tasks-email-mgmt-purelymail",
+        "path": "harbor/datasets/clawbench-v1/120-office-secretary-tasks-email-mgmt-purelymail"
+      },
+      {
+        "name": "121-office-secretary-tasks-email-mgmt-purelymail",
+        "path": "harbor/datasets/clawbench-v1/121-office-secretary-tasks-email-mgmt-purelymail"
+      },
+      {
+        "name": "128-office-secretary-tasks-email-mgmt-purelymail",
+        "path": "harbor/datasets/clawbench-v1/128-office-secretary-tasks-email-mgmt-purelymail"
+      },
+      {
+        "name": "134-office-secretary-tasks-calendar-calendly",
+        "path": "harbor/datasets/clawbench-v1/134-office-secretary-tasks-calendar-calendly"
+      },
+      {
+        "name": "137-office-secretary-tasks-calendar-doodle",
+        "path": "harbor/datasets/clawbench-v1/137-office-secretary-tasks-calendar-doodle"
+      },
+      {
+        "name": "139-office-secretary-tasks-calendar-calendly",
+        "path": "harbor/datasets/clawbench-v1/139-office-secretary-tasks-calendar-calendly"
+      },
+      {
+        "name": "142-office-secretary-tasks-collab-trello",
+        "path": "harbor/datasets/clawbench-v1/142-office-secretary-tasks-collab-trello"
+      },
+      {
+        "name": "179-dev-tech-github-ops-github",
+        "path": "harbor/datasets/clawbench-v1/179-dev-tech-github-ops-github"
+      },
+      {
+        "name": "180-dev-tech-github-ops-github",
+        "path": "harbor/datasets/clawbench-v1/180-dev-tech-github-ops-github"
+      },
+      {
+        "name": "215-academia-research-paper-tables-overleaf",
+        "path": "harbor/datasets/clawbench-v1/215-academia-research-paper-tables-overleaf"
+      },
+      {
+        "name": "242-academia-research-research-tools-overleaf",
+        "path": "harbor/datasets/clawbench-v1/242-academia-research-research-tools-overleaf"
+      },
+      {
+        "name": "246-academia-research-research-tools-zotero",
+        "path": "harbor/datasets/clawbench-v1/246-academia-research-research-tools-zotero"
+      },
+      {
+        "name": "247-academia-research-research-tools-semantic-scholar",
+        "path": "harbor/datasets/clawbench-v1/247-academia-research-research-tools-semantic-scholar"
+      },
+      {
+        "name": "265-education-learning-general-coursera",
+        "path": "harbor/datasets/clawbench-v1/265-education-learning-general-coursera"
+      },
+      {
+        "name": "266-education-learning-general-leetcode",
+        "path": "harbor/datasets/clawbench-v1/266-education-learning-general-leetcode"
+      },
+      {
+        "name": "273-education-learning-general-edx",
+        "path": "harbor/datasets/clawbench-v1/273-education-learning-general-edx"
+      },
+      {
+        "name": "274-education-learning-general-udemy",
+        "path": "harbor/datasets/clawbench-v1/274-education-learning-general-udemy"
+      },
+      {
+        "name": "279-travel-general-airbnb",
+        "path": "harbor/datasets/clawbench-v1/279-travel-general-airbnb"
+      },
+      {
+        "name": "280-travel-general-booking-com",
+        "path": "harbor/datasets/clawbench-v1/280-travel-general-booking-com"
+      },
+      {
+        "name": "363-entertainment-hobbies-general-ticketmaster",
+        "path": "harbor/datasets/clawbench-v1/363-entertainment-hobbies-general-ticketmaster"
+      },
+      {
+        "name": "369-entertainment-hobbies-general-goodreads",
+        "path": "harbor/datasets/clawbench-v1/369-entertainment-hobbies-general-goodreads"
+      },
+      {
+        "name": "372-entertainment-hobbies-general-eventbrite",
+        "path": "harbor/datasets/clawbench-v1/372-entertainment-hobbies-general-eventbrite"
+      },
+      {
+        "name": "403-personal-management-account-security-1password-web",
+        "path": "harbor/datasets/clawbench-v1/403-personal-management-account-security-1password-web"
+      },
+      {
+        "name": "413-personal-management-personal-tools-todoist",
+        "path": "harbor/datasets/clawbench-v1/413-personal-management-personal-tools-todoist"
+      },
+      {
+        "name": "468-rating-voting-general-glassdoor",
+        "path": "harbor/datasets/clawbench-v1/468-rating-voting-general-glassdoor"
+      },
+      {
+        "name": "469-rating-voting-general-tripadvisor",
+        "path": "harbor/datasets/clawbench-v1/469-rating-voting-general-tripadvisor"
+      },
+      {
+        "name": "470-rating-voting-general-trustpilot",
+        "path": "harbor/datasets/clawbench-v1/470-rating-voting-general-trustpilot"
+      },
+      {
+        "name": "474-rating-voting-general-capterra",
+        "path": "harbor/datasets/clawbench-v1/474-rating-voting-general-capterra"
+      },
+      {
+        "name": "475-rating-voting-general-g2",
+        "path": "harbor/datasets/clawbench-v1/475-rating-voting-general-g2"
+      },
+      {
+        "name": "482-creation-init-general-confluence",
+        "path": "harbor/datasets/clawbench-v1/482-creation-init-general-confluence"
+      },
+      {
+        "name": "483-creation-init-general-airtable",
+        "path": "harbor/datasets/clawbench-v1/483-creation-init-general-airtable"
+      },
+      {
+        "name": "484-creation-init-general-clickup",
+        "path": "harbor/datasets/clawbench-v1/484-creation-init-general-clickup"
+      },
+      {
+        "name": "485-creation-init-general-webflow",
+        "path": "harbor/datasets/clawbench-v1/485-creation-init-general-webflow"
+      },
+      {
+        "name": "486-creation-init-general-mailchimp",
+        "path": "harbor/datasets/clawbench-v1/486-creation-init-general-mailchimp"
+      },
+      {
+        "name": "487-creation-init-general-typeform",
+        "path": "harbor/datasets/clawbench-v1/487-creation-init-general-typeform"
+      },
+      {
+        "name": "488-creation-init-general-substack",
+        "path": "harbor/datasets/clawbench-v1/488-creation-init-general-substack"
+      },
+      {
+        "name": "489-creation-init-general-ghost",
+        "path": "harbor/datasets/clawbench-v1/489-creation-init-general-ghost"
+      },
+      {
+        "name": "501-creation-init-general-asana",
+        "path": "harbor/datasets/clawbench-v1/501-creation-init-general-asana"
+      },
+      {
+        "name": "529-daily-life-shopping-delivery-king-arthur-baking",
+        "path": "harbor/datasets/clawbench-v1/529-daily-life-shopping-delivery-king-arthur-baking"
+      },
+      {
+        "name": "533-daily-life-utilities-inmyarea",
+        "path": "harbor/datasets/clawbench-v1/533-daily-life-utilities-inmyarea"
+      },
+      {
+        "name": "535-daily-life-home-home-depot",
+        "path": "harbor/datasets/clawbench-v1/535-daily-life-home-home-depot"
+      },
+      {
+        "name": "537-daily-life-food-crumbl",
+        "path": "harbor/datasets/clawbench-v1/537-daily-life-food-crumbl"
+      },
+      {
+        "name": "539-daily-life-health-jefit",
+        "path": "harbor/datasets/clawbench-v1/539-daily-life-health-jefit"
+      },
+      {
+        "name": "542-daily-life-pets-wag",
+        "path": "harbor/datasets/clawbench-v1/542-daily-life-pets-wag"
+      },
+      {
+        "name": "551-finance-investment-crypto-wallet-trezor",
+        "path": "harbor/datasets/clawbench-v1/551-finance-investment-crypto-wallet-trezor"
+      },
+      {
+        "name": "552-finance-investment-business-payment-plooto",
+        "path": "harbor/datasets/clawbench-v1/552-finance-investment-business-payment-plooto"
+      },
+      {
+        "name": "555-finance-investment-insurance-insureon",
+        "path": "harbor/datasets/clawbench-v1/555-finance-investment-insurance-insureon"
+      },
+      {
+        "name": "559-finance-investment-crowdfunding-frontfundr",
+        "path": "harbor/datasets/clawbench-v1/559-finance-investment-crowdfunding-frontfundr"
+      },
+      {
+        "name": "564-daily-life-event-registration-race-roster",
+        "path": "harbor/datasets/clawbench-v1/564-daily-life-event-registration-race-roster"
+      },
+      {
+        "name": "565-job-search-hr-job-search-jopwell",
+        "path": "harbor/datasets/clawbench-v1/565-job-search-hr-job-search-jopwell"
+      },
+      {
+        "name": "566-job-search-hr-job-search-ziprecruiter",
+        "path": "harbor/datasets/clawbench-v1/566-job-search-hr-job-search-ziprecruiter"
+      },
+      {
+        "name": "569-job-search-hr-job-search-careerbuilder",
+        "path": "harbor/datasets/clawbench-v1/569-job-search-hr-job-search-careerbuilder"
+      },
+      {
+        "name": "570-job-search-hr-job-search-hired",
+        "path": "harbor/datasets/clawbench-v1/570-job-search-hr-job-search-hired"
+      },
+      {
+        "name": "571-job-search-hr-recruitment-mgmt-workable",
+        "path": "harbor/datasets/clawbench-v1/571-job-search-hr-recruitment-mgmt-workable"
+      },
+      {
+        "name": "576-office-secretary-tasks-reports-ftc-reportfraud",
+        "path": "harbor/datasets/clawbench-v1/576-office-secretary-tasks-reports-ftc-reportfraud"
+      },
+      {
+        "name": "583-office-secretary-tasks-support-tickets-freshdesk",
+        "path": "harbor/datasets/clawbench-v1/583-office-secretary-tasks-support-tickets-freshdesk"
+      },
+      {
+        "name": "598-academia-research-legal-docs-formswift",
+        "path": "harbor/datasets/clawbench-v1/598-academia-research-legal-docs-formswift"
+      },
+      {
+        "name": "606-education-learning-kids-courses-outschool",
+        "path": "harbor/datasets/clawbench-v1/606-education-learning-kids-courses-outschool"
+      },
+      {
+        "name": "607-education-learning-art-courses-creativebug",
+        "path": "harbor/datasets/clawbench-v1/607-education-learning-art-courses-creativebug"
+      },
+      {
+        "name": "609-education-learning-meditation-spirit-rock-meditation-center",
+        "path": "harbor/datasets/clawbench-v1/609-education-learning-meditation-spirit-rock-meditation-center"
+      },
+      {
+        "name": "615-travel-flights-spirit-airlines",
+        "path": "harbor/datasets/clawbench-v1/615-travel-flights-spirit-airlines"
+      },
+      {
+        "name": "618-travel-train-bus-12go-asia",
+        "path": "harbor/datasets/clawbench-v1/618-travel-train-bus-12go-asia"
+      },
+      {
+        "name": "625-travel-camping-outdoor-parks-canada-reservations",
+        "path": "harbor/datasets/clawbench-v1/625-travel-camping-outdoor-parks-canada-reservations"
+      },
+      {
+        "name": "626-travel-bus-flixbus",
+        "path": "harbor/datasets/clawbench-v1/626-travel-bus-flixbus"
+      },
+      {
+        "name": "627-travel-flights-momondo",
+        "path": "harbor/datasets/clawbench-v1/627-travel-flights-momondo"
+      },
+      {
+        "name": "632-shopping-commerce-beauty-care-olaplex",
+        "path": "harbor/datasets/clawbench-v1/632-shopping-commerce-beauty-care-olaplex"
+      },
+      {
+        "name": "634-shopping-commerce-apparel-dooney-bourke",
+        "path": "harbor/datasets/clawbench-v1/634-shopping-commerce-apparel-dooney-bourke"
+      },
+      {
+        "name": "635-shopping-commerce-gifts-uncommon-goods",
+        "path": "harbor/datasets/clawbench-v1/635-shopping-commerce-gifts-uncommon-goods"
+      },
+      {
+        "name": "636-shopping-commerce-auto-parts-rockauto",
+        "path": "harbor/datasets/clawbench-v1/636-shopping-commerce-auto-parts-rockauto"
+      },
+      {
+        "name": "638-shopping-commerce-print-custom-vistaprint",
+        "path": "harbor/datasets/clawbench-v1/638-shopping-commerce-print-custom-vistaprint"
+      },
+      {
+        "name": "639-shopping-commerce-luxury-mansur-gavriel",
+        "path": "harbor/datasets/clawbench-v1/639-shopping-commerce-luxury-mansur-gavriel"
+      },
+      {
+        "name": "671-entertainment-gaming-humble-bundle",
+        "path": "harbor/datasets/clawbench-v1/671-entertainment-gaming-humble-bundle"
+      },
+      {
+        "name": "672-entertainment-hobbies-anime-streaming-crunchyroll",
+        "path": "harbor/datasets/clawbench-v1/672-entertainment-hobbies-anime-streaming-crunchyroll"
+      },
+      {
+        "name": "674-entertainment-hobbies-masterclass-masterclass",
+        "path": "harbor/datasets/clawbench-v1/674-entertainment-hobbies-masterclass-masterclass"
+      },
+      {
+        "name": "676-government-civic-legal-docs-legalnature",
+        "path": "harbor/datasets/clawbench-v1/676-government-civic-legal-docs-legalnature"
+      },
+      {
+        "name": "685-personal-management-budget-mgmt-everydollar",
+        "path": "harbor/datasets/clawbench-v1/685-personal-management-budget-mgmt-everydollar"
+      },
+      {
+        "name": "687-personal-management-vpn-subscription-ipvanish",
+        "path": "harbor/datasets/clawbench-v1/687-personal-management-vpn-subscription-ipvanish"
+      },
+      {
+        "name": "688-personal-management-insurance-compare-insurify",
+        "path": "harbor/datasets/clawbench-v1/688-personal-management-insurance-compare-insurify"
+      },
+      {
+        "name": "695-automation-workflows-recurring-order-stumptown-coffee",
+        "path": "harbor/datasets/clawbench-v1/695-automation-workflows-recurring-order-stumptown-coffee"
+      },
+      {
+        "name": "697-automation-workflows-recurring-order-bean-box",
+        "path": "harbor/datasets/clawbench-v1/697-automation-workflows-recurring-order-bean-box"
+      },
+      {
+        "name": "699-automation-workflows-recurring-order-mistobox",
+        "path": "harbor/datasets/clawbench-v1/699-automation-workflows-recurring-order-mistobox"
+      },
+      {
+        "name": "700-deletion-revocation-data-deletion-deleteme",
+        "path": "harbor/datasets/clawbench-v1/700-deletion-revocation-data-deletion-deleteme"
+      },
+      {
+        "name": "705-rating-voting-wine-review-vivino",
+        "path": "harbor/datasets/clawbench-v1/705-rating-voting-wine-review-vivino"
+      },
+      {
+        "name": "706-rating-voting-beer-review-beeradvocate",
+        "path": "harbor/datasets/clawbench-v1/706-rating-voting-beer-review-beeradvocate"
+      },
+      {
+        "name": "707-rating-voting-social-wine-untappd",
+        "path": "harbor/datasets/clawbench-v1/707-rating-voting-social-wine-untappd"
+      },
+      {
+        "name": "708-rating-voting-professor-review-ratemyprofessors",
+        "path": "harbor/datasets/clawbench-v1/708-rating-voting-professor-review-ratemyprofessors"
+      },
+      {
+        "name": "709-rating-voting-service-review-angi",
+        "path": "harbor/datasets/clawbench-v1/709-rating-voting-service-review-angi"
+      },
+      {
+        "name": "710-creation-init-interior-design-roomsketcher",
+        "path": "harbor/datasets/clawbench-v1/710-creation-init-interior-design-roomsketcher"
+      },
+      {
+        "name": "711-creation-init-color-design-coolors",
+        "path": "harbor/datasets/clawbench-v1/711-creation-init-color-design-coolors"
+      },
+      {
+        "name": "712-creation-init-website-create-squarespace",
+        "path": "harbor/datasets/clawbench-v1/712-creation-init-website-create-squarespace"
+      },
+      {
+        "name": "713-creation-init-website-build-wix",
+        "path": "harbor/datasets/clawbench-v1/713-creation-init-website-build-wix"
+      },
+      {
+        "name": "735-home-services-maintenance-house-cleaning-bark",
+        "path": "harbor/datasets/clawbench-v1/735-home-services-maintenance-house-cleaning-bark"
+      },
+      {
+        "name": "736-home-services-maintenance-plumbing-ace-hardware",
+        "path": "harbor/datasets/clawbench-v1/736-home-services-maintenance-plumbing-ace-hardware"
+      },
+      {
+        "name": "737-home-services-maintenance-kitchen-remodel-lowes",
+        "path": "harbor/datasets/clawbench-v1/737-home-services-maintenance-kitchen-remodel-lowes"
+      },
+      {
+        "name": "738-home-services-maintenance-equipment-install-amazon-home-services",
+        "path": "harbor/datasets/clawbench-v1/738-home-services-maintenance-equipment-install-amazon-home-services"
+      },
+      {
+        "name": "750-automotive-vehicle-services-car-insurance-compare-kanetix",
+        "path": "harbor/datasets/clawbench-v1/750-automotive-vehicle-services-car-insurance-compare-kanetix"
+      },
+      {
+        "name": "751-automotive-vehicle-services-car-lease-sixt",
+        "path": "harbor/datasets/clawbench-v1/751-automotive-vehicle-services-car-lease-sixt"
+      },
+      {
+        "name": "754-automotive-vehicle-services-used-car-listing-autotrader",
+        "path": "harbor/datasets/clawbench-v1/754-automotive-vehicle-services-used-car-listing-autotrader"
+      },
+      {
+        "name": "763-automotive-vehicle-services-car-lease-autoslash",
+        "path": "harbor/datasets/clawbench-v1/763-automotive-vehicle-services-car-lease-autoslash"
+      },
+      {
+        "name": "766-nonprofit-charity-donation-doctors-without-borders-msf",
+        "path": "harbor/datasets/clawbench-v1/766-nonprofit-charity-donation-doctors-without-borders-msf"
+      },
+      {
+        "name": "768-nonprofit-charity-community-crowdfund-ioby",
+        "path": "harbor/datasets/clawbench-v1/768-nonprofit-charity-community-crowdfund-ioby"
+      },
+      {
+        "name": "770-nonprofit-charity-volunteer-apply-on-make-a-wish-foundation-website-complete-and-submit-a-volunteer-application-form-selecting-the-wish-granter-role-and-entering-city-phoenix-az",
+        "path": "harbor/datasets/clawbench-v1/770-nonprofit-charity-volunteer-apply-on-make-a-wish-foundation-website-complete-and-submit-a-volunteer-application-form-selecting-the-wish-granter-role-and-entering-city-phoenix-az"
+      },
+      {
+        "name": "774-nonprofit-charity-nonprofit-job-apply-charity-village",
+        "path": "harbor/datasets/clawbench-v1/774-nonprofit-charity-nonprofit-job-apply-charity-village"
+      },
+      {
+        "name": "776-nonprofit-charity-volunteer-signup-idealist",
+        "path": "harbor/datasets/clawbench-v1/776-nonprofit-charity-volunteer-signup-idealist"
+      },
+      {
+        "name": "778-nonprofit-charity-donation-globalgiving",
+        "path": "harbor/datasets/clawbench-v1/778-nonprofit-charity-donation-globalgiving"
+      },
+      {
+        "name": "780-beauty-personal-care-skincare-purchase-soko-glam",
+        "path": "harbor/datasets/clawbench-v1/780-beauty-personal-care-skincare-purchase-soko-glam"
+      },
+      {
+        "name": "781-beauty-personal-care-beauty-booking-bluemercury",
+        "path": "harbor/datasets/clawbench-v1/781-beauty-personal-care-beauty-booking-bluemercury"
+      },
+      {
+        "name": "782-beauty-personal-care-skincare-purchase-paulas-choice",
+        "path": "harbor/datasets/clawbench-v1/782-beauty-personal-care-skincare-purchase-paulas-choice"
+      },
+      {
+        "name": "783-beauty-personal-care-beauty-booking-ulta-beauty",
+        "path": "harbor/datasets/clawbench-v1/783-beauty-personal-care-beauty-booking-ulta-beauty"
+      },
+      {
+        "name": "785-beauty-personal-care-skincare-curology",
+        "path": "harbor/datasets/clawbench-v1/785-beauty-personal-care-skincare-curology"
+      },
+      {
+        "name": "788-beauty-personal-care-makeup-the-ordinary",
+        "path": "harbor/datasets/clawbench-v1/788-beauty-personal-care-makeup-the-ordinary"
+      },
+      {
+        "name": "789-beauty-personal-care-makeup-fenty-beauty",
+        "path": "harbor/datasets/clawbench-v1/789-beauty-personal-care-makeup-fenty-beauty"
+      },
+      {
+        "name": "793-beauty-personal-care-beauty-retail-mac-cosmetics",
+        "path": "harbor/datasets/clawbench-v1/793-beauty-personal-care-beauty-retail-mac-cosmetics"
+      },
+      {
+        "name": "794-beauty-personal-care-salon-booking-styleseat",
+        "path": "harbor/datasets/clawbench-v1/794-beauty-personal-care-salon-booking-styleseat"
+      },
+      {
+        "name": "795-pet-animal-care-pet-adoption-aspca",
+        "path": "harbor/datasets/clawbench-v1/795-pet-animal-care-pet-adoption-aspca"
+      },
+      {
+        "name": "796-pet-animal-care-pet-supplies-grooming-petsmart",
+        "path": "harbor/datasets/clawbench-v1/796-pet-animal-care-pet-supplies-grooming-petsmart"
+      },
+      {
+        "name": "801-pet-animal-care-pet-friendly-travel-bringfido",
+        "path": "harbor/datasets/clawbench-v1/801-pet-animal-care-pet-friendly-travel-bringfido"
+      },
+      {
+        "name": "803-pet-animal-care-pet-medical-pawp",
+        "path": "harbor/datasets/clawbench-v1/803-pet-animal-care-pet-medical-pawp"
+      },
+      {
+        "name": "807-pet-animal-care-pet-dna-embark",
+        "path": "harbor/datasets/clawbench-v1/807-pet-animal-care-pet-dna-embark"
+      },
+      {
+        "name": "809-pet-animal-care-pet-adopt-petfinder",
+        "path": "harbor/datasets/clawbench-v1/809-pet-animal-care-pet-adopt-petfinder"
+      },
+      {
+        "name": "812-pet-animal-care-pet-subscription-ollie",
+        "path": "harbor/datasets/clawbench-v1/812-pet-animal-care-pet-subscription-ollie"
+      },
+      {
+        "name": "815-personal-management-records-mgmt-myheritage",
+        "path": "harbor/datasets/clawbench-v1/815-personal-management-records-mgmt-myheritage"
+      },
+      {
+        "name": "821-education-learning-reading-self-study-blinkist",
+        "path": "harbor/datasets/clawbench-v1/821-education-learning-reading-self-study-blinkist"
+      },
+      {
+        "name": "861-entertainment-hobbies-movies-cineplex",
+        "path": "harbor/datasets/clawbench-v1/861-entertainment-hobbies-movies-cineplex"
+      },
+      {
+        "name": "862-entertainment-hobbies-movies-amc-theatres",
+        "path": "harbor/datasets/clawbench-v1/862-entertainment-hobbies-movies-amc-theatres"
+      },
+      {
+        "name": "864-entertainment-hobbies-show-tickets-ticketmaster",
+        "path": "harbor/datasets/clawbench-v1/864-entertainment-hobbies-show-tickets-ticketmaster"
+      },
+      {
+        "name": "865-travel-outdoor-hipcamp",
+        "path": "harbor/datasets/clawbench-v1/865-travel-outdoor-hipcamp"
+      },
+      {
+        "name": "867-entertainment-hobbies-movies-fandango",
+        "path": "harbor/datasets/clawbench-v1/867-entertainment-hobbies-movies-fandango"
+      },
+      {
+        "name": "872-daily-life-food-opentable",
+        "path": "harbor/datasets/clawbench-v1/872-daily-life-food-opentable"
+      },
+      {
+        "name": "873-daily-life-food-resy",
+        "path": "harbor/datasets/clawbench-v1/873-daily-life-food-resy"
+      },
+      {
+        "name": "876-entertainment-hobbies-show-tickets-vivid-seats",
+        "path": "harbor/datasets/clawbench-v1/876-entertainment-hobbies-show-tickets-vivid-seats"
+      },
+      {
+        "name": "877-entertainment-hobbies-show-tickets-stubhub",
+        "path": "harbor/datasets/clawbench-v1/877-entertainment-hobbies-show-tickets-stubhub"
+      },
+      {
+        "name": "878-travel-outdoor-ontario-parks",
+        "path": "harbor/datasets/clawbench-v1/878-travel-outdoor-ontario-parks"
+      },
+      {
+        "name": "883-education-learning-hobby-class-sur-la-table",
+        "path": "harbor/datasets/clawbench-v1/883-education-learning-hobby-class-sur-la-table"
+      },
+      {
+        "name": "884-entertainment-hobbies-experience-breakout-games",
+        "path": "harbor/datasets/clawbench-v1/884-entertainment-hobbies-experience-breakout-games"
+      },
+      {
+        "name": "885-entertainment-hobbies-experience-bowlero",
+        "path": "harbor/datasets/clawbench-v1/885-entertainment-hobbies-experience-bowlero"
+      },
+      {
+        "name": "886-entertainment-hobbies-experience-topgolf",
+        "path": "harbor/datasets/clawbench-v1/886-entertainment-hobbies-experience-topgolf"
+      }
+    ]
+  },
+  {
     "name": "clawbench-v2",
     "version": "0.9.2",
-    "description": "ClawBench V2: 129 everyday tasks on live consumer websites, scored by request interception + LLM judge. https://claw-bench.com",
+    "description": "ClawBench: everyday tasks on live consumer websites, scored by request interception + LLM judge. https://claw-bench.com",
     "tasks": [
       {
         "name": "v2-047-daily-life-personal-care-taskrabbit",

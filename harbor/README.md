@@ -27,7 +27,7 @@ harbor run --repo TIGER-AI-Lab/ClawBench -d clawbench-v2 \
 - `-i 'v2-9*'` / `-x '...'` include or exclude tasks by glob.
 - Judge wiring, concurrency, and troubleshooting: [`docs/harbor.md`](../docs/harbor.md).
 
-**Runtime image.** Committed tasks are in *prebuilt mode*: `task.toml` points `[environment].docker_image` at `ghcr.io/tiger-ai-lab/clawbench-harbor-runtime:<clawbench version>` instead of shipping a 280 KB `environment/` build context per task (129 × 280 KB ≈ 35 MB otherwise). The image is built from [`src/clawbench/runtime/harbor/Dockerfile`](../src/clawbench/runtime/harbor/Dockerfile) by `scripts/harbor/build-runtime-image.sh` and published by the `publish-harbor-image` workflow on every release tag. If you want tasks that build locally instead, generate them yourself:
+**Runtime image.** Committed tasks are in *prebuilt mode*: `task.toml` points `[environment].docker_image` at `clawbench/clawbench-harbor-runtime (Docker Hub):<clawbench version>` instead of shipping a 280 KB `environment/` build context per task (129 × 280 KB ≈ 35 MB otherwise). The image is built from [`src/clawbench/runtime/harbor/Dockerfile`](../src/clawbench/runtime/harbor/Dockerfile) by `scripts/harbor/build-runtime-image.sh` and published by the `publish-harbor-image` workflow on release tags / manual dispatch (repo secrets `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN`). If you want tasks that build locally instead, generate them yourself:
 
 ```bash
 uv run clawbench-harbor-adapt --output-dir ./harbor-datasets/clawbench-v2 --overwrite
@@ -45,7 +45,7 @@ harbor auth org create tiger-ai-lab                 # or ask an existing member 
 # Task names in dataset.toml are <org>/<task>; the org must be one you own on the Hub.
 scripts/harbor/regenerate.sh                        # refresh datasets/, registry.json, dataset.toml
 
-harbor publish harbor/dataset.toml --public -t v0.9.2 -t v2
+harbor publish harbor/dataset.toml harbor/dataset-v1.toml --public -t v0.9.2
 harbor run -d tiger-ai-lab/clawbench-v2@v2 -a hermes -m ...   # anyone, anywhere
 ```
 
@@ -70,10 +70,12 @@ Harbor-Index (harbor-index.org) is curated *from* registered adapters (tasks wit
 ```
 harbor/
 ├── README.md              this file
-├── dataset.toml           Hub manifest: tiger-ai-lab/clawbench-v2, one [[tasks]] digest per task
+├── dataset.toml           Hub manifest: tiger-ai-lab/clawbench-v2
+├── dataset-v1.toml        Hub manifest: tiger-ai-lab/clawbench-v1
 ├── job-config.yaml        harbor run -c harbor/job-config.yaml (local docker, hermes)
 ├── adapter/               harbor-framework/harbor adapters/clawbench package
 └── datasets/
-    └── clawbench-v2/      129 generated prebuilt-mode tasks (task.toml + steps/run/{instruction.md,workdir,tests,solution})
+    ├── clawbench-v2/      129 generated prebuilt-mode tasks (leaderboard corpus)
+    └── clawbench-v1/      152 generated prebuilt-mode tasks (V1 corpus)
 ../registry.json           git registry consumed by --repo
 ```

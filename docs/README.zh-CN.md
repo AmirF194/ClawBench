@@ -105,9 +105,9 @@
 </td>
 <td align="center" valign="top">
 
-❓ **有问题**<br/>
-[FAQ](#faq) · [提 issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose)<br/>
-<sub>也可在 HF 数据集页提问</sub>
+🧭 **用 Harbor 跑**<br/>
+[`harbor run --repo TIGER-AI-Lab/ClawBench`](../harbor/README.md)<br/>
+<sub>[FAQ](#faq) · [提 issue](https://github.com/TIGER-AI-Lab/ClawBench/issues/new/choose)</sub>
 
 </td>
 </tr>

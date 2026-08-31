@@ -36,18 +36,22 @@ jobs:
           uv sync --frozen
           uv pip install "harbor==0.22.0"
 
-      - name: Committed Harbor dataset is up to date
+      - name: Committed Harbor datasets are up to date
         run: |
           set -euo pipefail
           VERSION="$(grep -m1 '^version' pyproject.toml | sed -E 's/.*"([^"]+)".*/\1/')"
-          uv run clawbench-harbor-adapt \
-            --output-dir /tmp/clawbench-v2 \
-            --docker-image "ghcr.io/tiger-ai-lab/clawbench-harbor-runtime:$VERSION" \
-            --overwrite
-          diff -r /tmp/clawbench-v2 harbor/datasets/clawbench-v2 \
-            || { echo "::error::harbor/datasets/clawbench-v2 is stale — run scripts/harbor/regenerate.sh"; exit 1; }
-          uv run python scripts/harbor/build_registry.py \
-            --dataset-dir harbor/datasets/clawbench-v2 --version "$VERSION" --output /tmp/registry.json
+          for SUITE in v2 v1; do
+            uv run clawbench-harbor-adapt \
+              --suite "$SUITE" \
+              --output-dir "/tmp/clawbench-$SUITE" \
+              --docker-image "clawbench/clawbench-harbor-runtime:$VERSION" \
+              --overwrite
+            diff -r "/tmp/clawbench-$SUITE" "harbor/datasets/clawbench-$SUITE" \
+              || { echo "::error::harbor/datasets/clawbench-$SUITE is stale — run scripts/harbor/regenerate.sh"; exit 1; }
+            uv run python scripts/harbor/build_registry.py \
+              --dataset-dir "harbor/datasets/clawbench-$SUITE" --name "clawbench-$SUITE" \
+              --version "$VERSION" --output /tmp/registry.json
+          done
           diff /tmp/registry.json registry.json \
             || { echo "::error::registry.json is stale — run scripts/harbor/regenerate.sh"; exit 1; }
 
@@ -57,27 +61,31 @@ jobs:
           import sys
           from pathlib import Path
           from harbor.models.task.task import Task
-          root = Path("harbor/datasets/clawbench-v2")
           bad = []
-          for d in sorted(p.parent for p in root.glob("*/task.toml")):
-              try:
-                  Task(task_dir=d).config
-              except Exception as exc:  # noqa: BLE001
-                  bad.append(f"{d.name}: {exc}")
-          print(f"loaded {len(list(root.glob('*/task.toml'))) - len(bad)} tasks")
+          total = 0
+          for root in (Path("harbor/datasets/clawbench-v2"), Path("harbor/datasets/clawbench-v1")):
+              for d in sorted(p.parent for p in root.glob("*/task.toml")):
+                  total += 1
+                  try:
+                      Task(task_dir=d).config
+                  except Exception as exc:  # noqa: BLE001
+                      bad.append(f"{d.name}: {exc}")
+          print(f"loaded {total - len(bad)} / {total} tasks")
           if bad:
               print("\n".join(bad)); sys.exit(1)
           PY
 
-      - name: Manifest and registry agree on task names
+      - name: Manifests and registry agree on task names
         run: |
           uv run python - <<'PY'
           import json, tomllib, sys
-          manifest = tomllib.loads(open("harbor/dataset.toml").read())
-          registry = json.load(open("registry.json"))[0]
-          m = {t["name"].split("/", 1)[1] for t in manifest["tasks"]}
-          r = {t["name"] for t in registry["tasks"]}
-          if m != r:
-              print("manifest-only:", sorted(m - r)); print("registry-only:", sorted(r - m)); sys.exit(1)
-          print(f"{len(m)} tasks in both harbor/dataset.toml and registry.json")
+          registry = {e["name"]: e for e in json.load(open("registry.json"))}
+          pairs = [("harbor/dataset.toml", "clawbench-v2"), ("harbor/dataset-v1.toml", "clawbench-v1")]
+          for path, name in pairs:
+              manifest = tomllib.loads(open(path).read())
+              m = {t["name"].split("/", 1)[1] for t in manifest["tasks"]}
+              r = {t["name"] for t in registry[name]["tasks"]}
+              if m != r:
+                  print(path, "manifest-only:", sorted(m - r)); print("registry-only:", sorted(r - m)); sys.exit(1)
+              print(f"{len(m)} tasks agree for {name}")
           PY

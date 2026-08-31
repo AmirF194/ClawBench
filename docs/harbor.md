@@ -15,7 +15,7 @@
 
 ## Zero-conversion path: the git registry
 
-The repo ships a pre-generated Harbor dataset ([`harbor/datasets/clawbench-v2/`](../harbor/datasets/clawbench-v2/)) and a [`registry.json`](../registry.json), so Harbor can pull ClawBench straight from GitHub:
+The repo ships pre-generated Harbor datasets ([`harbor/datasets/clawbench-v2/`](../harbor/datasets/clawbench-v2/) — leaderboard corpus — and [`harbor/datasets/clawbench-v1/`](../harbor/datasets/clawbench-v1/), select with `-d clawbench-v1`) and a [`registry.json`](../registry.json), so Harbor can pull ClawBench straight from GitHub:
 
 ```bash
 harbor run --repo TIGER-AI-Lab/ClawBench -d clawbench-v2 -a hermes -m deepseek/deepseek-v4-flash \
@@ -23,7 +23,7 @@ harbor run --repo TIGER-AI-Lab/ClawBench -d clawbench-v2 -a hermes -m deepseek/d
   --ve CLAWBENCH_JUDGE_MODEL=deepseek-v4-pro --ve CLAWBENCH_JUDGE_API_TYPE=openai-completions
 ```
 
-Those tasks reference the published runtime image `ghcr.io/tiger-ai-lab/clawbench-harbor-runtime:<version>` instead of building one per task. Publishing to the Harbor Hub and upstreaming the adapter are covered in [`harbor/README.md`](../harbor/README.md). The rest of this page is the local-conversion path, which builds the image from source and is what you want when modifying the runtime.
+Those tasks reference the published runtime image `clawbench/clawbench-harbor-runtime:<version>` (Docker Hub) instead of building one per task. Publishing to the Harbor Hub and upstreaming the adapter are covered in [`harbor/README.md`](../harbor/README.md). The rest of this page is the local-conversion path, which builds the image from source and is what you want when modifying the runtime.
 
 ## Prerequisites
 

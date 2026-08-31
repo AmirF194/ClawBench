@@ -14,7 +14,7 @@ from typing import Any
 from clawbench.runner.run_support.task import build_instruction, validate_task_data
 from clawbench.utils.paths import RUNTIME_ROOT, asset_path
 
-DEFAULT_CASES_DIR = asset_path("test-cases", "v2")
+SUPPORTED_SUITES = ("v1", "v2")
 STEP_NAME = "run"
 
 
@@ -143,7 +143,7 @@ def task_toml(
     escaped_source = json.dumps(task_dir_name)
     escaped_package = json.dumps(package_name)
     return f"""schema_version = "1.3"
-source = "clawbench-v2"
+source = "clawbench-{dataset_name}"
 artifacts = ["/data"]
 
 [task]
@@ -327,14 +327,22 @@ def build_parser() -> argparse.ArgumentParser:
         help="Directory to write the Harbor dataset",
     )
     parser.add_argument(
+        "--suite",
+        choices=SUPPORTED_SUITES,
+        default="v2",
+        help="Bundled corpus to convert when --cases-dir is not given",
+    )
+    parser.add_argument(
         "--cases-dir",
         type=Path,
         default=None,
-        help="ClawBench cases directory (defaults to bundled/source test-cases/v2)",
+        help="ClawBench cases directory (defaults to the bundled test-cases/<suite>)",
     )
     parser.add_argument("--org", default="clawbench", help="Harbor package org prefix")
     parser.add_argument(
-        "--dataset-name", default="v2", help="Dataset name stored in metadata"
+        "--dataset-name",
+        default=None,
+        help="Dataset name stored in metadata (defaults to the suite name)",
     )
     parser.add_argument(
         "--limit", type=int, default=None, help="Convert at most this many tasks"
@@ -365,15 +373,13 @@ def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
 
-    cases_dir = (args.cases_dir or DEFAULT_CASES_DIR).resolve()
-    default_cases = args.cases_dir is None
+    cases_dir = (args.cases_dir or asset_path("test-cases", args.suite)).resolve()
     if not cases_dir.exists():
         parser.error(f"cases directory not found: {cases_dir}")
-    if default_cases and cases_dir.name != "v2":
-        parser.error("default Harbor adapter supports only ClawBench V2")
-    if args.cases_dir is not None and cases_dir.name != "v2":
+    if args.cases_dir is not None and cases_dir.name not in SUPPORTED_SUITES:
         print(
-            f"WARNING: Harbor support is validated for V2 only; converting explicit cases dir {cases_dir}",
+            f"WARNING: Harbor support is validated for {'/'.join(SUPPORTED_SUITES)} only; "
+            f"converting explicit cases dir {cases_dir}",
             file=sys.stderr,
         )
 
@@ -402,7 +408,9 @@ def main(argv: list[str] | None = None) -> int:
                 output_root=output_dir,
                 output_name=out_name,
                 org=args.org,
-                dataset_name=args.dataset_name,
+                dataset_name=args.dataset_name
+                or (args.cases_dir and cases_dir.name)
+                or args.suite,
                 docker_image=args.docker_image,
             )
         )
